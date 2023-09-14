@@ -3,11 +3,11 @@
 import  spawn from 'cross-spawn'
 import fs from 'fs'
 import path from 'path'
-import {welcomeFlow} from "./flows/welcome-flow";
-import {frontendFlow} from "./flows/frontend-flow.js";
-import {backendFlow} from "./flows/backend-flow.js";
+import {welcomeFlow} from "./welcome-flow.js";
+import {frontendFlow} from "./frontend-flow.js";
+import {backendFlow} from "./backend-flow.js";
 import readline from "readline";
-import {singleRepoFlow} from "./flows/single-repo-flow.js";
+import {singleRepoFlow} from "./single-repo-flow.js";
 
 const rl = readline.createInterface({
     input: process.stdin,
