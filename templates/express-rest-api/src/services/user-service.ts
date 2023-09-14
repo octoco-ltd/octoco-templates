@@ -1,7 +1,6 @@
 import { UserRepository } from '../repositories/user-repository';
 import z from 'zod';
-import { SumsubApplicantStatusReviewResultSchema } from '../models/sumsub/sumsub-schemas';
-import { UpdateUserMetadataIM, UserIM, UserKYCDetailsVM, UserVM } from '../models/users/user-schema';
+import { UpdateUserMetadataIM, UserIM,  UserVM } from '../models/users/user-schema';
 import { Auth0Client } from '../clients/auth0-client';
 
 

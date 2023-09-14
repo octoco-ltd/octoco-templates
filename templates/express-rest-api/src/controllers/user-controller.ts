@@ -7,15 +7,12 @@ import { UserService } from '../services/user-service';
 import {
     UpdateUserMetadataIM,
     UpdateUserMetadataSchema,
-    UserAccountBalanceVM,
-    UserKYCDetailsVM,
     UserVM,
 } from '../models/users/user-schema';
-import { LedgerService } from '../services/ledger-service';
 import { captureException } from '@sentry/node';
 
 export class UserController {
-    constructor(private userService: UserService, private ledgerService: LedgerService) {
+    constructor(private userService: UserService) {
     }
 
     public async getAllUsers(req: Request, res: Response) {
@@ -218,30 +215,5 @@ export class UserController {
             );
         }
     }
-
-    public async getUserAccountBalance(req: Request, res: Response) {
-        /*
-            This endpoint aggregates on a user's ledger to determine his/her account balance
-             */
-        try {
-            const uid = req.params.id;
-            if (!uid) throw new BadRequest('ID must be defined');
-            const ledgerBalance = await this.ledgerService.getUserLedgerBalance(uid);
-            const tempResult: ResultWithValue<UserAccountBalanceVM> = {
-                isSuccess: true,
-                value: ledgerBalance,
-                httpStatus: httpCodes.StatusCodes.OK,
-                errorMessage: '',
-            };
-            return res.status(tempResult.httpStatus).send(tempResult);
-        } catch (err: any) {
-            await captureException(err)
-            return handleControllerLevelError(
-                res,
-                req,
-                err,
-                `userController - getUserAccountBalance Error: ${err.message}`,
-            );
-        }
-    }
+    
 }

@@ -1,9 +1,9 @@
 {
-  "name": "create-express-app",
+  "name": "octoco-templates",
   "version": "1.0.0",
   "description": "",
   "bin": {
-    "create-express-app": "./index.js"
+    "octoco-templates": "./index.js"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3"
