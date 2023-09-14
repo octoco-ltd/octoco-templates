@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-const readline = require("readline");
 const {welcomeFlow} = require("./welcome-flow");
 const {frontendFlow} = require("./frontend-flow");
 const {backendFlow} = require("./backend-flow");
 const {singleRepoFlow} = require("./single-repo-flow");
+const {dirFlow} = require("./dir-flow");
+
 
 const server = async function () {
     let frontend = null;
@@ -24,7 +25,8 @@ const server = async function () {
     }
 
 
-    const projectName = process.argv[2];
+    const projectName = await dirFlow()
+
 
 // Create a project directory with the project name.
     const currentDir = process.cwd();
