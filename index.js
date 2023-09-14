@@ -1,10 +1,34 @@
 #!/usr/bin/env node
 
-// Usage: npx create-my-template my-app
+import  spawn from 'cross-spawn'
+import fs from 'fs'
+import path from 'path'
+import {welcomeFlow} from "./flows/welcome-flow";
+import {frontendFlow} from "./flows/frontend-flow.js";
+import {backendFlow} from "./flows/backend-flow.js";
+import readline from "readline";
+import {singleRepoFlow} from "./flows/single-repo-flow.js";
 
-const spawn = require('cross-spawn');
-const fs = require('fs');
-const path = require('path');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+let frontend = null;
+let backend = null;
+
+const isMonorepo = welcomeFlow();
+if (isMonorepo) {
+    frontend = frontendFlow();
+    backend = backendFlow();
+} else {
+    const isFrontendApp = singleRepoFlow();
+    if (isFrontendApp) {
+        frontend = frontendFlow();
+    } else {
+        backend = backendFlow();
+    }
+}
 
 // The first argument will be the project name.
 const projectName = process.argv[2];

@@ -2,10 +2,14 @@
   "name": "octoco-templates",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "bin": {
-    "octoco-templates": "./index.js"
+    "octoco-templates": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3"
-  }
+  },
 }
