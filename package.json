@@ -4,12 +4,9 @@
   "description": "",
   "type": "module",
   "bin": {
-    "octoco-templates": "dist/index.js"
-  },
-  "scripts": {
-    "build": "tsc"
+    "octoco-templates": "index.js"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3"
-  },
+  }
 }
