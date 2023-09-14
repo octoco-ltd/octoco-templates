@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "esModuleInterop": true,
+        "inlineSources": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "module": "commonjs",
+        "declaration": true,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": false,
+        "target": "es2018",
+        "sourceMap": true,
+        "lib": ["es6"],
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["./src"],
+    "exclude": ["**/*.test.ts", "node_modules", "node_modules/**/*"]
+}

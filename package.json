@@ -1,0 +1,11 @@
+{
+  "name": "create-express-app",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "create-express-app": "./index.js"
+  },
+  "dependencies": {
+    "cross-spawn": "^7.0.3"
+  }
+}
