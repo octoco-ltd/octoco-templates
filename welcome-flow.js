@@ -1,6 +1,6 @@
-import * as readline from "readline";
+const readline = require("readline");
 
-export function welcomeFlow() {
+const welcomeFlow = function() {
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
@@ -11,12 +11,12 @@ export function welcomeFlow() {
     const message = 'Welcome to the Octoco template CLI. To get started please select your repository structure by entering the corresponding number:\n' +
         '   [1]: A monorepo (containing both front and backend applications)\n' +
         '   [2]: A single application repository\n' +
-        '   Default is 1\n';
+        'Default is 1: ';
 
     let option = 1;
     let isMonorepo = false;
 
-    rl.question(message, selection => {
+    return new Promise( resolve => rl.question(message, selection => {
         option = parseInt(selection);
 
         if (option === 1) {
@@ -28,7 +28,8 @@ export function welcomeFlow() {
             throw Error('Invalid selection!\n');
         }
         rl.close();
-    });
-
-    return isMonorepo;
+        resolve(isMonorepo)
+    }));
 }
+
+module.exports = {welcomeFlow}

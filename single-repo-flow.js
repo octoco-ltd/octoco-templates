@@ -1,6 +1,6 @@
-import * as readline from "readline";
+const readline = require("readline");
 
-export function singleRepoFlow() {
+const singleRepoFlow = function () {
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
@@ -11,12 +11,12 @@ export function singleRepoFlow() {
     const message = 'You have sleected a single application repostory style:\n' +
         '   [1]: Do you require a frontend app?\n' +
         '   [2]: Do you require a backend app?\n' +
-        '   Default is 1\n';
+        'Default is 1: ';
 
     let option = 1;
     let isFrontend = true;
 
-    rl.question(message, selection => {
+    return new Promise(resolve => rl.question(message, selection => {
         option = parseInt(selection);
 
         if (option === 1) {
@@ -27,7 +27,8 @@ export function singleRepoFlow() {
             throw Error('Invalid selection!\n');
         }
         rl.close();
-    });
-
-    return isFrontend;
+        resolve(isFrontend)
+    }))
 }
+
+module.exports = {singleRepoFlow}

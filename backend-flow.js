@@ -1,8 +1,8 @@
-import * as readline from "readline";
+const readline = require("readline");
 
-const backends = {1: "EXPRESS", 2: "APOLLO", 3: ".NET", 4: "PYTHON"}
+const backends = {1: "EXPRESS", 2: "APOLLO", 3: ".NET", 4: "PYTHON"};
 
-export function backendFlow() {
+const backendFlow = function () {
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
@@ -12,11 +12,12 @@ export function backendFlow() {
         '   [1]: TS Express REST API\n' +
         '   [2]: TS Apollo GraphQL API\n' +
         '   [3]: .NET REST API\n' +
-        '   [4]: Python REST API\n';
+        '   [4]: Python REST API\n' +
+        'Default is 1: ';
 
     let option = 1;
 
-    rl.question(message, selection => {
+    return new Promise(resolve => rl.question(message, selection => {
         option = parseInt(selection);
 
         if (option === 1) {
@@ -31,7 +32,11 @@ export function backendFlow() {
             throw Error('Invalid selection!\n');
         }
         rl.close();
-    });
+        resolve(backends[option])
+    }))
 
-    return backends[option]
-}
+};
+
+module.exports = {
+    backendFlow
+};

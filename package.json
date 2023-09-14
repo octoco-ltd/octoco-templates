@@ -2,7 +2,6 @@
   "name": "octoco-templates",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "bin": {
     "octoco-templates": "index.js"
   },
