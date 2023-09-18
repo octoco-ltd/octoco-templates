@@ -8,12 +8,12 @@ import { captureException } from '@sentry/node';
 export class DefaultController {
     public async defaultEndpoint(req: Request, res: Response) {
         /*
-            Default endpoint for the Basecamp API
+            Default endpoint for the Example API
              */
         try {
             const tempResult: ResultWithValue<string> = {
                 isSuccess: true,
-                value: 'BASECAMP API is running!',
+                value: 'Example API is running!',
                 httpStatus: httpCodes.StatusCodes.OK,
                 errorMessage: '',
             };
