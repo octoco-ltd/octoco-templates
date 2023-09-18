@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 
 // TODO: add frontend options here as added to CLI
-const frontends = {"REACT": "REACT",}
+export const frontends = {"REACT": "ts-react-app",}
 
 export const frontendFlow = async function() {
     const questions = [

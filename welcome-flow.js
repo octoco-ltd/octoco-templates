@@ -7,7 +7,8 @@ export const welcomeFlow = async function() {
 
     let isMonorepo = false;
 
-    const answers = await inquirer.prompt([{
+    const answers = await inquirer.prompt([
+        {
         name: 'isMonorepo',
         message: 'Do you require a monorepo architecture (y/n)?',
         default: 'y'
