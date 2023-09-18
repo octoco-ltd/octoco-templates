@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import {frontends} from "./frontend-flow.js";
 import * as path from "path";
+import {backends} from "./backend-flow.js";
 
 export const feDirFlow = function (feDir, feAppType, feAppName) {
     fs.mkdirSync(feDir, {recursive: true});
@@ -11,21 +12,13 @@ export const feDirFlow = function (feDir, feAppType, feAppName) {
     // A common approach to building a starter template is to
     // create a `template` folder which will house the template
     // and the files we want to create.
-
-    const feTemplateDir = path.resolve(__dirname, 'templates/' + frontends[feAppType]);
+    const __dirname = path.resolve(path.dirname(''));
+    console.log(feAppType)
+    const feTemplateDir = path.resolve(__dirname, 'templates/' + feAppType);
     fs.cpSync(feTemplateDir, feAppDir, {recursive: true});
 
-    // It is good practice to have dotfiles stored in the
-    // template without the dot (so they do not get picked
-    // up by the starter template repository). We can rename
-    // the dotfiles after we have copied them over to the
-    // new project directory.
-    fs.renameSync(
-        path.join(feAppDir, 'gitignore'),
-        path.join(feAppDir, '.gitignore')
-    );
 
-    const feProjectPackageJson = require(path.join(feAppDir, 'package.json'));
+    const feProjectPackageJson = JSON.parse(fs.readFileSync(path.join(feAppDir, 'package.json'), 'utf8'))
 
     // Update the project's package.json with the new project name
     feProjectPackageJson.name = feAppName;
@@ -45,8 +38,8 @@ export const beDirFlow = function (beDir, beAppType, beAppName) {
     // A common approach to building a starter template is to
     // create a `template` folder which will house the template
     // and the files we want to create.
-
-    const feTemplateDir = path.resolve(__dirname, 'templates/' + frontends[beAppType]);
+    const __dirname = path.resolve(path.dirname(''));
+    const feTemplateDir = path.resolve(__dirname, 'templates/' + beAppType);
     fs.cpSync(feTemplateDir, beAppDir, {recursive: true});
 
     // It is good practice to have dotfiles stored in the
@@ -59,7 +52,7 @@ export const beDirFlow = function (beDir, beAppType, beAppName) {
         path.join(beAppDir, '.gitignore')
     );
 
-    const beProjectPackageJson = require(path.join(beAppDir, 'package.json'));
+    const beProjectPackageJson = JSON.parse(fs.readFileSync(path.join(beAppDir, 'package.json'), 'utf8'))
 
     // Update the project's package.json with the new project name
     beProjectPackageJson.name = beAppName;

@@ -12,7 +12,7 @@ export const frontendFlow = async function() {
         {
             type: 'list',
             name: 'fe-app',
-            message: 'Which type of BE application do you need?',
+            message: 'Which type of FE application do you need?',
             choices: [Object.keys(frontends)[0]]
         }
     ]
