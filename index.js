@@ -10,25 +10,28 @@
 // const {dirFlow} = require("./dir-flow");
 
 import {welcomeFlow} from "./welcome-flow.js";
+import {backendFlow} from "./backend-flow.js";
+import {frontendFlow} from "./frontend-flow.js";
 
 
 const server = async function () {
-    let frontend = null;
-    let backend = null;
-
     const isMonorepo = await welcomeFlow();
     console.log(isMonorepo)
-//     if (isMonorepo) {
-//         frontend = await frontendFlow();
-//         backend = await backendFlow();
-//     } else {
-//         const isFrontendApp = await singleRepoFlow();
-//         if (isFrontendApp) {
-//             frontend = await frontendFlow();
-//         } else {
-//             backend = await backendFlow();
-//         }
-//     }
+    const [beAppName, beAppType] = await backendFlow()
+
+    const [feAppName, feAppType] = await frontendFlow()
+
+    // if (isMonorepo) {
+    //     frontend = await frontendFlow();
+    //     backend = await backendFlow();
+    // } else {
+    //     const isFrontendApp = await singleRepoFlow();
+    //     if (isFrontendApp) {
+    //         frontend = await frontendFlow();
+    //     } else {
+    //         backend = await backendFlow();
+    //     }
+    // }
 //
 //
 //     const projectName = await dirFlow()
