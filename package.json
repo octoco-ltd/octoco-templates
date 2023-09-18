@@ -2,10 +2,12 @@
   "name": "octoco-templates",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "bin": {
     "octoco-templates": "index.js"
   },
   "dependencies": {
-    "cross-spawn": "^7.0.3"
+    "cross-spawn": "^7.0.3",
+    "inquirer": "^9.2.11"
   }
 }
