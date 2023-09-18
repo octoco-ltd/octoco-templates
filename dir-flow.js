@@ -12,9 +12,9 @@ export const feDirFlow = function (feDir, feAppType, feAppName) {
     // A common approach to building a starter template is to
     // create a `template` folder which will house the template
     // and the files we want to create.
-    const __dirname = path.resolve(path.dirname(''));
-    console.log(feAppType)
-    const feTemplateDir = path.resolve(__dirname, 'templates/' + feAppType);
+    // const __dirname = path.resolve(path.dirname(''));
+
+    const feTemplateDir = path.resolve('./templates/' + feAppType);
     fs.cpSync(feTemplateDir, feAppDir, {recursive: true});
 
 
@@ -38,8 +38,8 @@ export const beDirFlow = function (beDir, beAppType, beAppName) {
     // A common approach to building a starter template is to
     // create a `template` folder which will house the template
     // and the files we want to create.
-    const __dirname = path.resolve(path.dirname(''));
-    const feTemplateDir = path.resolve(__dirname, 'templates/' + beAppType);
+    // const __dirname = path.resolve(path.dirname(''));
+    const feTemplateDir = path.resolve('./templates/' + beAppType);
     fs.cpSync(feTemplateDir, beAppDir, {recursive: true});
 
     // It is good practice to have dotfiles stored in the
