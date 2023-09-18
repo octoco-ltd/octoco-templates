@@ -2,6 +2,11 @@ import * as fs from "fs";
 import {frontends} from "./frontend-flow.js";
 import * as path from "path";
 import {backends} from "./backend-flow.js";
+import { fileURLToPath } from 'url'
+
+const __filenameNew = fileURLToPath(import.meta.url)
+
+const __dirnameNew = path.dirname(__filenameNew)
 
 export const feDirFlow = function (feDir, feAppType, feAppName) {
     fs.mkdirSync(feDir, {recursive: true});
@@ -14,7 +19,7 @@ export const feDirFlow = function (feDir, feAppType, feAppName) {
     // and the files we want to create.
     // const __dirname = path.resolve(path.dirname(''));
 
-    const feTemplateDir = path.resolve('./templates/' + feAppType);
+    const feTemplateDir = path.resolve(__dirnameNew, 'templates/' + feAppType);
     fs.cpSync(feTemplateDir, feAppDir, {recursive: true});
 
 
@@ -39,7 +44,7 @@ export const beDirFlow = function (beDir, beAppType, beAppName) {
     // create a `template` folder which will house the template
     // and the files we want to create.
     // const __dirname = path.resolve(path.dirname(''));
-    const feTemplateDir = path.resolve('./templates/' + beAppType);
+    const feTemplateDir = path.resolve(__dirnameNew, 'templates/' + beAppType);
     fs.cpSync(feTemplateDir, beAppDir, {recursive: true});
 
     // It is good practice to have dotfiles stored in the
