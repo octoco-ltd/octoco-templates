@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 
 // TODO: add backend options here as added to CLI
-export const backends = {'TS Express REST API': "TS-EXPRESS"};
+export const backends = {'TS Express REST API': "express-rest-api"};
 
 export const backendFlow = async function () {
     const questions = [
