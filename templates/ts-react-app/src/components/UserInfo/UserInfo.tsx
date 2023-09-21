@@ -1,6 +1,5 @@
-import Groups2TwoToneIcon from '@mui/icons-material/Groups2TwoTone';
-import { Avatar, Box, Stack, Tooltip, Typography, styled } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { Avatar, Box, Stack, Typography, styled } from '@mui/material';
+import { useAuth } from 'src/features/authentication';
 
 const CardWrapper = styled(Box)(
     () => `
@@ -11,7 +10,7 @@ const CardWrapper = styled(Box)(
 );
 
 const UserInfo = () => {
-    const user = useSelector((state: any) => state.user); //TODO: ADD IS LOADING AND any ONCE WE KNOW WHAT THE USE WILL BE
+    const { loading, user, error } = useAuth()
 
     return (
         <CardWrapper sx={{ mb: 3 }}>
@@ -25,7 +24,7 @@ const UserInfo = () => {
             >
                 <Box>
                     <Avatar
-                        src={user?.user?.picture ?? ''}
+                        src={user?.photoURL ?? ''}
                         imgProps={{
                             sx: {
                                 referrerpolicy: 'no-referrer',
@@ -42,9 +41,9 @@ const UserInfo = () => {
                 </Box>
                 <Stack spacing={0.5}>
                     <Stack>
-                        <Typography variant='h6'>{user?.user?.name}</Typography>
-                        {user?.user?.name !== user?.user?.email && (
-                            <Typography variant='body1'>{user?.user?.email}</Typography>
+                        <Typography variant='h6'>{user?.displayName}</Typography>
+                        {user?.displayName !== user?.email && (
+                            <Typography variant='body1'>{user?.email}</Typography>
                         )}
                     </Stack>
                 </Stack>

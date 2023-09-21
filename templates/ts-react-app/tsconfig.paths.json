@@ -1,0 +1,8 @@
+// TODO: ADD ALIASES
+{
+    "compilerOptions": {
+      "paths": {
+        "@features/*": ["src/features/*"]
+      }
+    }
+  }

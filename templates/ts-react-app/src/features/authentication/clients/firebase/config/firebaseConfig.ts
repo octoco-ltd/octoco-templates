@@ -1,6 +1,6 @@
 import { env } from 'src/env';
 
- const firebaseConfig: Record<string, any> = {
+const firebaseConfig: Record<string, any> = {
     config: {
         apiKey: env.REACT_APP_FIREBASE_API_KEY,
         authDomain: env.REACT_APP_FIREBASE_AUTH_DOMAIN,

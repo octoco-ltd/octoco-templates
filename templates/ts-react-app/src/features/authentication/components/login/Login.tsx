@@ -1,4 +1,4 @@
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { LoginTwoTone, Visibility, VisibilityOff } from '@mui/icons-material';
 import { Box, Button, Card, CardActions, CardContent, Container, IconButton, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
 import React, { useEffect, useReducer, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -7,21 +7,17 @@ import store from 'src/store/store';
 import { IUserSlice } from 'src/store/user/userSlice.contracts';
 import { NetworkStatusEnums } from 'src/utils/enums/networkSTatusEnums';
 import globalStyles from '../../../../utils/constants/globalStyles';
-import { useAuth } from '../../context/AuthContext';
 import { actionTypes, initialState, loginFormReducer } from '../../reducers/loginFormReducer';
+import { useAuth } from '../../hooks/useAuth';
+import { LoadingButton } from '@mui/lab';
 
 export const Login = () => {
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [state, dispatch] = useReducer(loginFormReducer, initialState);
     const [showPassword, setShowPassword] = useState(false);
-    const authService = useAuth();
+    const { loginWithEmailAndPassword, isAuthenticated, loading } = useAuth();
 
     const handleClickShowPassword = () => setShowPassword(prevState => !prevState);
-
-    const isAuthenticated =
-        NetworkStatusEnums.SUCCESS ===
-        useSelector((state: IUserSlice) => state.user.status);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -32,7 +28,7 @@ export const Login = () => {
     const loginUser = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         try {
-            store.dispatch(authService.signInWithEmailAndPassword(state.email.value, state.password.value))
+            loginWithEmailAndPassword(state.email.value, state.password.value)
         } catch (err) {
             console.error(err);
         }
@@ -101,9 +97,16 @@ export const Login = () => {
                         />
                     </div>
                     <CardActions sx={{ justifyContent: 'center' }}>
-                        <Button variant='outlined' type="submit">
+                        <LoadingButton
+                            loading={loading}
+                            disabled={loading}
+                            variant='outlined'
+                            color='primary'
+                            type='submit'
+                            startIcon={<LoginTwoTone />}
+                        >
                             Login
-                        </Button>
+                        </LoadingButton>
                     </CardActions>
                 </Box>
             </CardContent>

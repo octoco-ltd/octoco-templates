@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginWithEmailAndPassword } from 'src/features/authentication/clients/firebase/actions/loginWithEmailAndPassword';
-import { registerWithEmailAndPassword } from 'src/features/authentication/clients/firebase/actions/registerWithEmailAndPassword';
-import { persistAuth } from 'src/features/authentication/services/persistAuth';
+import { persistAuth } from 'src/features/authentication/utils/persistAuth';
 import { RootState } from '../store';
 import { IUserSlice } from './userSlice.contracts';
+import { resetUser } from 'src/features/authentication/utils/resetUser';
 
 const initialState: IUserSlice = {
   user: null,
@@ -26,7 +25,7 @@ const userSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      //###########################       Register       ###########################
+      //########################### Persist Auth ###########################
       .addCase(persistAuth.pending, (state, action) => {
         state.status = 'loading'
       })
@@ -44,32 +43,18 @@ const userSlice = createSlice({
         state.user = null
         state.error = action.error.message
       })
-      //###########################       Register       ###########################
-      .addCase(registerWithEmailAndPassword.pending, (state, action) => {
+      //########################### Reset User ###########################
+      .addCase(resetUser.pending, (state, action) => {
         state.status = 'loading'
       })
-      .addCase(registerWithEmailAndPassword.fulfilled, (state, action) => {
-        state.status = 'registered'
-      })
-      .addCase(registerWithEmailAndPassword.rejected, (state, action) => {
-        state.status = 'error'
+      .addCase(resetUser.fulfilled, (state, action) => {
+        state.status = 'idle'
         state.accessToken = null
         state.refreshToken = null
         state.user = null
-        state.error = action.error.message
-      })
-      //########################### Email and Pass Login ###########################
-      .addCase(loginWithEmailAndPassword.pending, (state, action) => {
-        state.status = 'loading'
-      })
-      .addCase(loginWithEmailAndPassword.fulfilled, (state, action) => {
-        state.status = 'authenticated'
-        state.accessToken = action.payload.accessToken
-        state.refreshToken = action.payload.refreshToken
-        state.user = action.payload.user
         state.error = null
       })
-      .addCase(loginWithEmailAndPassword.rejected, (state, action) => {
+      .addCase(resetUser.rejected, (state, action) => {
         state.status = 'error'
         state.accessToken = null
         state.refreshToken = null

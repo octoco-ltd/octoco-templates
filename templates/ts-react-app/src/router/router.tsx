@@ -7,14 +7,12 @@ import SuspenseLoader from 'src/components/SuspenseLoader';
 import pages from './routes';
 import AuthGuard from 'src/Guards/authGuard/AuthGuard';
 import Unverified from 'src/pages/Fallbacks/Status/Unverified/Unverified';
-import ViewProfile from 'src/features/profile/viewProfile/ViewProfile';
-
 const Loader = (Component: FC) => (props: any) =>
-    (
-        <Suspense fallback={<SuspenseLoader/>}>
-            <Component {...props} />
-        </Suspense>
-    );
+(
+    <Suspense fallback={<SuspenseLoader />}>
+        <Component {...props} />
+    </Suspense>
+);
 
 // Pages
 const Home = Loader(lazy(() => import('src/pages/Home/Home')));
@@ -33,7 +31,7 @@ const StatusCancel = Loader(lazy(() => import('src/pages/Fallbacks/Status/Cancel
 const routes: RouteObject[] = [
     {
         path: '',
-        element: <BaseLayout/>,
+        element: <BaseLayout />,
         /**
         * All children within this element will NOT have a Sidebar and top Navbar
         * All children within this element does not need to be authenticated to access
@@ -43,7 +41,7 @@ const routes: RouteObject[] = [
             {
                 //Navigate to home when base routed to base path
                 path: '/',
-                element: <Navigate to={pages.home.path} replace/>,
+                element: <Navigate to={pages.home.path} replace />,
             },
             //#endregion Base
             //#region Auth
@@ -62,7 +60,7 @@ const routes: RouteObject[] = [
                     },
                     {
                         path: pages.auth.register.name,
-                        element: <Register/>,
+                        element: <Register />,
                     },
                 ]
             },
@@ -74,40 +72,40 @@ const routes: RouteObject[] = [
                 children: [
                     {
                         path: '',
-                        element: <Navigate to="404" replace/>,
+                        element: <Navigate to="404" replace />,
                     },
                     {
                         path: pages.status.unverified.name,
-                        element: <Unverified/>,
+                        element: <Unverified />,
                     },
                     {
                         path: pages.status.status404.name,
-                        element: <Status404/>,
+                        element: <Status404 />,
                     },
                     {
                         path: pages.status.status500.name,
-                        element: <Status500/>,
+                        element: <Status500 />,
                     },
                     {
                         path: pages.status.statusMaintenance.name,
-                        element: <StatusMaintenance/>,
+                        element: <StatusMaintenance />,
                     },
                     {
                         path: pages.status.statusComingSoon.name,
-                        element: <StatusComingSoon/>,
+                        element: <StatusComingSoon />,
                     },
                     //TODO: Maybe make paths that shows status within the sidebars as well
                     {
                         path: pages.status.statusSuccess.name,
-                        element: <StatusSuccess/>,
+                        element: <StatusSuccess />,
                     },
                     {
                         path: pages.status.statusFailure.name,
-                        element: <StatusFailure/>,
+                        element: <StatusFailure />,
                     },
                     {
                         path: pages.status.statusCancel.name,
-                        element: <StatusCancel/>,
+                        element: <StatusCancel />,
                     },
                 ],
             },
@@ -115,7 +113,7 @@ const routes: RouteObject[] = [
             //#region NotFound
             {
                 path: '*',
-                element: <Status404/>,
+                element: <Status404 />,
             },
             //#endregion NotFound
         ],
@@ -128,38 +126,22 @@ const routes: RouteObject[] = [
              * AuthGuard checks that the user is logged in before granting access to its children pages
              */
             <AuthGuard>
-                <SidebarLayout/>
+                <SidebarLayout />
             </AuthGuard>
         ),
         children: [
             //#region Base
             {
                 path: '',
-                element: <Navigate to={pages.home.name} replace/>,
+                element: <Navigate to={pages.home.name} replace />,
             },
             //#endregion Base
             //#region Home
             {
                 path: pages.home.name,
-                element: <Home/>,
+                element: <Home />,
             },
             //#endregion Home
-            //#region Profile
-            {
-                path: pages.profile.root,
-                children: [
-                    {
-                        path: pages.profile.view.path,
-                        element: <ViewProfile/>,
-                    },
-                    {
-                        path: pages.profile.edit.path,
-                        element: <Home/>,
-                    }
-                ]
-                
-            },
-            //#endregion Profile
         ],
     },
 ];
