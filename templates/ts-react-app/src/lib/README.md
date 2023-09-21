@@ -1,4 +1,4 @@
-# Lib Folder in React Architecture Documentation
+# Lib Folder
 
 The **lib folder** serves as a dedicated space within a React application to encapsulate and manage third-party libraries effectively. This folder houses wrapper code that encapsulates the functionalities of external libraries, providing a centralized and organized approach to utilizing them across the entire application.
 
