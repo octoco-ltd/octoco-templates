@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "468266778105",
+    "project_id": "ts-express-rest-api-example",
+    "storage_bucket": "ts-express-rest-api-example.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468266778105:android:061abd94b6234d88ec9128",
+        "android_client_info": {
+          "package_name": "com.example.flutter_template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468266778105-i0ekeqp4f6ofthrovud5pq17kj68h5nr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrrmCCsNSdi2IaRVEAf9-ZzsboPVvfvaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468266778105-i0ekeqp4f6ofthrovud5pq17kj68h5nr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
