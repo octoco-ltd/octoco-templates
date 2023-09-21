@@ -55,5 +55,6 @@ This starter kit is maintained by the [Octoco](https://www.octoco.ltd/) team.
 ### Who do I talk to? ###
 * james@octoco.ltd
 * christiaan@octoco.ltd
+* emile@octoco.ltd
 
 Happy coding! 🚀
