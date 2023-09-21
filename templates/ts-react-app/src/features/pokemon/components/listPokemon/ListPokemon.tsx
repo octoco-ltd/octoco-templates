@@ -2,7 +2,7 @@ import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { FC, ReactElement, useEffect, useState } from 'react';
 import Table from 'src/components/Table/Table';
 import useRememberTable from 'src/hooks/useRememberTable';
-import { useGetAllUsersQuery, useGetLanguageQuery } from 'src/services/restApi/queries/pokemon.service';
+import { useGetAllUsersQuery } from 'src/services/restApi/queries/pokemon.service';
 // import { useGetAllUsersQuery } from 'src/services/restApi/pokemon';
 
 export default function ListPokemon() {
@@ -11,8 +11,6 @@ export default function ListPokemon() {
   const [columns, setColumns] = useState<GridColDef[]>([]);
   const { data, isError, isLoading, refetch, isFetching, isSuccess } =
     useGetAllUsersQuery(paginationModel);
-
-  const { data: a } = useGetLanguageQuery({});
 
   useEffect(() => {
     if (isSuccess && data) {

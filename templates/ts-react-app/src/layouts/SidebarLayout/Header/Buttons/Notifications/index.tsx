@@ -10,8 +10,7 @@ import {
 } from '@mui/material';
 import { useRef, useState } from 'react';
 import { styled } from '@mui/material/styles';
-
-import ThemeSwitch from 'src/components/ThemeSwitch/ThemeSwitch';
+import { ThemeSwitch } from 'src/features/appTheme';
 
 const NotificationsBadge = styled(Badge)(
   ({ theme }) => `

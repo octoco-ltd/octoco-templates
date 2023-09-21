@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Box, IconButton, Tooltip, Typography, TypographyProps } from '@mui/material';
 import { FileCopy as FileCopyIcon } from '@mui/icons-material';
+import { IconButton, Tooltip, Typography, TypographyProps } from '@mui/material';
+import React, { useState } from 'react';
 
 /**
  * Props for the CopyText component.

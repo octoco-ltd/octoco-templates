@@ -11,13 +11,12 @@ import {
   QuestionMarkOutlined,
   UpcomingOutlined
 } from '@mui/icons-material';
-import { Box, Button, Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, styled } from '@mui/material';
+import { Box, Button, Collapse, List, ListItem, ListItemButton, ListSubheader, styled } from '@mui/material';
 import { NavLink as RouterLink } from 'react-router-dom';
-import { SidebarContext } from 'src/context/SidebarContext';
-import pages from '../../../../router/routes';
 import UserInfo from 'src/components/UserInfo/UserInfo';
-import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import { useAuth } from 'src/features/authentication/context/AuthContext';
+import { SidebarContext } from 'src/context/SidebarContext';
+import { useAuth } from 'src/features/authentication';
+import pages from '../../../../router/routes';
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `
@@ -162,14 +161,14 @@ function SidebarMenu() {
   const { closeSidebar } = useContext(SidebarContext);
 
   const [openStatus, setOpenStatus] = useState(true);
-  const authService = useAuth()
+  const { logout } = useAuth()
 
   const handleLogout = () => {
     try {
-      authService.signOut()
-  } catch (err) {
+      logout()
+    } catch (err) {
       console.error(err);
-  }
+    }
   }
 
   return (
@@ -177,24 +176,24 @@ function SidebarMenu() {
       <MenuWrapper>
         <List component='div'>
           <SubMenuWrapper>
-                <List component='div'>
-                    <ListItem component='div'>
-                        <Box textAlign='center'>
-                            <UserInfo />
-                        </Box>
-                    </ListItem>
-                    <ListItem component='div'>
-                        <Box textAlign='center'>
-                          <Button
-                            disableRipple
-                            onClick={handleLogout}
-                            startIcon={<Logout />}
-                          >
-                            Sign Out
-                          </Button>
-                        </Box>
-                    </ListItem>
-                </List>
+            <List component='div'>
+              <ListItem component='div'>
+                <Box textAlign='center'>
+                  <UserInfo />
+                </Box>
+              </ListItem>
+              <ListItem component='div'>
+                <Box textAlign='center'>
+                  <Button
+                    disableRipple
+                    onClick={handleLogout}
+                    startIcon={<Logout />}
+                  >
+                    Sign Out
+                  </Button>
+                </Box>
+              </ListItem>
+            </List>
           </SubMenuWrapper>
           <SubMenuWrapper>
             <List component='div'>
@@ -209,111 +208,100 @@ function SidebarMenu() {
                   Home
                 </Button>
               </ListItem>
+            </List>
+          </SubMenuWrapper>
+        </List>
+        <ListItemButton
+          onClick={() => setOpenStatus(!openStatus)}
+        >
+          <ListSubheader component='div' disableSticky>
+            Status
+          </ListSubheader>
+          {openStatus ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openStatus} timeout="auto" unmountOnExit>
+          <SubMenuWrapper>
+            <List component='div'>
               <ListItem component='div'>
                 <Button
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
-                  to='/profile/view/current-user'
-                  startIcon={<PermIdentityOutlinedIcon />}
+                  to={pages.status.statusSuccess.path}
+                  startIcon={<Check />}
                 >
-                  Profile
+                  Success
+                </Button>
+              </ListItem>
+              <ListItem component='div'>
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to={pages.status.statusFailure.path}
+                  startIcon={<Error />}
+                >
+                  Failure
+                </Button>
+              </ListItem>
+              <ListItem component='div'>
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to={pages.status.statusCancel.path}
+                  startIcon={<Cancel />}
+                >
+                  Cancel
+                </Button>
+              </ListItem>
+              <ListItem component='div'>
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to={pages.status.statusComingSoon.path}
+                  startIcon={<UpcomingOutlined />}
+                >
+                  Coming Soon
+                </Button>
+              </ListItem>
+              <ListItem component='div'>
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to={pages.status.statusMaintenance.path}
+                  startIcon={<EngineeringOutlined />}
+                >
+                  Maintenance
+                </Button>
+              </ListItem>
+              <ListItem component='div'>
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to={pages.status.status404.path}
+                  startIcon={<QuestionMarkOutlined />}
+                >
+                  Status 404
+                </Button>
+              </ListItem>
+              <ListItem component='div'>
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to={pages.status.status500.path}
+                  startIcon={<ErrorOutline />}
+                >
+                  Status 500
                 </Button>
               </ListItem>
             </List>
           </SubMenuWrapper>
-        </List>
-        <ListItemButton
-          onClick={()=>setOpenStatus(!openStatus)}
-        >
-          <ListSubheader component='div' disableSticky>
-              Status
-          </ListSubheader>   
-          {openStatus ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={openStatus} timeout="auto" unmountOnExit>
-          <SubMenuWrapper>
-              <List component='div'>
-              <ListItem component='div'>
-                  <Button
-                    disableRipple
-                    component={RouterLink}
-                    onClick={closeSidebar}
-                    to={pages.status.statusSuccess.path}
-                    startIcon={<Check />}
-                  >
-                    Success
-                  </Button>
-                </ListItem>
-                <ListItem component='div'>
-                  <Button
-                    disableRipple
-                    component={RouterLink}
-                    onClick={closeSidebar}
-                    to={pages.status.statusFailure.path}
-                    startIcon={<Error />}
-                  >
-                    Failure
-                  </Button>
-                </ListItem>
-                <ListItem component='div'>
-                  <Button
-                    disableRipple
-                    component={RouterLink}
-                    onClick={closeSidebar}
-                    to={pages.status.statusCancel.path}
-                    startIcon={<Cancel />}
-                  >
-                    Cancel
-                  </Button>
-                </ListItem>
-                <ListItem component='div'>
-                  <Button
-                    disableRipple
-                    component={RouterLink}
-                    onClick={closeSidebar}
-                    to={pages.status.statusComingSoon.path}
-                    startIcon={<UpcomingOutlined />}
-                  >
-                    Coming Soon
-                  </Button>
-                </ListItem>
-                <ListItem component='div'>
-                  <Button
-                    disableRipple
-                    component={RouterLink}
-                    onClick={closeSidebar}
-                    to={pages.status.statusMaintenance.path}
-                    startIcon={<EngineeringOutlined />}
-                  >
-                    Maintenance
-                  </Button>
-                </ListItem>
-                <ListItem component='div'>
-                  <Button
-                      disableRipple
-                      component={RouterLink}
-                      onClick={closeSidebar}
-                      to={pages.status.status404.path}
-                      startIcon={<QuestionMarkOutlined />}
-                  >
-                    Status 404
-                  </Button>
-                </ListItem>
-                <ListItem component='div'>
-                  <Button
-                      disableRipple
-                      component={RouterLink}
-                      onClick={closeSidebar}
-                      to={pages.status.status500.path}
-                      startIcon={<ErrorOutline />}
-                  >
-                    Status 500
-                  </Button>
-                </ListItem>
-              </List>
-            </SubMenuWrapper>
-          </Collapse>
+        </Collapse>
       </MenuWrapper>
     </>
   );

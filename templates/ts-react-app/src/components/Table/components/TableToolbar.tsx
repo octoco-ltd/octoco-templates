@@ -1,9 +1,9 @@
 import { RefreshOutlined } from '@mui/icons-material';
 import { Box, IconButton } from '@mui/material';
 import {
-    GridToolbarContainer,
-    GridToolbarDensitySelector,
-    GridToolbarFilterButton,
+  GridToolbarContainer,
+  GridToolbarDensitySelector,
+  GridToolbarFilterButton,
 } from '@mui/x-data-grid';
 
 interface Props {
@@ -16,13 +16,13 @@ export function TableToolbar({ refetch, isFetching }: Props) {
     <GridToolbarContainer sx={{ justifyContent: 'left' }}>
       <GridToolbarDensitySelector />
       <GridToolbarFilterButton />
-      <Box position='absolute' sx={{'right': '2px'}}>
-      {refetch && (
-        <IconButton onClick={() => refetch()}>
-          <RefreshOutlined
-            sx={
-              isFetching
-                ? {
+      <Box position='absolute' sx={{ 'right': '2px' }}>
+        {refetch && (
+          <IconButton onClick={() => refetch()}>
+            <RefreshOutlined
+              sx={
+                isFetching
+                  ? {
                     color: 'blue',
                     animation: 'spin 2s linear infinite',
                     '@keyframes spin': {
@@ -34,11 +34,11 @@ export function TableToolbar({ refetch, isFetching }: Props) {
                       },
                     },
                   }
-                : { color: 'green' }
-            }
-          />
-        </IconButton>
-      )}
+                  : { color: 'green' }
+              }
+            />
+          </IconButton>
+        )}
       </Box>
     </GridToolbarContainer>
   );

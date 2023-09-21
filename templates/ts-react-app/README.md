@@ -4,13 +4,9 @@
 ## Get Started
 1. run `yarn install`
 2. Ensure your IDE is configured for ESLint using the `eslintrc.json` file
-3. Choose your Auth Provider (replace to the necessary provider in these two files)
+3. Choose your Auth Provider (replace to the necessary exports in authentication feature)
     ```
-    src/App.tsx (1 place to change)
-    src/services/restApi/queries/config/query.config.ts (2 places to change)
-    ________________________________________
-    const authService = new AuthService(new <ADD PROVIDER>); 
-    //Auth0AuthProvider() | FirebaseAuthProvider() | CognitoAuthProvider() | ApiAuthProvider() | KeyCloakAuthProvider()
+    templates/ts-react-app/src/features/authentication/index.tsx
     ```
 4. run `yarn storybook` in root to run storybook on your localhost (default port: 6006)
 5. Add .env file and add applicable vars (feel free to remove those not needed)
@@ -39,6 +35,10 @@
     REACT_APP_FIREBASE_APP_ID=
     ```
 6. run `yarn start`
+
+## Folder Structure
+TODO: 
+- [How To Structure React Projects From Beginner To Advanced](https://blog.webdevsimplified.com/2022-07/react-folder-structure/)
    
 ### What is this repository for? ###
 
@@ -49,6 +49,21 @@
 
 ### Current Features
 - ESLint and Prettier for code styling and formatting
+
+## Atomic Design Principle
+[Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
+
+Atomic Design is a methodology that breaks down UI components into five categories based on their complexity and reusability:
+
+1. **Atoms**: The smallest and most basic building blocks of the user interface. These components represent individual HTML elements and have minimal or no dependencies on other components.
+
+2. **Molecules**: Combinations of atoms that form small, functional units of UI. Molecules are slightly more complex than atoms and often represent distinct UI elements or features.
+
+3. **Organisms**: Larger, more complex components composed of molecules and atoms. Organisms represent reusable sections or sections of a page, such as a header, footer, or sidebar.
+
+4. **Templates**: Complete page layouts composed of organisms, molecules, and atoms. Templates define the overall structure and layout of a page but do not contain any specific content.
+
+5. **Pages**: Actual pages of the application, which are specific instances of templates. Pages contain the content and data relevant to a particular route or view.
 
 ### What is the stack? ###
 * [React](https://reactjs.org/) for the framework

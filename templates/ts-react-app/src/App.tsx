@@ -9,15 +9,10 @@ import defineAbilityFor from './config/ability';
 // import { sentryConfig } from './config/sentry';
 import { AbilityContext } from './context/canContext';
 import DialogProvider from './context/dialogContext';
-import { AuthProvider } from './features/authentication/context/AuthContext';
-import { AuthService } from './features/authentication/services/AuthenticationService';
 import { useAppSelector } from './hooks/hooks';
 import Status500 from './pages/Fallbacks/Status/Status500/Status500';
-import { selectTheme } from './store/theme/themeSlice';
-import { themeNames } from './store/theme/themeSlice.contracts';
-import ThemeProvider from './theme/ThemeProvider';
-import { FirebaseAuthProvider } from './features/authentication/clients/firebase/FirebaseAuthProvider';
-import { CognitoAuthProvider } from './features/authentication/clients/cognito/CognitoAuthProvider';
+import { AuthProvider } from './features/authentication';
+import { ThemeProviderWrapper, themeNames, selectTheme } from './features/appTheme';
 
 // Sentry.init(sentryConfig);
 const useSentryRoutes = wrapUseRoutes(useRoutes);
@@ -27,11 +22,9 @@ function App() {
     const theme = useAppSelector(selectTheme);
     const ability = defineAbilityFor('superAdmin'); //TODO: the user role should be added here
 
-    const authService = new AuthService(new FirebaseAuthProvider()); //Auth0AuthProvider | FirebaseAuthProvider
-
     return (
-        <AuthProvider authService={authService}>
-            <ThemeProvider>
+        <AuthProvider>
+            <ThemeProviderWrapper>
                 <Sentry.ErrorBoundary
                     fallback={<Status500 resetErrorBoundary={() => window.location.reload()} />}
                 >
@@ -43,7 +36,7 @@ function App() {
                         </DialogProvider>
                     </AbilityContext.Provider>
                 </Sentry.ErrorBoundary>
-            </ThemeProvider>
+            </ThemeProviderWrapper>
         </AuthProvider>
     );
 }
