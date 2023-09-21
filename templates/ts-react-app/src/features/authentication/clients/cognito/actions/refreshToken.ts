@@ -20,18 +20,21 @@ const asyncRefreshUser = (
 };
 
 export default async function refreshAccessToken() {
-    const cognitoUser = _getCognitoUser(store.getState().user.user.email)
-    const newRefreshToken = new CognitoRefreshToken({
-        RefreshToken: store.getState().user.refreshToken ?? '',
-    });
-
-    const refreshedSession: any = await asyncRefreshUser(
-        cognitoUser,
-        newRefreshToken
-    );
-
-    return {
-        refreshToken: refreshedSession.refreshToken.token, // this will be added to the session (done within 'callbacks' object)
-        accessToken: refreshedSession.accessToken.jwtToken, // this will be added to the session (done within 'callbacks' object)
-    };
+    try {
+        const cognitoUser = _getCognitoUser(store.getState().user.user.email)
+        const newRefreshToken = new CognitoRefreshToken({
+            RefreshToken: store.getState().user.refreshToken ?? '',
+        });
+        const refreshedSession: any = await asyncRefreshUser(
+            cognitoUser,
+            newRefreshToken
+        );
+        return {
+            refreshToken: refreshedSession.refreshToken.token, // this will be added to the session (done within 'callbacks' object)
+            accessToken: refreshedSession.accessToken.jwtToken, // this will be added to the session (done within 'callbacks' object)
+        };
+    } catch (error) {
+        console.log(error)
+        throw new Error('Error getting token');
+    }
 }

@@ -1,6 +1,4 @@
 import { Box, useTheme } from '@mui/material';
-import { useAppSelector } from '../../hooks/hooks';
-import { selectTheme } from '../../store/theme/themeSlice';
 
 interface ILogoInterface {
   height?: number | string;

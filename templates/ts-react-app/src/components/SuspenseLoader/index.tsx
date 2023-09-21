@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import NProgress from 'nprogress';
 import { Box, CircularProgress, Stack, Typography } from '@mui/material';
+import NProgress from 'nprogress';
+import { useEffect } from 'react';
 
 interface Props {
   message?: string;
@@ -28,7 +28,7 @@ function SuspenseLoader({ message }: Props) {
       alignItems='center'
       justifyContent='center'
     >
-      <Stack 
+      <Stack
         justifyContent="center"
         alignItems="center"
         spacing={2}
@@ -36,8 +36,7 @@ function SuspenseLoader({ message }: Props) {
         <CircularProgress size={64} disableShrink thickness={3} />
         <Typography variant='h2'>{message}</Typography>
       </Stack>
-      
-    </Box>
+    </Box >
   );
 }
 

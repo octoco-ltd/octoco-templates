@@ -3,8 +3,9 @@ import { Box, Button, Card, CardActions, CardContent, Container, IconButton, Inp
 import { useReducer, useState } from 'react';
 import store from 'src/store/store';
 import globalStyles from '../../../../utils/constants/globalStyles';
-import { useAuth } from '../../context/AuthContext';
+// import { useAuth } from '../../context/AuthContextInterface';
 import { actionTypes, authFormReducer, initialState } from '../../reducers/authFormReducer';
+import { useAuth } from '../../hooks/useAuth';
 
 export const Register = () => {
     const [loading, setLoading] = useState(false);
@@ -14,17 +15,17 @@ export const Register = () => {
 
     const handleClickShowPassword = () => setShowPassword(prevState => !prevState);
 
-    const registerUser = async (e: React.SyntheticEvent) =>{
+    const registerUser = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         try {
-            store.dispatch(authService.register(state.email.value, state.password.value))
+            // store.dispatch(authService.register(state.email.value, state.password.value))
         } catch (err) {
             console.error(err);
         }
     }
 
     return (
-        <Card sx={ {...globalStyles.card, textAlign: 'center'} }>
+        <Card sx={{ ...globalStyles.card, textAlign: 'center' }}>
             <Container maxWidth='xs' >
                 <Typography variant='h2' sx={{ mt: 4, mb: 2, textAlign: 'center' }}>
                     Register
@@ -116,7 +117,7 @@ export const Register = () => {
                             }}
                         />
                     </div>
-                    <CardActions sx={{justifyContent:'center'}}>
+                    <CardActions sx={{ justifyContent: 'center' }}>
                         <Button variant='outlined' type="submit">
                             Register
                         </Button>

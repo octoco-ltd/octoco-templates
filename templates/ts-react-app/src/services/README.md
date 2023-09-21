@@ -1,1 +1,1 @@
-This folder is used for API integrations
+This folder is used for RTK Query integrations

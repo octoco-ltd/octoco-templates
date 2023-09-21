@@ -1,9 +1,9 @@
 import { configureStore, combineReducers, AnyAction, ThunkAction, Action } from '@reduxjs/toolkit';
-import themeSlice from './theme/themeSlice';
 import userSlice from './user/userSlice';
 import { env } from 'src/env';
 import { createReduxEnhancer } from '@sentry/react';
 import { baseApi } from 'src/services/restApi/queries/baseApi.service';
+import { themeSlice } from 'src/features/appTheme';
 
 const sentryReduxEnhancer = createReduxEnhancer({
   //TODO: CHECK IF THERE IS INFO WE DON'T WANT TO SEND TO SENTRY
@@ -64,7 +64,7 @@ const store = configureStore({
     getDefaultMiddleware({ serializableCheck: false }).concat(
       baseApi.middleware,
     ),
-    enhancers: [sentryReduxEnhancer],
+  enhancers: [sentryReduxEnhancer],
 });
 
 export default store;

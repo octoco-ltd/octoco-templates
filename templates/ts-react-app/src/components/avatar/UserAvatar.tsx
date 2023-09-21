@@ -23,7 +23,7 @@ const UserAvatar = ({ user }: UserAvatarProps) => {
             }
         >
             <Avatar
-                src={user?.picture ? user.picture  : ''}
+                src={user?.picture ? user.picture : ''}
                 imgProps={{
                     sx: {
                         referrerpolicy: 'no-referrer',

@@ -12,10 +12,7 @@ import {
 } from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
 import { toast } from 'react-toastify';
-import { CognitoAuthProvider } from 'src/features/authentication/clients/cognito/CognitoAuthProvider';
-import { FirebaseAuthProvider } from 'src/features/authentication/clients/firebase/FirebaseAuthProvider';
-// import { FirebaseAuthProvider } from 'src/features/authentication/clients/firebase/FirebaseAuthProvider';
-import { AuthService } from 'src/features/authentication/services/AuthenticationService';
+import { logout, refreshToken } from 'src/features/authentication';
 import { RootState } from 'src/store/store';
 
 /**
@@ -68,19 +65,15 @@ export const baseQueryWithTokenExpirationCheck: BaseQueryFn<
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
 
-      // Initialize the authentication service to allow token refresh.
-      //TODO: WE DON'T REALLY WANT TO INIT AUTH HERE AGAIN - HOW CAN I PULL IN THE CONTEXT WITHOUT A HOOK?
-      const authService = new AuthService(new FirebaseAuthProvider());
-
       try {
         // Get a new access token.
-        toast.info('Getting New Refresh Token'); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
-        const refreshResult = await authService.refreshToken();
-        // console.log(refreshResult);
+        console.log('Getting New Refresh Token'); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
+        const refreshResult = await refreshToken();
+        console.log('refresh result', refreshResult); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
 
         if (refreshResult && refreshResult.accessToken && refreshResult.refreshToken) {
           // Retry the initial query.
-          toast.info('Running API again'); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
+          console.log('Running API again'); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
           result = await staggeredBaseQuery(args, api, extraOptions);
         } else {
           throw new Error('Refresh Token Error');
@@ -88,7 +81,9 @@ export const baseQueryWithTokenExpirationCheck: BaseQueryFn<
       } catch {
         toast.dismiss();
         toast.error('Session expired. Please log in again.');
-        authService.signOut();
+        setTimeout(function () {
+          logout()
+        }, 2000);
 
         // We can bail out of retries if we know it is going to be redundant - not authenticated at all.
         retry.fail(result.error);
@@ -104,8 +99,7 @@ export const baseQueryWithTokenExpirationCheck: BaseQueryFn<
   }
   if (result.error && result.error.status === 401) {
     //The result is still 401 after a retry - logging out
-    const authService = new AuthService(new FirebaseAuthProvider());
-    authService.signOut();
+    logout()
   }
 
   return result;
