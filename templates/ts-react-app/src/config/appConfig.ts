@@ -1,5 +1,10 @@
-const appConfig = {
-    //any miscellaneous config that is used across the whole app
-}
+type IAppConfig = {
+    breakMobileView: 'sm' | 'md' | 'lg'
 
-export {appConfig};
+}
+//any miscellaneous config that is used across the whole app
+const appConfig: IAppConfig = {
+    breakMobileView: 'sm'
+};
+
+export default appConfig;
