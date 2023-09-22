@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: "18.14.1"
 
+      - name: Change to ts-react-app dir
+        run: cd templates/ts-react-app
+
       - name: Install dependencies
         run: yarn install
 
