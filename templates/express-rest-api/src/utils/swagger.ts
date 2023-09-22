@@ -1,11 +1,8 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 import {
-    UserAccountBalanceSwagger,
-    UserIMSwagger,
-    UserKYCDetailsVMSwagger,
-    UserVMSwagger,
-} from '../models/users/user-schema';
-import { UpdateUserMetadataIMSwagger } from '../models/users/user-schema';
+    ExampleIMSwagger,
+    ExampleVMSwagger,
+} from '../models/users/example-schema';
 
 
 const options = {
@@ -27,27 +24,12 @@ const options = {
         },
         components: {
             schemas: {
-                UserVM: UserVMSwagger?.definitions?.UserVM,
-                AllUsersVM: {
+                ExampleVM: ExampleVMSwagger?.definitions?.ExampleVM,
+                ExamplesVMArr: {
                     type: 'array',
-                    items: UserVMSwagger?.definitions?.UserVM,
+                    items: ExampleVMSwagger?.definitions?.ExampleVM,
                 },
-                UserIM: UserIMSwagger?.definitions?.UserIM,
-                UpdateUserMetadataIM: UpdateUserMetadataIMSwagger?.definitions?.UpdateUserMetadataIM,
-                CreateSumsubApplicantIM: CreateSumsubApplicantIMSchemaSwagger?.definitions?.CreateSumsubApplicantIM,
-                SumsubApplicantStatusVM: SumsubApplicantStatusSchemaSwagger?.definitions?.SumsubApplicantStatusVM,
-                UserKYCDetailsVM: UserKYCDetailsVMSwagger?.definitions?.UserKYCDetailsVM,
-                CreateDepositRequestBody: CreateDepositRequestBodySwagger?.definitions?.CreateDepositRequestBody,
-                UserAccountBalanceVM: UserAccountBalanceSwagger?.definitions?.UserAccountBalanceVM,
-                DepositVM: DepositVMSwagger?.definitions?.DepositVM,
-                AllDeposits: {
-                    type: 'array',
-                    items: DepositVMSwagger?.definitions?.DepositVM,
-                },
-                CreateWithdrawalRequest: CreateWithdrawalRequestSwagger?.definitions?.CreateWithdrawalRequestBody,
-                CreateWithdrawalResponse: CreateWithdrawalResponseSwagger?.definitions?.CreateWithdrawalResponse,
-                ExecuteWithdrawalRequest: ExecuteWithdrawalRequestSwagger?.definitions?.ExecuteWithdrawalRequest,
-                CreateTradeBody: CreateTradeSwagger?.definitions?.CreateTradeBody
+                ExampleIM: ExampleIMSwagger?.definitions?.ExampleIM
             },
             securitySchemes: {
                 bearerAuth: {

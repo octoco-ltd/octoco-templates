@@ -1,0 +1,17 @@
+service: topbet-loyalty-integration
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  tags:
+    Project: topbet-loyalty-integration
+  stage: staging
+
+functions:
+  loyalty-handler:
+    handler: src/handlers/loyalty-handler.handler
+    name: topbet-loyalty-integration-${sls:stage}
+
+plugins:
+  - serverless-plugin-typescript

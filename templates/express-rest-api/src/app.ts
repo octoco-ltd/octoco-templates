@@ -12,11 +12,12 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import defaultRoutes from './routes/default-routes';
-import userRoutes from './routes/user-routes';
+
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpecs } from './utils/swagger';
 
 import * as Sentry from "@sentry/node";
+import exampleRoutes from "./routes/example-routes";
 
 
 class App {
@@ -85,12 +86,12 @@ class App {
 
         // Routes
         this.app.use('/', defaultRoutes);
-        this.app.use('/users/', userRoutes);
+        this.app.use('/examples/', exampleRoutes);
 
 
         // Debug endpoint for sentry
         this.app.get("/debug-sentry", function mainHandler(_: Request, __: Response) {
-            throw new Error("My second Sentry error!");
+            throw new Error("My first Sentry error!");
         });
 
         // Sentry error handler

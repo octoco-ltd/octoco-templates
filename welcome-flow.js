@@ -1,35 +1,23 @@
-const readline = require("readline");
+import inquirer from 'inquirer';
 
-const welcomeFlow = function() {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
+export const welcomeFlow = async function() {
     // First step is to determine which type of repo we need eg> Monorepo or single app repo
 
-    const message = 'Welcome to the Octoco template CLI. To get started please select your repository structure by entering the corresponding number:\n' +
-        '   [1]: A monorepo (containing both front and backend applications)\n' +
-        '   [2]: A single application repository\n' +
-        'Default is 1: ';
+    console.info("Welcome to the Octoco template CLI.\n\n")
 
-    let option = 1;
     let isMonorepo = false;
 
-    return new Promise( resolve => rl.question(message, selection => {
-        option = parseInt(selection);
+    const answers = await inquirer.prompt([
+        {
+        name: 'isMonorepo',
+        message: 'Do you require a monorepo architecture (y/n)?',
+        default: 'y'
+    }])
 
-        if (option === 1) {
-            console.log('Monorepo architecture selected!\n');
-            isMonorepo = true;
-        } else if (option === 2) {
-            console.log('Single repo architecture selected\n');
-        } else {
-            throw Error('Invalid selection!\n');
-        }
-        rl.close();
-        resolve(isMonorepo)
-    }));
+    if (answers.isMonorepo === 'y'){
+        isMonorepo = true
+    }
+
+    return isMonorepo
 }
 
-module.exports = {welcomeFlow}
