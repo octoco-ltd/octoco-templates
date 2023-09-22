@@ -1,9 +1,11 @@
-name: 'Build and Test ts-react-app'
+name: "Build and Test ts-react-app"
 
 on:
   push:
+    branches:
+      - "*"
     paths:
-      - 'templates/ts-react-app/**'
+      - "templates/ts-react-app/**"
 
 jobs:
   build-and-test:
@@ -16,7 +18,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18.14.1'
+          node-version: "18.14.1"
 
       - name: Install dependencies
         run: yarn install
