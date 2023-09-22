@@ -2,12 +2,10 @@ import CopyText from '../CopyText'
 
 describe('<CopyText />', () => {
   it('renders', () => {
-    // see: https://on.cypress.io/mounting-react
     cy.mount(<CopyText>Text</CopyText>)
   })
 
   it('Renders the relevant child', () => {
-    // see: https://on.cypress.io/mounting-react
     cy.mount(<CopyText>Text</CopyText>)
     cy.contains('Text')
   })
