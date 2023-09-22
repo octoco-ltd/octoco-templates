@@ -1,11 +1,9 @@
-import { Box, Typography, Container, Divider, Button, Card } from '@mui/material';
-import { Helmet } from 'react-helmet-async';
+import { Box, Card, Container, Divider, Typography, Button } from '@mui/material';
 import Logo from 'src/components/LogoSign';
 
 import { styled } from '@mui/material/styles';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import useSetContinue from 'src/hooks/useSetContinue';
+import { Helmet } from 'react-helmet-async';
 
 const MainContent = styled(Box)(
     () => `
@@ -20,7 +18,7 @@ const MainContent = styled(Box)(
 );
 
 function StatusSuccess() {
-    const {handleRedirect, mode} = useSetContinue()
+    const { handleRedirect, mode } = useSetContinue()
 
     return (
         <>

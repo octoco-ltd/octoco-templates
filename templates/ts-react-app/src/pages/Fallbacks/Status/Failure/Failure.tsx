@@ -3,8 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import Logo from 'src/components/LogoSign';
 
 import { styled } from '@mui/material/styles';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import useSetContinue from 'src/hooks/useSetContinue';
 
 const MainContent = styled(Box)(
@@ -20,7 +18,7 @@ const MainContent = styled(Box)(
 );
 
 function StatusFailure() {
-    const {handleRedirect, mode} = useSetContinue()
+    const { handleRedirect, mode } = useSetContinue()
 
     return (
         <>
@@ -45,7 +43,7 @@ function StatusFailure() {
                                 {mode ? mode : 'transaction'}.
                             </Typography>
                         </Container>
-                        <img alt='Maintenance' height={250} src='/static/images/status/fail.svg' />
+                        <img alt='failure' height={250} src='/static/images/status/fail.svg' />
                     </Box>
                     <Container maxWidth='sm'>
                         <Card sx={{ textAlign: 'center', mt: 3, p: 4 }}>
