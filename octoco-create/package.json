@@ -1,0 +1,11 @@
+{
+  "name": "octoco-create",
+  "version": "1.0.0",
+  "description": "Initialise a Git repository based on one of the templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
