@@ -37,26 +37,25 @@ const questions = [
   }
 ];
 
-import('inquirer').then((inquirer) => {
-  inquirer.prompt(questions)
+const inquirer = require('inquirer');
+const simpleGit = require('simple-git');
+
+inquirer.prompt(questions)
   .then(answers => {
     const templateUrl = answers.template.value;
     const repoName = answers.name;
 
     console.log(`Cloning ${templateUrl} into ${repoName}...`);
 
-    import('simple-git').then(({ default: simpleGit }) => {
-      simpleGit()
-        .clone(templateUrl, repoName)
-        .then(() => {
-          console.log(`Initializing Git repository in ${repoName}...`);
+    simpleGit()
+      .clone(templateUrl, repoName)
+      .then(() => {
+        console.log(`Initializing Git repository in ${repoName}...`);
 
-          simpleGit(repoName)
-            .init()
-            .then(() => {
-              console.log(`Success! Git repository initialized in ${repoName}.`);
-            });
-        });
-    });
+        simpleGit(repoName)
+          .init()
+          .then(() => {
+            console.log(`Success! Git repository initialized in ${repoName}.`);
+          });
+      });
   });
-});

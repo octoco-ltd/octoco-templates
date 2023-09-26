@@ -12,7 +12,7 @@
     "octoco-create": "bin/index.js"
   },
   "dependencies": {
-    "inquirer": "^9.2.11",
+    "inquirer": "^6.0.0",
     "simple-git": "^3.20.0"
   }
 }
