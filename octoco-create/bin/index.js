@@ -1,9 +1,12 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
+
+const inquirer = require('inquirer');
+const simpleGit = require('simple-git');
 
 const templates = [
   {
     name: 'TS-REACT-APP',
-    value: 'https://github.com/octoco-ltd/octoco-templates.git/templates/ts-react-app'
+    value: 'https://github.com/octoco-ltd/octoco-templates.git'
   },
   //   {
   //     name: 'Template 2',
@@ -37,9 +40,6 @@ const questions = [
   }
 ];
 
-const inquirer = require('inquirer');
-const simpleGit = require('simple-git');
-
 inquirer.prompt(questions)
   .then(answers => {
     const templateUrl = answers.template.value;
@@ -48,11 +48,11 @@ inquirer.prompt(questions)
     console.log(`Cloning ${templateUrl} into ${repoName}...`);
 
     simpleGit()
-      .clone(templateUrl, repoName)
+      .clone(templateUrl, `./${repoName}`)
       .then(() => {
         console.log(`Initializing Git repository in ${repoName}...`);
 
-        simpleGit(repoName)
+        simpleGit(`./${repoName}`)
           .init()
           .then(() => {
             console.log(`Success! Git repository initialized in ${repoName}.`);
