@@ -1,9 +1,10 @@
+#! /usr/bin/env node
 const inquirer = require('inquirer');
 const simpleGit = require('simple-git');
 
 const templates = [
   {
-    name: 'TS-REACT_APP',
+    name: 'TS-REACT-APP',
     value: 'https://github.com/octoco-ltd/octoco-templates.git/templates/ts-react-app'
   },
 //   {
