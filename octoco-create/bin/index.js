@@ -42,16 +42,15 @@ const questions = [
 
 inquirer.prompt(questions)
   .then(answers => {
-    const templateUrl = answers.template.value;
+    const templateUrl = answers.template;
     const repoName = answers.name;
 
     console.log(`Cloning ${templateUrl} into ${repoName}...`);
-
+    // clone template of certain path into repoName
     simpleGit()
-      .clone(templateUrl, `./${repoName}`)
+      .clone(templateUrl, repoName)
       .then(() => {
         console.log(`Initializing Git repository in ${repoName}...`);
-
         simpleGit(`./${repoName}`)
           .init()
           .then(() => {
