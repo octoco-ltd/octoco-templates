@@ -10,6 +10,10 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    name: Build and test ts-react-app
+    defaults:
+      run:
+        working-directory: templates/ts-react-app
 
     steps:
       - name: Checkout code
@@ -19,9 +23,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "18.14.1"
-
-      - name: Change to ts-react-app dir
-        run: cd templates/ts-react-app
 
       - name: Install dependencies
         run: yarn install

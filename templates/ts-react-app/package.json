@@ -84,13 +84,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "set  \"GENERATE_SOURCEMAP=true\" && react-scripts build && yarn run sentry:sourcemaps",
+    "build": "react-scripts build",
     "test": "cypress run --component",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "lint": "eslint --fix . --ext .ts,.tsx",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org exinity --project basecamp-webapp ./build && sentry-cli sourcemaps upload --org exinity --project basecamp-webapp ./build",
     "cypress:open": "cypress open"
   },
   "eslintConfig": {

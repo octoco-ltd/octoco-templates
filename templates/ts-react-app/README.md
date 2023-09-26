@@ -128,3 +128,6 @@ TODO / WIP:
 //useConfirmLeave
 //add chromatic docs etc etc
 //app config
+
+// set \"GENERATE_SOURCEMAP=true\" && && yarn run sentry:sourcemaps
+// "sentry:sourcemaps": "sentry-cli sourcemaps inject --org <org> --project <proj> ./build && sentry-cli sourcemaps upload --org <org> --project <proc> ./build",
