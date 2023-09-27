@@ -10,7 +10,7 @@ interface CopyTextProps {
      * The text to be copied to the clipboard.
      */
     children: string;
-    textProps: TypographyProps
+    textProps?: TypographyProps
 }
 
 /**
@@ -46,6 +46,7 @@ const CopyText: React.FC<CopyTextProps> = ({ children, textProps }) => {
             {children}
             <Tooltip title={copiedText} placement='top'>
                 <IconButton
+                    data-testid='copy-icon'
                     className="copy-icon"
                     onClick={copyToClipboard}
                     color={copied ? 'success' : 'primary'}

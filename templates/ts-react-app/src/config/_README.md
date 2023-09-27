@@ -1,4 +1,4 @@
-# Config Folder Documentation
+# Config Folder
 
 In our React application, the `config` folder serves as a central location for managing general configurations that are used across the entire app. These configurations help streamline various aspects of our application, including CASL abilities, app-wide settings, and Sentry integration.
 
