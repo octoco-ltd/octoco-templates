@@ -15,6 +15,7 @@ import {
 
 import SidebarMenu from './SidebarMenu';
 import Logo from 'src/components/LogoSign';
+import appConfig from 'src/config/appConfig';
 
 const SidebarWrapper = styled(Box)(
   ({ theme }) => `
@@ -39,7 +40,7 @@ function Sidebar() {
         sx={{
           display: {
             xs: 'none',
-            lg: 'inline-block',
+            [appConfig.breakMobileView]: 'inline-block',
           },
           position: 'fixed',
           left: 0,
@@ -59,7 +60,7 @@ function Sidebar() {
                 width: 52,
               }}
             >
-              <Logo width={250}/>
+              <Logo width={250} />
             </Box>
           </Box>
           <Divider

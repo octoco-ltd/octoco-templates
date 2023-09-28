@@ -1,4 +1,4 @@
-# Guards Folder Documentation
+# Guards Folder
 
 In our React TypeScript project, the `guards` folder is home to various guards designed to conditionally render or allow access to specific components or routes based on certain conditions. Guards are essential for enforcing security, access control, and conditional rendering in our application.
 

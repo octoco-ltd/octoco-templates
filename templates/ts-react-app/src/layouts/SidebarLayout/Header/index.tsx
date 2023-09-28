@@ -14,6 +14,7 @@ import { SidebarContext } from 'src/context/SidebarContext';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 
 import HeaderButtons from './Buttons';
+import appConfig from 'src/config/appConfig';
 
 const HeaderWrapper = styled(Box)(
   ({ theme }) => `
@@ -27,7 +28,7 @@ const HeaderWrapper = styled(Box)(
         position: fixed;
         justify-content: space-between;
         width: 100%;
-        @media (min-width: ${theme.breakpoints.values.lg}px) {
+        @media (min-width: ${theme.breakpoints.values[appConfig.breakMobileView]}px) {
             left: ${theme.sidebar.width};
             width: auto;
         }
@@ -47,13 +48,13 @@ function Header() {
         boxShadow:
           theme.palette.mode === 'dark'
             ? `0 1px 0 ${alpha(
-                lighten(theme.colors.primary.main, 0.7),
-                0.15,
-              )}, 0px 2px 8px -3px rgba(0, 0, 0, 0.2), 0px 5px 22px -4px rgba(0, 0, 0, .1)`
+              lighten(theme.colors.primary.main, 0.7),
+              0.15,
+            )}, 0px 2px 8px -3px rgba(0, 0, 0, 0.2), 0px 5px 22px -4px rgba(0, 0, 0, .1)`
             : `0px 2px 8px -3px ${alpha(
-                theme.colors.alpha.black[100],
-                0.2,
-              )}, 0px 5px 22px -4px ${alpha(theme.colors.alpha.black[100], 0.1)}`,
+              theme.colors.alpha.black[100],
+              0.2,
+            )}, 0px 5px 22px -4px ${alpha(theme.colors.alpha.black[100], 0.1)}`,
       }}
     >
       <Box display='flex' alignItems='center'>
@@ -62,7 +63,7 @@ function Header() {
           component='span'
           sx={{
             ml: 2,
-            display: { lg: 'none', xs: 'inline-block' },
+            display: { [appConfig.breakMobileView]: 'none', xs: 'inline-block' },
           }}
         >
           <Tooltip arrow title='Toggle Menu'>

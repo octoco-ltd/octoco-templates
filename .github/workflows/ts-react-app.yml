@@ -1,0 +1,34 @@
+name: "Build and Test ts-react-app"
+
+on:
+  push:
+    branches:
+      - "*"
+    paths:
+      - "templates/ts-react-app/**"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    name: Build and test ts-react-app
+    defaults:
+      run:
+        working-directory: templates/ts-react-app
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.14.1"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Run tests
+        run: yarn test
