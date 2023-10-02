@@ -1,10 +1,7 @@
-import {ExampleIM, ExampleVM} from "../models/users/example-schema";
+import { ExampleIM, ExampleVM } from '../models/users/example-schema';
 
 export interface ExampleRepository {
-    getAllExamples(): Promise<ExampleVM[]>;
-    createExample(example: ExampleIM): Promise<ExampleVM>;
-    getExampleById(id: string): Promise<ExampleVM>;
-
+	getAllExamples(): Promise<ExampleVM[]>;
+	createExample(example: ExampleIM): Promise<ExampleVM>;
+	getExampleById(id: string): Promise<ExampleVM>;
 }
-
-
