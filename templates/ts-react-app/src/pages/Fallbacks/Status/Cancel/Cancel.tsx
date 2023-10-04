@@ -1,10 +1,8 @@
-import { Box, Typography, Container, Divider, Button, Card } from '@mui/material';
+import { Box, Button, Card, Container, Divider, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 import Logo from 'src/components/LogoSign';
 
 import { styled } from '@mui/material/styles';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import useSetContinue from 'src/hooks/useSetContinue';
 
 const MainContent = styled(Box)(
@@ -20,8 +18,8 @@ const MainContent = styled(Box)(
 );
 
 function StatusCancel() {
-    const {handleRedirect, mode} = useSetContinue()
-    
+    const { handleRedirect, mode } = useSetContinue()
+
     return (
         <>
             <Helmet>
@@ -45,7 +43,7 @@ function StatusCancel() {
                             </Typography>
                         </Container>
                         <img
-                            alt='Maintenance'
+                            alt='Cancel'
                             height={250}
                             src='/static/images/status/warning.svg'
                         />

@@ -20,6 +20,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import MailTwoToneIcon from '@mui/icons-material/MailTwoTone';
+import { LoadingButton } from '@mui/lab';
 
 const MainContent = styled(Box)(
   () => `
@@ -33,29 +34,6 @@ const MainContent = styled(Box)(
 `,
 );
 
-const TypographyH1 = styled(Typography)(
-  ({ theme }) => `
-  font-size: ${theme.typography.pxToRem(75)};
-`,
-);
-
-const TypographyH3 = styled(Typography)(
-  ({ theme }) => `
-  color: ${theme.colors.alpha.black[50]};
-`,
-);
-
-const OutlinedInputWrapper = styled(OutlinedInput)(
-  ({ theme }) => `
-    background-color: ${theme.colors.alpha.white[100]};
-`,
-);
-
-const ButtonNotify = styled(Button)(
-  ({ theme }) => `
-    margin-right: -${theme.spacing(1)};
-`,
-);
 
 export function StatusComingSoon() {
   return (
@@ -81,14 +59,14 @@ export function StatusComingSoon() {
           <Container maxWidth='sm'>
             <Box sx={{ textAlign: 'center', p: 4 }}>
               <FormControl variant='outlined' fullWidth>
-                <OutlinedInputWrapper
+                <OutlinedInput
                   type='text'
                   placeholder='Enter your email address here...'
                   endAdornment={
                     <InputAdornment position='end'>
-                      <ButtonNotify variant='contained' size='small'>
+                      <LoadingButton variant='contained' size='small'>
                         Notify Me
-                      </ButtonNotify>
+                      </LoadingButton>
                     </InputAdornment>
                   }
                   startAdornment={

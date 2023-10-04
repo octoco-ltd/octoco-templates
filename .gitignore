@@ -48,3 +48,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+# git files
+**/.env
+.env
+**/*.env
+
