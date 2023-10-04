@@ -3,7 +3,7 @@ Example in memory repo
 """
 import logging
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 from exceptions.database_exception import DatabaseException
 
@@ -21,11 +21,11 @@ class InMemoryExampleRepository(ExampleRepository):
         self._entries: List[Example] = []
         logging.info('In memory example repository with empty list')
 
-    def seed_entries(self, entries: List[Example]) -> None:
+    def seed_entries(self, entries: Optional[List[Example]]) -> None:
         """
         Replace existing list of Examples with a new one
         Will check the correct list of Examples is passed
-        Will throw DatabaseException if supplied entries is invalid
+        Will throw TypeError or ValueError if supplied entries value is invalid
         """
 
         logging.info('Seeding entries for in memory example repository with list: %s', entries)
@@ -33,14 +33,14 @@ class InMemoryExampleRepository(ExampleRepository):
             self.clear_entries()
         elif not isinstance(entries, list):
             logging.error('Attempt to supply invalid parameter type to seed_entries')
-            raise DatabaseException('entries must be a list')
+            raise TypeError('entries must be a list')
         elif len(entries) == 0:
             self.clear_entries()
         else:
             for entry in entries:
                 if not isinstance(entry, Example):
                     logging.error('Attempt to supply invalid in entry in list to seed_entries')
-                    raise DatabaseException('Entries must be a list of Example objects')
+                    raise TypeError('Entries must be a list of Example objects')
 
         self._entries = entries
         logging.info(
@@ -68,9 +68,9 @@ class InMemoryExampleRepository(ExampleRepository):
         Create a new Example based on an ExampleIM
         """
         if example is None:
-            raise DatabaseException('example cannot be None')
+            raise ValueError('example cannot be None')
         if not isinstance(example, ExampleIM):
-            raise DatabaseException('example must be an ExampleIM')
+            raise TypeError('example must be an ExampleIM')
 
         example_to_add = {
             'created_at': datetime.now(),
@@ -91,9 +91,9 @@ class InMemoryExampleRepository(ExampleRepository):
         Return the Example entry with the given ID
         """
         if example_id is None:
-            raise DatabaseException('example_id cannot be None')
+            raise ValueError('example_id cannot be None')
         if not isinstance(example_id, str):
-            raise DatabaseException('example_id must be a string')
+            raise TypeError('example_id must be a string')
 
         example = None
 

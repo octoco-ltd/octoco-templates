@@ -35,9 +35,9 @@ class MongoExampleRepository(ExampleRepository):
 
     def create_example(self, example: ExampleIM) -> Example:
         if example is None:
-            raise DatabaseException('example cannot be None')
+            raise ValueError('example cannot be None')
         if not isinstance(example, ExampleIM):
-            raise DatabaseException('example must be an ExampleIM')
+            raise TypeError('example must be an ExampleIM')
         example_to_add = {
             'created_at': datetime.now(),
             'id': 'some-new-id'
