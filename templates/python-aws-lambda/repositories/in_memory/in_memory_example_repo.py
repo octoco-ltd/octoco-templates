@@ -1,54 +1,110 @@
+"""
+Example in memory repo
+"""
+import logging
+from datetime import datetime
+from typing import List
+
+from exceptions.database_exception import DatabaseException
+
 from repositories.example_repository import ExampleRepository
 from models.example.example_model import Example, ExampleIM
-from typing import List
-from datetime import datetime
+
 
 class InMemoryExampleRepository(ExampleRepository):
-  '''
+    """
     In memory version of the example repo which uses an list as its "database"
-    All operations are mimiced using list operations
-  '''
+    This means that All operations are mimicked using list operations
+    """
 
-  def __init__(self) -> None:
-    self._entries: List[Example] = []
+    def __init__(self) -> None:
+        self._entries: List[Example] = []
+        logging.info('In memory example repository with empty list')
 
-  def seed_entries(self, entries: List[Example]) -> None:
-    self._entries = entries
+    def seed_entries(self, entries: List[Example]) -> None:
+        """
+        Replace existing list of Examples with a new one
+        Will check the correct list of Examples is passed
+        Will throw DatabaseException if supplied entries is invalid
+        """
 
-  def clear_entries(self) -> None:
-    self._entries = []
+        logging.info('Seeding entries for in memory example repository with list: %s', entries)
+        if entries is None:
+            self.clear_entries()
+        elif not isinstance(entries, list):
+            logging.error('Attempt to supply invalid parameter type to seed_entries')
+            raise DatabaseException('entries must be a list')
+        elif len(entries) == 0:
+            self.clear_entries()
+        else:
+            for entry in entries:
+                if not isinstance(entry, Example):
+                    logging.error('Attempt to supply invalid in entry in list to seed_entries')
+                    raise DatabaseException('Entries must be a list of Example objects')
 
-  def get_all_examples(self) -> List[Example]:
-    # Mapping responses will raise errors if you somehow managed to store the wrong type
-    # in the in-memory list
-    return [Example(**entry.__dict__) for entry in self._entries]
-  
-  def create_example(self, example: ExampleIM) -> Example:
-    example_to_add = {
-      'createdAt': datetime.now(),
-      'id': 'some-new-id'
-    }
+        self._entries = entries
+        logging.info(
+            'Successfully seeded entries for in memory example repository with list: %s',
+            entries
+        )
 
-    # Add the fields that the DB would have
-    example.update(example_to_add)
+    def clear_entries(self) -> None:
+        """
+        clear the list
+        """
+        self._entries = []
+        logging.info('Successfully cleared entries for in memory example repository')
 
-    self._entries = self._entries.append(Example(**example.__dict__))
+    def get_all_examples(self) -> List[Example]:
+        """
+        return the list of defined Examples
+        """
+        # Mapping responses will raise errors if you somehow managed to store the wrong type
+        # in the in-memory list
+        return self._entries
 
-    return Example(**example.__dict__)
-  
+    def create_example(self, example: ExampleIM) -> Example:
+        """
+        Create a new Example based on an ExampleIM
+        """
+        if example is None:
+            raise DatabaseException('example cannot be None')
+        if not isinstance(example, ExampleIM):
+            raise DatabaseException('example must be an ExampleIM')
 
-  def get_example_by_id(self, example_id: str) -> Example:
-    example = None
+        example_to_add = {
+            'created_at': datetime.now(),
+            'id': 'some-new-id'
+        }
 
-    for e in self._entries:
-      if e.id == example_id:
-        example = e
+        # Add the fields that the DB would have
+        example.update(example_to_add)
 
-    # TODO: don't just raise a generic exception
-    if example is None:
-      raise Exception(f'Example with ID {example_id} not found')
-    
-    return Example(**example.__dict__)
-    
+        self._entries.append(Example(**example.__dict__))
 
-  
+        logging.info('Successfully created example: %s and added to the list', example)
+
+        return Example(**example.__dict__)
+
+    def get_example_by_id(self, example_id: str) -> Example:
+        """
+        Return the Example entry with the given ID
+        """
+        if example_id is None:
+            raise DatabaseException('example_id cannot be None')
+        if not isinstance(example_id, str):
+            raise DatabaseException('example_id must be a string')
+
+        example = None
+
+        for entry in self._entries:
+            if entry.id == example_id:
+                example = entry
+                break
+
+        if example is None:
+            logging.error('Example with ID %s not found', example_id)
+            raise DatabaseException(f'Example with ID {example_id} not found')
+
+        logging.info('Successfully found example with ID: %s', example_id)
+        return Example(**example.__dict__)
