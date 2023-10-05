@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file. The format 
 
 See bottom of document for convention.
 
+## 1.0.2 - 2023-10-05
+
+### Added
+
+- A hook that works like useState to set state with a debounce time in milliseconds. (daniel@octoco.ltd)
+
+### Changed
+
+- Updated Storybook (daniel@octoco.ltd)
+
+### Deprecated
+
+- N/A
+
+### Removed
+
+- N/A
+
+### Fixed
+
+- Fixed Storybook (daniel@octoco.ltd)
+
 ## 1.0.1 - 2023-09-27
 
 ### Added
