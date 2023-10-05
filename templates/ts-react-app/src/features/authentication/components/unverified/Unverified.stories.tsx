@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Unverified from './Unverified';
 
 const meta: Meta<typeof Unverified> = {
-  title: 'Pages/Status/Status 500',
+  title: 'Pages/Status/Unverified',
   component: Unverified,
 };
 
