@@ -5,28 +5,28 @@ from typing import List
 
 from abc import ABC, abstractmethod
 
-from models.example.example_model import Example, ExampleIM
+from models.{% modelName| lower %}.{% modelName| lower %}_model import {% modelName| capitalize %}, {% modelName| capitalize %}IM
 
-class ExampleRepository(ABC):
+class {% modelName| capitalize %}Repository(ABC):
     """
     All repository layers must be defined by an interface to insure that actual and
     in-memory implementations of the layer has the same functions, params and responses
     """
 
     @abstractmethod
-    def get_all_examples(self) -> List[Example]:
+    def get_all_{% modelName| lower %}s(self) -> List[{% modelName| capitalize %}]:
         """
-        Abstract method to return the list of defined Examples
-        """
-
-    @abstractmethod
-    def create_example(self, example: ExampleIM) -> Example:
-        """
-        Abstract method to create a new Example based on an ExampleIM
+        Abstract method to return the list of defined {% modelName| capitalize %}s
         """
 
     @abstractmethod
-    def get_example_by_id(self, example_id: str) -> Example:
+    def create_{% modelName| lower %}(self, {% modelName| lower %}: {% modelName| capitalize %}IM) -> {% modelName| capitalize %}:
         """
-        Abstract method to return the Example with the given ID
+        Abstract method to create a new {% modelName| capitalize %} based on an {% modelName| capitalize %}IM
+        """
+
+    @abstractmethod
+    def get_{% modelName| lower %}_by_id(self, {% modelName| lower %}_id: str) -> {% modelName| capitalize %}:
+        """
+        Abstract method to return the {% modelName| capitalize %} with the given ID
         """

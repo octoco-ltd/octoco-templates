@@ -14,6 +14,7 @@ import { backendFlow } from "./backend-flow.js";
 import { frontendFlow } from "./frontend-flow.js";
 import { singleRepoFlow } from "./single-repo-flow.js";
 import { monoRepoDirFlow, singleRepoBE, singleRepoFE } from "./dir-flow.js";
+import { modelNameFlow } from "./modelname-flow.js";
 import spawn from "cross-spawn";
 
 
@@ -28,7 +29,8 @@ const server = async function () {
      if (isMonorepo) {
           [feAppName, feAppType] = await frontendFlow();
           [beAppName, beAppType] = await backendFlow();
-          monoRepoDirFlow(feAppName, feAppType, beAppName, beAppType)
+          const beModelName = await modelNameFlow();
+          monoRepoDirFlow(feAppName, feAppType, beAppName, beAppType, beModelName);
      } else {
           const isFrontendApp = await singleRepoFlow();
           if (isFrontendApp) {
@@ -36,7 +38,7 @@ const server = async function () {
                singleRepoFE(feAppName, feAppType)
           } else {
                [beAppName, beAppType] = await backendFlow();
-               singleRepoBE(beAppName, beAppType)
+               singleRepoBE(beAppName, beAppType);
           }
      }
 

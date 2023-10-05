@@ -3,6 +3,7 @@ import {frontends} from "./frontend-flow.js";
 import * as path from "path";
 import {backends} from "./backend-flow.js";
 import { fileURLToPath } from 'url'
+import nunjucks from 'nunjucks';
 
 const __filenameNew = fileURLToPath(import.meta.url)
 
@@ -34,7 +35,30 @@ export const feDirFlow = function (feDir, feAppType, feAppName) {
     );
 }
 
-export const beDirFlow = function (beDir, beAppType, beAppName) {
+let processTemplateFolder = function (sourceDir, destinationDir, beModelName) {
+    const beFiles = fs.readdirSync(beTemplateDir, {withFileTypes: true});
+
+    for (const file of beFiles) {
+        let sourceFile = path.join(sourceDir, file.name);
+        const destinationFile = path.join(destinationDir, file.name);
+        if (file.isDirectory()) {
+            processFolder(sourceFile, destinationFile, beModelName);
+        } else {
+            if (file.name.indexOf('example')) {
+                const newFilename = file.name.replace('example', beModelName.toLowerCase());
+                destinationDir = path.join(destinationDir, newFilename);
+            }
+            nunjucks.render(sourceFile, {'modelName': beModelName}, (err, renderedTemplate) => {
+                if (err) {
+                    throw err;
+                }
+                fs.writeFileSync(destinationFile, renderedTemplate);
+            });
+        }
+    }
+};
+
+export const beDirFlow = function (beDir, beAppType, beAppName, beModelName) {
     fs.mkdirSync(beDir, {recursive: true});
 
     const beAppDir = path.resolve(beDir, beAppName);
@@ -44,8 +68,11 @@ export const beDirFlow = function (beDir, beAppType, beAppName) {
     // create a `template` folder which will house the template
     // and the files we want to create.
     // const __dirname = path.resolve(path.dirname(''));
-    const feTemplateDir = path.resolve(__dirnameNew, 'templates/' + beAppType);
-    fs.cpSync(feTemplateDir, beAppDir, {recursive: true});
+    const beTemplateDir = path.resolve(__dirnameNew, 'templates/' + beAppType);
+
+    processTemplateFolder(beTemplateDir, beAppDir, beModelName);
+
+    // fs.cpSync(feTemplateDir, beAppDir, {recursive: true});
 
     // It is good practice to have dotfiles stored in the
     // template without the dot (so they do not get picked
@@ -68,7 +95,7 @@ export const beDirFlow = function (beDir, beAppType, beAppName) {
     );
 }
 
-export const monoRepoDirFlow = function(feAppName, feAppType, beAppName, beAppType) {
+export const monoRepoDirFlow = function(feAppName, feAppType, beAppName, beAppType, beModelName) {
     // Create a project directory with the project name.
     const currentDir = process.cwd();
 
@@ -78,7 +105,7 @@ export const monoRepoDirFlow = function(feAppName, feAppType, beAppName, beAppTy
 
     // make dir for backend apps
     const beDir = path.resolve(currentDir, 'packages')
-    beDirFlow(beDir, beAppType, beAppName)
+    beDirFlow(beDir, beAppType, beAppName, beModelName)
 }
 
 export const singleRepoFE = function(feAppName, feAppType) {

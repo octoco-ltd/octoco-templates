@@ -1,13 +1,13 @@
 """
-Example Service
+{% modelName| capitalize %} Service
 """
 from typing import List
 
-from repositories.example_repository import ExampleRepository
-from models.example.example_model import Example, ExampleIM
+from repositories.{% modelName| lower %}_repository import {% modelName| capitalize %}Repository
+from models.{% modelName| lower %}.{% modelName| lower %}_model import {% modelName| capitalize %}, {% modelName| capitalize %}IM
 
 
-class ExampleService():
+class {% modelName| capitalize %}Service():
     """
     Our services layer contains all of the business logic of the app.
     This layer's dependencies are passed via the constructor.
@@ -18,35 +18,35 @@ class ExampleService():
     The goal of testing is to test the logic that will run in production i.e. the services layer.
     """
 
-    def __init__(self, example_repo: ExampleRepository) -> None:
-        self.example_repo = example_repo
+    def __init__(self, {% modelName| lower %}_repo: {% modelName| capitalize %}Repository) -> None:
+        self.{% modelName| lower %}_repo = {% modelName| lower %}_repo
 
-    def get_all_examples(self) -> List[Example]:
+    def get_all_{% modelName| lower %}s(self) -> List[{% modelName| capitalize %}]:
         """
-        Return the list of defined Examples
+        Return the list of defined {% modelName| capitalize %}s
         """
-        return self.example_repo.get_all_examples()
+        return self.{% modelName| lower %}_repo.get_all_{% modelName| lower %}s()
 
-    def get_example_by_id(self, example_id: str) -> Example:
+    def get_{% modelName| lower %}_by_id(self, {% modelName| lower %}_id: str) -> {% modelName| capitalize %}:
         """
-        Return the Example with the given ID
+        Return the {% modelName| capitalize %} with the given ID
         """
-        return self.example_repo.get_example_by_id(example_id)
+        return self.{% modelName| lower %}_repo.get_{% modelName| lower %}_by_id({% modelName| lower %}_id)
 
-    def create_example(self, example: ExampleIM) -> Example:
+    def create_{% modelName| lower %}(self, {% modelName| lower %}: {% modelName| capitalize %}IM) -> {% modelName| capitalize %}:
         """
-        Create a new Example based on an ExampleIM
+        Create a new {% modelName| capitalize %} based on an {% modelName| capitalize %}IM
         """
-        return self.example_repo.create_example(example)
+        return self.{% modelName| lower %}_repo.create_{% modelName| lower %}({% modelName| lower %})
 
-    def verification_checker(self, example_id: str, verification_status: bool) -> str:
+    def verification_checker(self, {% modelName| lower %}_id: str, verification_status: bool) -> str:
         """
         Just a stupid function to show how different logical steps must be tested
         """
 
-        example_in_db = self.example_repo.get_example_by_id(example_id)
+        {% modelName| lower %}_in_db = self.{% modelName| lower %}_repo.get_{% modelName| lower %}_by_id({% modelName| lower %}_id)
 
-        if example_in_db.is_verified == verification_status:
-            return "Example status matches verification status"
+        if {% modelName| lower %}_in_db.is_verified == verification_status:
+            return "{% modelName| capitalize %} status matches verification status"
         else:
-            return "Example status does not match verification status"
+            return "{% modelName| capitalize %} status does not match verification status"

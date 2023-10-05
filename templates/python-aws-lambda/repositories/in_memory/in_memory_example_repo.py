@@ -1,5 +1,5 @@
 """
-Example in memory repo
+{% modelName| capitalize %} in memory repo
 """
 import logging
 from datetime import datetime
@@ -7,28 +7,28 @@ from typing import List, Optional
 
 from exceptions.database_exception import DatabaseException
 
-from repositories.example_repository import ExampleRepository
-from models.example.example_model import Example, ExampleIM
+from repositories.{% modelName| lower %}_repository import {% modelName| capitalize %}Repository
+from models.{% modelName| lower %}.{% modelName| lower %}_model import {% modelName| capitalize %}, {% modelName| capitalize %}IM
 
 
-class InMemoryExampleRepository(ExampleRepository):
+class InMemory{% modelName| capitalize %}Repository({% modelName| capitalize %}Repository):
     """
-    In memory version of the example repo which uses an list as its "database"
+    In memory version of the {% modelName| lower %} repo which uses an list as its "database"
     This means that All operations are mimicked using list operations
     """
 
     def __init__(self) -> None:
-        self._entries: List[Example] = []
-        logging.info('In memory example repository with empty list')
+        self._entries: List[{% modelName| capitalize %}] = []
+        logging.info('In memory {% modelName| lower %} repository with empty list')
 
-    def seed_entries(self, entries: Optional[List[Example]]) -> None:
+    def seed_entries(self, entries: Optional[List[{% modelName| capitalize %}]]) -> None:
         """
-        Replace existing list of Examples with a new one
-        Will check the correct list of Examples is passed
+        Replace existing list of {% modelName| capitalize %}s with a new one
+        Will check the correct list of {% modelName| capitalize %}s is passed
         Will throw TypeError or ValueError if supplied entries value is invalid
         """
 
-        logging.info('Seeding entries for in memory example repository with list: %s', entries)
+        logging.info('Seeding entries for in memory {% modelName| lower %} repository with list: %s', entries)
         if entries is None:
             self.clear_entries()
         elif not isinstance(entries, list):
@@ -38,13 +38,13 @@ class InMemoryExampleRepository(ExampleRepository):
             self.clear_entries()
         else:
             for entry in entries:
-                if not isinstance(entry, Example):
+                if not isinstance(entry, {% modelName| capitalize %}):
                     logging.error('Attempt to supply invalid in entry in list to seed_entries')
-                    raise TypeError('Entries must be a list of Example objects')
+                    raise TypeError('Entries must be a list of {% modelName| capitalize %} objects')
 
         self._entries = entries
         logging.info(
-            'Successfully seeded entries for in memory example repository with list: %s',
+            'Successfully seeded entries for in memory {% modelName| lower %} repository with list: %s',
             entries
         )
 
@@ -53,58 +53,58 @@ class InMemoryExampleRepository(ExampleRepository):
         clear the list
         """
         self._entries = []
-        logging.info('Successfully cleared entries for in memory example repository')
+        logging.info('Successfully cleared entries for in memory {% modelName| lower %} repository')
 
-    def get_all_examples(self) -> List[Example]:
+    def get_all_{% modelName| lower %}s(self) -> List[{% modelName| capitalize %}]:
         """
-        return the list of defined Examples
+        return the list of defined {% modelName| capitalize %}s
         """
         # Mapping responses will raise errors if you somehow managed to store the wrong type
         # in the in-memory list
         return self._entries
 
-    def create_example(self, example: ExampleIM) -> Example:
+    def create_{% modelName| lower %}(self, {% modelName| lower %}: {% modelName| capitalize %}IM) -> {% modelName| capitalize %}:
         """
-        Create a new Example based on an ExampleIM
+        Create a new {% modelName| capitalize %} based on an {% modelName| capitalize %}IM
         """
-        if example is None:
-            raise ValueError('example cannot be None')
-        if not isinstance(example, ExampleIM):
-            raise TypeError('example must be an ExampleIM')
+        if {% modelName| lower %} is None:
+            raise ValueError('{% modelName| lower %} cannot be None')
+        if not isinstance({% modelName| lower %}, {% modelName| capitalize %}IM):
+            raise TypeError('{% modelName| lower %} must be an {% modelName| capitalize %}IM')
 
-        example_to_add = {
+        {% modelName| lower %}_to_add = {
             'created_at': datetime.now(),
             'id': 'some-new-id'
         }
 
         # Add the fields that the DB would have
-        example.update(example_to_add)
+        {% modelName| lower %}.update({% modelName| lower %}_to_add)
 
-        self._entries.append(Example(**example.__dict__))
+        self._entries.append({% modelName| capitalize %}(**{% modelName| lower %}.__dict__))
 
-        logging.info('Successfully created example: %s and added to the list', example)
+        logging.info('Successfully created {% modelName| lower %}: %s and added to the list', {% modelName| lower %})
 
-        return Example(**example.__dict__)
+        return {% modelName| capitalize %}(**{% modelName| lower %}.__dict__)
 
-    def get_example_by_id(self, example_id: str) -> Example:
+    def get_{% modelName| lower %}_by_id(self, {% modelName| lower %}_id: str) -> {% modelName| capitalize %}:
         """
-        Return the Example entry with the given ID
+        Return the {% modelName| capitalize %} entry with the given ID
         """
-        if example_id is None:
-            raise ValueError('example_id cannot be None')
-        if not isinstance(example_id, str):
-            raise TypeError('example_id must be a string')
+        if {% modelName| lower %}_id is None:
+            raise ValueError('{% modelName| lower %}_id cannot be None')
+        if not isinstance({% modelName| lower %}_id, str):
+            raise TypeError('{% modelName| lower %}_id must be a string')
 
-        example = None
+        {% modelName| lower %} = None
 
         for entry in self._entries:
-            if entry.id == example_id:
-                example = entry
+            if entry.id == {% modelName| lower %}_id:
+                {% modelName| lower %} = entry
                 break
 
-        if example is None:
-            logging.error('Example with ID %s not found', example_id)
-            raise DatabaseException(f'Example with ID {example_id} not found')
+        if {% modelName| lower %} is None:
+            logging.error('{% modelName| capitalize %} with ID %s not found', {% modelName| lower %}_id)
+            raise DatabaseException(f'{% modelName| capitalize %} with ID {{% modelName| lower %}_id} not found')
 
-        logging.info('Successfully found example with ID: %s', example_id)
-        return Example(**example.__dict__)
+        logging.info('Successfully found {% modelName| lower %} with ID: %s', {% modelName| lower %}_id)
+        return {% modelName| capitalize %}(**{% modelName| lower %}.__dict__)

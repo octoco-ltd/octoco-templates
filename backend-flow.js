@@ -1,7 +1,13 @@
 import inquirer from 'inquirer';
 
 // TODO: add backend options here as added to CLI
-export const backends = {'TS Express REST API': "express-rest-api"};
+export const backends = {
+    'TS Express REST API': "express-rest-api",
+    'Flutter': "flutter_template",
+    'Python AWS Lambda': "python-aws-lambda",
+    'TypeScript AWS Lambda': "ts-aws-lambda",
+    'TypeScript React': "ts-react-app",
+};
 
 export const backendFlow = async function () {
     const questions = [
@@ -13,7 +19,7 @@ export const backendFlow = async function () {
             type: 'list',
             name: 'be-app',
             message: 'Which type of BE application do you need?',
-            choices: ['TS Express REST API']
+            choices: ['TS Express REST API', 'Flutter', 'Python AWS Lambda', 'TypeScript AWS Lambda', 'TypeScript React']
         }
     ]
 

@@ -1,22 +1,22 @@
 """
-Unit test for ExampleService for in memory repositories
+Unit test for {% modelName| capitalize %}Service for in memory repositories
 """
 import pytest
 
 from datetime import datetime
 
-from repositories.example_repository import ExampleRepository
-from repositories.in_memory.in_memory_example_repo import InMemoryExampleRepository
-from models.example.example_model import Example
-from services.example_service import ExampleService
+from repositories.{% modelName| lower %}_repository import {% modelName| capitalize %}Repository
+from repositories.in_memory.in_memory_{% modelName| lower %}_repo import InMemory{% modelName| capitalize %}Repository
+from models.{% modelName| lower %}.{% modelName| lower %}_model import {% modelName| capitalize %}
+from services.{% modelName| lower %}_service import {% modelName| capitalize %}Service
 
 
 @pytest.fixture
-def example_in_db():
+def {% modelName| lower %}_in_db():
     """
-    Create and return an Example model
+    Create and return an {% modelName| capitalize %} model
     """
-    return Example(**dict(
+    return {% modelName| capitalize %}(**dict(
         id='id1',
         created_at=datetime.now(),
         name='example',
@@ -26,76 +26,76 @@ def example_in_db():
 
 
 @pytest.fixture
-def example_repo():
+def {% modelName| lower %}_repo():
     """
-    Create and return the InMemoryExampleRepository
+    Create and return the InMemory{% modelName| capitalize %}Repository
     """
-    return InMemoryExampleRepository()
+    return InMemory{% modelName| capitalize %}Repository()
 
 
-def test_that_an_example_can_be_fetched(
-        example_repo: ExampleRepository,
-        example_in_db: Example
+def test_that_an_{% modelName| lower %}_can_be_fetched(
+        {% modelName| lower %}_repo: {% modelName| capitalize %}Repository,
+        {% modelName| lower %}_in_db: {% modelName| capitalize %}
     ):
     """
-    Test that an Example can be fetched
+    Test that an {% modelName| capitalize %} can be fetched
     """
-    example_repo.seed_entries([example_in_db])
-    example_service = ExampleService(example_repo)
-    result = example_service.get_example_by_id('id1')
-    assert result == example_in_db
+    {% modelName| lower %}_repo.seed_entries([{% modelName| lower %}_in_db])
+    {% modelName| lower %}_service = {% modelName| capitalize %}Service({% modelName| lower %}_repo)
+    result = {% modelName| lower %}_service.get_{% modelName| lower %}_by_id('id1')
+    assert result == {% modelName| lower %}_in_db
 
 
-def test_that_all_examples_can_be_fetched(
-        example_repo: InMemoryExampleRepository,
-        example_in_db: Example
+def test_that_all_{% modelName| lower %}s_can_be_fetched(
+        {% modelName| lower %}_repo: InMemory{% modelName| capitalize %}Repository,
+        {% modelName| lower %}_in_db: {% modelName| capitalize %}
     ):
     """
-    Test that all Examples can be fetched
+    Test that all {% modelName| capitalize %}s can be fetched
     """
-    example_repo.seed_entries([example_in_db])
-    example_service = ExampleService(example_repo)
-    result = example_service.get_all_examples()
+    {% modelName| lower %}_repo.seed_entries([{% modelName| lower %}_in_db])
+    {% modelName| lower %}_service = {% modelName| capitalize %}Service({% modelName| lower %}_repo)
+    result = {% modelName| lower %}_service.get_all_{% modelName| lower %}s()
     assert len(result) == 1
-    assert result[0] == example_in_db
+    assert result[0] == {% modelName| lower %}_in_db
 
 
 def test_that_an_error_is_thrown_if_an_incorrect_id_is_used(
-        example_repo: InMemoryExampleRepository,
-        example_in_db: Example
+        {% modelName| lower %}_repo: InMemory{% modelName| capitalize %}Repository,
+        {% modelName| lower %}_in_db: {% modelName| capitalize %}
     ):
     """
     Test that an error is thrown if an incorrect ID is used
     TODO: Add correct error check
     """
-    example_repo.seed_entries([example_in_db])
-    example_service = ExampleService(example_repo)
+    {% modelName| lower %}_repo.seed_entries([{% modelName| lower %}_in_db])
+    {% modelName| lower %}_service = {% modelName| capitalize %}Service({% modelName| lower %}_repo)
     with pytest.raises(Exception) as exception:
-        example_service.get_example_by_id('non-existent-id')
-    assert str(exception.value) == "Example with ID non-existent-id not found"
+        {% modelName| lower %}_service.get_{% modelName| lower %}_by_id('non-existent-id')
+    assert str(exception.value) == "{% modelName| capitalize %} with ID non-existent-id not found"
 
 
-def test_that_the_example_status_matches_the_verification_status(
-        example_repo: InMemoryExampleRepository,
-        example_in_db: Example
+def test_that_the_{% modelName| lower %}_status_matches_the_verification_status(
+        {% modelName| lower %}_repo: InMemory{% modelName| capitalize %}Repository,
+        {% modelName| lower %}_in_db: {% modelName| capitalize %}
     ):
     """
-    Test that the Example status matches the verification status
+    Test that the {% modelName| capitalize %} status matches the verification status
     """
-    example_repo.seed_entries([example_in_db])
-    example_service = ExampleService(example_repo)
-    result = example_service.verification_checker('id1', True)
-    assert result == "Example status matches verification status"
+    {% modelName| lower %}_repo.seed_entries([{% modelName| lower %}_in_db])
+    {% modelName| lower %}_service = {% modelName| capitalize %}Service({% modelName| lower %}_repo)
+    result = {% modelName| lower %}_service.verification_checker('id1', True)
+    assert result == "{% modelName| capitalize %} status matches verification status"
 
 
-def test_that_the_example_status_does_not_match_the_verification_status(
-        example_repo: InMemoryExampleRepository,
-        example_in_db: Example
+def test_that_the_{% modelName| lower %}_status_does_not_match_the_verification_status(
+        {% modelName| lower %}_repo: InMemory{% modelName| capitalize %}Repository,
+        {% modelName| lower %}_in_db: {% modelName| capitalize %}
     ):
     """
-    Test that the Example status does not match the verification status
+    Test that the {% modelName| capitalize %} status does not match the verification status
     """
-    example_repo.seed_entries([example_in_db])
-    example_service = ExampleService(example_repo)
-    result = example_service.verification_checker('id1', False)
-    assert result == "Example status does not match verification status"
+    {% modelName| lower %}_repo.seed_entries([{% modelName| lower %}_in_db])
+    {% modelName| lower %}_service = {% modelName| capitalize %}Service({% modelName| lower %}_repo)
+    result = {% modelName| lower %}_service.verification_checker('id1', False)
+    assert result == "{% modelName| capitalize %} status does not match verification status"

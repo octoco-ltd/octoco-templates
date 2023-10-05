@@ -1,5 +1,5 @@
 """
-MongoDB implementation of the ExampleRepository
+MongoDB implementation of the {% modelName| capitalize %}Repository
 """
 import logging
 import os
@@ -7,17 +7,17 @@ import os
 from datetime import datetime
 from typing import List
 
-from models.example.example_model import Example, ExampleIM
-from repositories.example_repository import ExampleRepository
+from models.{% modelName| lower %}.{% modelName| lower %}_model import {% modelName| capitalize %}, {% modelName| capitalize %}IM
+from repositories.{% modelName| lower %}_repository import {% modelName| capitalize %}Repository
 
 from exceptions.database_exception import DatabaseException
 
 from pymongo import MongoClient
 
 
-class MongoExampleRepository(ExampleRepository):
+class Mongo{% modelName| capitalize %}Repository({% modelName| capitalize %}Repository):
     """
-    The MongoDB implementation of the ExampleRepository
+    The MongoDB implementation of the {% modelName| capitalize %}Repository
     """
 
     def __init__(self) -> None:
@@ -26,36 +26,36 @@ class MongoExampleRepository(ExampleRepository):
         ).get_collection('users')
         logging.info('Connected to MongoDB for database named pokerbet')
 
-    def get_all_examples(self) -> List[Example]:
+    def get_all_{% modelName| lower %}s(self) -> List[{% modelName| capitalize %}]:
         """
-        Return the list of defined Examples
+        Return the list of defined {% modelName| capitalize %}s
         """
-        examples = self._db_client.find()
-        return [Example(**entry) for entry in examples]
+        {% modelName| lower %}s = self._db_client.find()
+        return [{% modelName| capitalize %}(**entry) for entry in {% modelName| lower %}s]
 
-    def create_example(self, example: ExampleIM) -> Example:
-        if example is None:
-            raise ValueError('example cannot be None')
-        if not isinstance(example, ExampleIM):
-            raise TypeError('example must be an ExampleIM')
-        example_to_add = {
+    def create_{% modelName| lower %}(self, {% modelName| lower %}: {% modelName| capitalize %}IM) -> {% modelName| capitalize %}:
+        if {% modelName| lower %} is None:
+            raise ValueError('{% modelName| lower %} cannot be None')
+        if not isinstance({% modelName| lower %}, {% modelName| capitalize %}IM):
+            raise TypeError('{% modelName| lower %} must be an {% modelName| capitalize %}IM')
+        {% modelName| lower %}_to_add = {
             'created_at': datetime.now(),
             'id': 'some-new-id'
         }
 
         # Add the fields that the DB would have
-        example.update(example_to_add)
-        saved_example = self._db_client.insert_one(example.__dict__)
-        logging.info('Example with ID [%s] created', saved_example.inserted_id)
-        return example
+        {% modelName| lower %}.update({% modelName| lower %}_to_add)
+        saved_{% modelName| lower %} = self._db_client.insert_one({% modelName| lower %}.__dict__)
+        logging.info('{% modelName| capitalize %} with ID [%s] created', saved_{% modelName| lower %}.inserted_id)
+        return {% modelName| lower %}
 
-    def get_example_by_id(self, example_id: str) -> Example:
+    def get_{% modelName| lower %}_by_id(self, {% modelName| lower %}_id: str) -> {% modelName| capitalize %}:
         """
-        Return the Example with the given ID
+        Return the {% modelName| capitalize %} with the given ID
         """
-        example = self._db_client.find_one({'id': example_id})
+        {% modelName| lower %} = self._db_client.find_one({'id': {% modelName| lower %}_id})
 
-        if example is None:
-            raise DatabaseException(f'Example with ID {example_id} not found')
+        if {% modelName| lower %} is None:
+            raise DatabaseException(f'{% modelName| capitalize %} with ID {{% modelName| lower %}_id} not found')
 
-        return Example(**example)
+        return {% modelName| capitalize %}(**{% modelName| lower %})
