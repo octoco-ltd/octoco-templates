@@ -1,24 +1,24 @@
 import { Provider } from 'react-redux';
 import store from '../src/store/store'
 import { HelmetProvider } from 'react-helmet-async';
-import { SidebarProvider } from '../src/contexts/SidebarContext';
 import { BrowserRouter } from 'react-router-dom';
-import ThemeProvider from '../src/theme/ThemeProvider';
+import { SidebarProvider } from '../src/context/SidebarContext';
+import { ThemeProviderWrapper} from '../src/features/appTheme';
 
 export const decorators = [
   (Story) => (
 
     <Provider store={store}>
-      <HelmetProvider>
-        <SidebarProvider>
-          <BrowserRouter initialEntries={['/']}>
-            <ThemeProvider>
+     <HelmetProvider>
+       <SidebarProvider>
+       <BrowserRouter initialEntries={['/']}>
+            <ThemeProviderWrapper>
               {Story()}
-            </ThemeProvider>
+            </ThemeProviderWrapper>
           </BrowserRouter>
-        </SidebarProvider>
-      </HelmetProvider>
-    </Provider>
+       </SidebarProvider>
+     </HelmetProvider>
+     </Provider>
 
   )
 ];

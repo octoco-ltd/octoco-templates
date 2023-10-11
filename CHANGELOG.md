@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file. The format 
 
 See bottom of document for convention.
 
+## 1.0.2 - 2023-09-27
+
+### Added
+
+- ts-react-app changes (see ts-react-app changelog) (daniel@octoco.ltd)
+
+### Changed
+
+- N/A
+
+### Deprecated
+
+- N/A
+
+### Removed
+
+- N/A
+
+### Fixed
+
+- N/A
+
 ## 1.0.1 - 2023-09-27
 
 ### Added
