@@ -1,13 +1,12 @@
 
 import { useState } from 'react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import { getStorageItem, setStorageItem } from 'src/utils/browserStorage';
+import { IDashboardComponent, ILayoutKey } from '../models/dashboardTypes';
 import TopBar from './TopBar';
 import Widget from './Widget';
 import '/node_modules/react-grid-layout/css/styles.css';
 import '/node_modules/react-resizable/css/styles.css';
-import { IDashboardComponent, ILayoutKey } from '../models/dashboardTypes';
-import ControlCameraRoundedIcon from '@mui/icons-material/ControlCameraRounded';
-import { getStorageItem, setStorageItem } from 'src/utils/browserStorage';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 //TODO: add item and remove items from dashboard
@@ -113,7 +112,7 @@ export default function Content({ initialLayouts, canEdit = true, componentList,
           <div
             key={key}
             className="widget"
-            data-grid={{ w: key.w, h: key.h, x: key.x, y: key.y }}
+          // data-grid={{ w: key.w, h: key.h, x: key.x, y: key.y }}
           >
             <Widget
               id={key}

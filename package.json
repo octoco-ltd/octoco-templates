@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "cross-spawn": "^7.0.3",
-    "inquirer": "^9.2.11"
+    "fs-extra": "^11.1.1",
+    "inquirer": "^9.2.11",
+    "replace-in-file": "^7.0.2"
   }
 }

@@ -10,7 +10,6 @@ import { useAuth } from './hooks/useAuth'
 import { persistAuth } from './utils/persistAuth'
 
 //Providers 
-//Firebase
 import {
     FirebaseAuthProvider as AuthProvider,
     FirebaseAuthContext as AuthContext,
@@ -18,13 +17,22 @@ import {
     logoutFirebase as logout
 } from './clients/firebase/FirebaseAuthProvider'
 
-//Cognito
-// import {
-//     CognitoAuthProvider as AuthProvider,
-//     CognitoAuthContext as AuthContext,
-//     refreshCognitoToken as refreshToken,
-//     logoutCognito as logout
-// } from './clients/cognito/CognitoAuthProvider'
+//--All commented code below should start with //-- (for the templates setup)
 
+//--Firebase
+//-- import {
+//--     FirebaseAuthProvider as AuthProvider,
+//--     FirebaseAuthContext as AuthContext,
+//--     refreshFirebaseToken as refreshToken,
+//--     logoutFirebase as logout
+//-- } from './clients/firebase/FirebaseAuthProvider'
+
+//--Cognito
+//-- import {
+//--     CognitoAuthProvider as AuthProvider,
+//--     CognitoAuthContext as AuthContext,
+//--     refreshCognitoToken as refreshToken,
+//--     logoutCognito as logout
+//-- } from './clients/cognito/CognitoAuthProvider'
 
 export { Login, Register, AuthProvider, AuthContext, useAuth, persistAuth, refreshToken, logout }

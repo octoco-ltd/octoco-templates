@@ -15,6 +15,7 @@ import { frontendFlow } from "./frontend-flow.js";
 import { singleRepoFlow } from "./single-repo-flow.js";
 import { monoRepoDirFlow, singleRepoBE, singleRepoFE } from "./dir-flow.js";
 import spawn from "cross-spawn";
+import { reactFlow } from "./ts-react-app-flow.js";
 
 
 const server = async function () {
@@ -34,6 +35,9 @@ const server = async function () {
           if (isFrontendApp) {
                [feAppName, feAppType] = await frontendFlow();
                singleRepoFE(feAppName, feAppType)
+               if(feAppType === 'ts-react-app'){
+                    await reactFlow();
+               }
           } else {
                [beAppName, beAppType] = await backendFlow();
                singleRepoBE(beAppName, beAppType)
