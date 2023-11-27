@@ -1,3 +1,3 @@
 # Mongo Repository Implementation
 
-The main ideaa of the n-layered approach is to allow modularity of the code as well as reduce the risk of vendor locking. For example here we created a MongoDB implementation of our ExampleRepository. We can create the exact same implementation for other DB providers as is required by the client. Similarly, if we are halfway through the rpoject and suddenly need to migrate to a new DB we only need to change or repository layer.
+The main idea of the n-layered approach is to allow modularity of the code as well as reduce the risk of vendor locking. For example here we created a MongoDB implementation of our ExampleRepository. We can create the exact same implementation for other DB providers as is required by the client. Similarly, if we are halfway through the project and suddenly need to migrate to a new DB we only need to change or repository layer.
