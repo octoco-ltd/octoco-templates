@@ -17,6 +17,8 @@ export class ExampleController {
             Creates an example
              */
         try {
+            console.log('EXAMPLE')
+            console.log(req.body)
             const exampleBody = ExampleIMSchema.safeParse(req.body);
 
             if (!exampleBody.success) {

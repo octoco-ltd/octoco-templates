@@ -4,7 +4,7 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 
 export const ExampleSchema = z.object({
     id: z.string().nonempty(),
-    createdAt: z.date(),
+    createdAt: z.string().nonempty(),
     name: z.string(),
     email: z.string(),
     emailVerified: z.boolean().default(false),

@@ -89,7 +89,7 @@ export function handleControllerLevelError(res: Response, req: Request, err:any,
         isSuccess: false,
         value: issues,
         httpStatus: statusCode,
-        errorMessage: process.env.NODE_ENV === 'DEV' ? errorMessage : '',
+        errorMessage: errorMessage,
     };
     return res.status(tempResult.httpStatus).send(tempResult);
 }

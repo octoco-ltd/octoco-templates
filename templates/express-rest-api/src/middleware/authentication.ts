@@ -4,7 +4,7 @@ import { NextFunction, Request, Response } from 'express';
 export const isAuthenticated = auth({
     audience: 'AUTH0_AUDIENCE',
     issuerBaseURL: 'AUTH0_ISSUER_BASE_URL',
-    tokenSigningAlg: 'AUTH0_TOKEN_SIGNING_ALG',
+    tokenSigningAlg: 'RS256',
 });
 
 export const isAdmin = (req: Request, res: Response, next: NextFunction) => {

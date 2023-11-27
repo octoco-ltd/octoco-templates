@@ -1,10 +1,9 @@
 import {describe, test, expect, beforeEach, afterEach} from '@jest/globals'
 
-import { ExampleService } from '../src/services/example-service';
-import {InMemoryExampleRepository} from "../src/repositories/memory/in-memory-example-repository";
-import {InMemoryExampleClient} from "../src/clients/memory/in-memory-example-client";
-import {ExampleIMSchema, ExampleSchema} from "../src/models/users/example-schema";
-import {z} from "zod";
+import { ExampleService } from '../../src/services/example-service';
+import {InMemoryExampleRepository} from "../../src/repositories/memory/in-memory-example-repository";
+import {InMemoryExampleClient} from "../../src/clients/memory/in-memory-example-client";
+import {ExampleIMSchema, ExampleSchema} from "../../src/models/users/example-schema";
 
 // Instantiate the InMemory version for testing
 const exampleRepo = new InMemoryExampleRepository([])
