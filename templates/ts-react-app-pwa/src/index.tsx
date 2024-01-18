@@ -12,13 +12,13 @@ const root = ReactDOM.createRoot(
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCh3R39SGN418tR6qP92aWwnTV3pqyqtjI",
-  authDomain: "testing-platform-f7204.firebaseapp.com",
-  projectId: "testing-platform-f7204",
-  storageBucket: "testing-platform-f7204.appspot.com",
-  messagingSenderId: "304758276724",
-  appId: "1:304758276724:web:3bd77ad5759ff6c2ea0721",
-  measurementId: "G-3JE3V5B41V"
+  apiKey: "xxxxxxx",
+  authDomain: "xxxxx.firebaseapp.com",
+  projectId: "xxxxx",
+  storageBucket: "xxxxx.appspot.com",
+  messagingSenderId: "12345",
+  appId: "xxxxxxxxxxxxxx",
+  measurementId: "xxxxxxxx"
 };
 
 root.render(

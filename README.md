@@ -17,6 +17,7 @@ The Octoco Starter Kit follows the following folder structure:
 
 - `templates/`
   - `ts-react-app` (WIP)
+  - `ts-react-app-pwa` (WIP)
   - `ts-nextjs-app` (TODO)
   - `ts-react-native-app` (TODO)
   - `flutter-app` (TODO)
