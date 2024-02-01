@@ -23,7 +23,7 @@ function StatusCancel() {
     return (
         <>
             <Helmet>
-                <title>Status - Success</title>
+                <title>Status - Cancel</title>
             </Helmet>
             <MainContent>
                 <Container maxWidth='md'>

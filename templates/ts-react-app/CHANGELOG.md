@@ -9,6 +9,7 @@ See bottom of document for convention.
 ### Added
 
 - Improved CASL RBAC control over app (christiaan@octoco.ltd)
+- Invalid Environment Vars component to show if the env is not right (christiaan@octoco.ltd)
 
 ### Changed
 
@@ -24,7 +25,7 @@ See bottom of document for convention.
 
 ### Fixed
 
-- Fixed Storybook (daniel@octoco.ltd)
+- Minor text fixes (christiaan@octoco.ltd)
 
 ## 1.0.2 - 2023-10-05
 
