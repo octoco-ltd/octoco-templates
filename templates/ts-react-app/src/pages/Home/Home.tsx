@@ -8,6 +8,8 @@ import AreaChartComponent from 'src/components/charts/AreaChartComponent';
 import BarChartComponent from 'src/components/charts/BarChartComponent';
 import PieChartComponent from 'src/components/charts/PieChartComponent';
 import { Dashboard } from 'src/features/dashboard';
+import { AbilityGuard } from 'src/Guards/abilityGuard/AbilityGuard';
+import { ABILITY_PAGES, ABILITY_TYPES } from 'src/config/ability';
 
 const HomePage = () => {
 
@@ -216,15 +218,16 @@ const HomePage = () => {
     ]
   };
 
-
   return (
     <HomeWrapper>
       <Helmet>
         <title>Home Page</title>
       </Helmet>
-      <Container maxWidth='lg'>
-        <Dashboard canEdit={true} componentList={componentList} initialLayouts={initialLayouts} heading='Home' page={'BaseRepoDashboard'} />
-      </Container>
+      <AbilityGuard i={ABILITY_TYPES.VISIT} a={ABILITY_PAGES.HOME} showFallback>
+        <Container maxWidth='lg'>
+          <Dashboard canEdit={true} componentList={componentList} initialLayouts={initialLayouts} heading='Home' page={'BaseRepoDashboard'} />
+        </Container>
+      </AbilityGuard>
     </HomeWrapper>
   );
 };

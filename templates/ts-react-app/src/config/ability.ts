@@ -7,25 +7,38 @@ import { defineAbility } from '@casl/ability';
  */
 export default function defineAbilityFor(userType: string) {
     return defineAbility((can, cannot) => {
-        if (userType === 'superAdmin') {
-            // super Admin abilities
-            can('read', 'users');    // Read users of the platform
-            can('update', 'users');  // Update role of user
-            can('create', 'users');  // Create new user
-            can('delete', 'users');  // Delete users
-        } else if(userType === 'admin') {
-            // Admin abilities
-            can('read', 'users');    // Read users of the platform
-            can('update', 'users');  // Update role of user
-            can('create', 'users');  // Create new user
-            can('delete', 'users');  // Delete users
+        if (userType === 'admin') {
+            //###### pages ######
+            //The below defines top level pages the user has access to
+            can('visit', ABILITY_PAGES.HOME);
+
+            //###### features ######
+            //This will be sub-features that exist (it can be nested)
+
+        } else if (userType === 'viewOnly') {
+            //###### pages ######
+            //The below defines top level pages the user has access to
+            can('visit', ABILITY_PAGES.HOME);
+
+            //###### features ######
+
         } else {
-            // Non-admin abilities
-            cannot('read', 'users');    // Deny reading users of the platform
-            cannot('update', 'users');  // Deny updating role of user
-            cannot('create', 'users');  // Deny creating new user
-            cannot('delete', 'users');  // Deny deleting users
+            //###### pages ######
+            //The below defines top level pages the user has access to
+            cannot('visit', ABILITY_PAGES.HOME);
+
+            //###### features ######
+            //This will be sub-features that exist (it can be nested)
+
         }
         //Add other roles here
     });
+}
+
+export const enum ABILITY_PAGES {
+    HOME = 'home',
+}
+
+export const enum ABILITY_TYPES {
+    VISIT = 'visit',
 }

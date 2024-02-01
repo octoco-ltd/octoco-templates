@@ -8,7 +8,7 @@ See bottom of document for convention.
 
 ### Added
 
--
+- Improved CASL RBAC control over app (christiaan@octoco.ltd)
 
 ### Changed
 

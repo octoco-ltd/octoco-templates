@@ -10,6 +10,8 @@ import { useAppSelector } from 'src/hooks/hooks';
 import Status500 from 'src/pages/Fallbacks/Status/Status500/Status500';
 import DialogProvider from './dialogContext';
 import { SidebarProvider } from './SidebarContext';
+import { AbilityContext } from './canContext';
+import defineAbilityFor from 'src/config/ability';
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -27,22 +29,31 @@ interface AppProvidersProps {
 const AppProviders = ({ children }: AppProvidersProps) => {
   const theme = useAppSelector(selectTheme);
 
+  /**
+  * The Role should be defined here based on the user logged in
+  */
+  const ability = defineAbilityFor('admin');
+
+  // NOTE: It is important to have the right order here. Because you can only access the context of a provider from its children.
+  // i.e you can't access context from DialogProvider within the SidebarProvider
   return (
-    <AuthProvider>
-      <HelmetProvider>
-        <SidebarProvider>
-          <ThemeProviderWrapper>
-            <Sentry.ErrorBoundary fallback={<Status500 resetErrorBoundary={() => window.location.reload()} />}>
-              <CssBaseline />
-              <DialogProvider>
-                <ToastContainer theme={theme === themeNames.dark ? 'dark' : 'light'} />
-                {children}
-              </DialogProvider>
-            </Sentry.ErrorBoundary>
-          </ThemeProviderWrapper>
-        </SidebarProvider>
-      </HelmetProvider>
-    </AuthProvider >
+    <AbilityContext.Provider value={ability}>
+      <AuthProvider>
+        <HelmetProvider>
+          <SidebarProvider>
+            <ThemeProviderWrapper>
+              <Sentry.ErrorBoundary fallback={<Status500 resetErrorBoundary={() => window.location.reload()} />}>
+                <CssBaseline />
+                <DialogProvider>
+                  <ToastContainer theme={theme === themeNames.dark ? 'dark' : 'light'} />
+                  {children}
+                </DialogProvider>
+              </Sentry.ErrorBoundary>
+            </ThemeProviderWrapper>
+          </SidebarProvider>
+        </HelmetProvider>
+      </AuthProvider>
+    </AbilityContext.Provider>
   );
 };
 
