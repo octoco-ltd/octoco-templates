@@ -37,6 +37,9 @@ const MenuWrapper = styled(Box)(
       padding: ${theme.spacing(0, 2.5)};
       line-height: 1.4;
     }
+    .MuiTypography-root {
+      color: ${theme.sidebar.textColor};
+    }
 `,
 );
 

@@ -26,6 +26,7 @@ See bottom of document for convention.
 ### Fixed
 
 - Minor text fixes (christiaan@octoco.ltd)
+- Sidebar Typography Text not adapting to light and dark mode (christiaan@octoco.ltd)
 
 ## 1.0.2 - 2023-10-05
 
