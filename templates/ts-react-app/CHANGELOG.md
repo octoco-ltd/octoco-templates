@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file. The format 
 
 See bottom of document for convention.
 
+## 1.0.3 - 2024-02-01
+
+### Added
+
+-
+
+### Changed
+
+- Moved all providers to an AppProvider to allow for easier management (christiaan@octoco.ltd)
+
+### Deprecated
+
+- N/A
+
+### Removed
+
+- N/A
+
+### Fixed
+
+- Fixed Storybook (daniel@octoco.ltd)
+
 ## 1.0.2 - 2023-10-05
 
 ### Added
@@ -75,7 +97,7 @@ See bottom of document for convention.
 ### Fixed
 
 - N/A
-  
+
 # Changelog Convention
 
 Unreleased changes are omitted for this repo
@@ -104,4 +126,3 @@ Unreleased changes are omitted for this repo
 
 - Bug fix 1: Describe a bug that has been fixed.
 - Bug fix 2: Another bug fix.
-
