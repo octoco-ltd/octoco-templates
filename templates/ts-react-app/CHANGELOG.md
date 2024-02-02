@@ -10,6 +10,8 @@ See bottom of document for convention.
 
 - Improved CASL RBAC control over app (christiaan@octoco.ltd)
 - Invalid Environment Vars component to show if the env is not right (christiaan@octoco.ltd)
+- Make some env vars to be exactly certain values (christiaan@octoco.ltd)
+- Added custom logger MVP (christiaan@octoco.ltd, daniel@octoco.ltd)
 
 ### Changed
 

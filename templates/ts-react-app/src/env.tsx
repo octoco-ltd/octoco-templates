@@ -6,7 +6,7 @@ export const clientSchema = z.object({
     REACT_APP_BASE_API_URL: z.string().nonempty(),
     REACT_APP_APP_BASE_URL: z.string().nonempty(),
     REACT_APP_APP_NAME: z.string().nonempty(),
-    REACT_APP_DEPLOYMENT_ENV: z.string().nonempty(),
+    REACT_APP_DEPLOYMENT_ENV: z.enum(['development', 'staging', 'production']),
     REACT_APP_REDIRECT_SUCCESS: z.string().nonempty(),
     REACT_APP_REDIRECT_FAILURE: z.string().nonempty(),
     REACT_APP_REDIRECT_CANCEL: z.string().nonempty(),
@@ -49,3 +49,4 @@ if (!_clientEnv.success) {
 }
 
 export const env = _clientEnv.data;
+export const envSchema = clientSchema;
