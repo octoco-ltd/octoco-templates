@@ -19,6 +19,7 @@ See bottom of document for convention.
 - Moved all providers to an AppProvider to allow for easier management (christiaan@octoco.ltd)
 - Updated and checked node version 20.11.0 (christiaan@octoco.ltd)
 - Removed Pokemon API and add more relevant mock API (christiaan@octoco.ltd)
+- Upgraded all packages to latest and do relevant fixes (christiaan@octoco.ltd)
 
 ### Deprecated
 
