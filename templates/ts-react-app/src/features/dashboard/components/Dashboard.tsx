@@ -5,9 +5,8 @@ import TopBar from './TopBar';
 import Widget from './Widget';
 import '/node_modules/react-grid-layout/css/styles.css';
 import '/node_modules/react-resizable/css/styles.css';
-import { IDashboardComponent, ILayoutKey } from '../models/dashboardTypes';
-import ControlCameraRoundedIcon from '@mui/icons-material/ControlCameraRounded';
 import { getStorageItem, setStorageItem } from 'src/utils/browserStorage';
+import { DashboardComponentVM, LayoutSchemaVM } from 'src/models/dashboard.model';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 //TODO: add item and remove items from dashboard
@@ -15,7 +14,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 interface DashboardProps {
   canEdit?: boolean //whether the user can move / remove /add the components around 
   initialLayouts: ReactGridLayout.Layouts
-  componentList: IDashboardComponent
+  componentList: DashboardComponentVM
   heading: string
   page: string
   autoSave?: boolean
@@ -32,15 +31,15 @@ export default function Content({ initialLayouts, canEdit = true, componentList,
     setItems([...items, itemId]);
   };
 
-  const layoutKeys: ILayoutKey[] = Object.keys(initialLayouts) as ILayoutKey[];
+  const layoutKeys: LayoutSchemaVM[] = Object.keys(initialLayouts) as LayoutSchemaVM[];
 
-  const modifyLayouts = (initialLayouts: ReactGridLayout.Layouts, layoutKeys: ILayoutKey[]): Record<ILayoutKey, any[]> => {
-    const modifiedLayouts: Record<ILayoutKey, any[]> = layoutKeys.reduce(
+  const modifyLayouts = (initialLayouts: ReactGridLayout.Layouts, layoutKeys: LayoutSchemaVM[]): Record<LayoutSchemaVM, any[]> => {
+    const modifiedLayouts: Record<LayoutSchemaVM, any[]> = layoutKeys.reduce(
       (acc, layoutKey) => {
         acc[layoutKey] = initialLayouts[layoutKey].map((item: any) => ({ ...item, static: true }));
         return acc;
       },
-      {} as Record<ILayoutKey, any[]>
+      {} as Record<LayoutSchemaVM, any[]>
     );
 
     return modifiedLayouts;
@@ -113,7 +112,7 @@ export default function Content({ initialLayouts, canEdit = true, componentList,
           <div
             key={key}
             className="widget"
-            data-grid={{ w: key.w, h: key.h, x: key.x, y: key.y }}
+          // data-grid={{ w: key.w, h: key.h, x: key.x, y: key.y }}
           >
             <Widget
               id={key}

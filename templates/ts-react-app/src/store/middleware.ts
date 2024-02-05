@@ -24,7 +24,7 @@ export const rtkQueryMiddleware: Middleware = (api: MiddlewareAPI) => (next) => 
         } else {
             toast.error(
                 action?.payload?.data?.errorMessage ??
-                    'An error has occurred and there was no message.',
+                'An error has occurred and there was no message.',
                 { autoClose: 10000 },
             );
         }

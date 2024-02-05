@@ -15,7 +15,7 @@
    You will need to update the env.ts file and most likely remove the clients not used
 
    ```
-   REACT_APP_BASE_API_URL=https://pokeapi.co/api/v2/
+   REACT_APP_BASE_API_URL=https://jsonplaceholder.typicode.com
    REACT_APP_APP_BASE_URL=http://localhost:3000
    REACT_APP_APP_NAME=baseRepo
    REACT_APP_DEPLOYMENT_ENV=development

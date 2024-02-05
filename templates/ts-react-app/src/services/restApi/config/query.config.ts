@@ -67,13 +67,13 @@ export const baseQueryWithTokenExpirationCheck: BaseQueryFn<
 
       try {
         // Get a new access token.
-        console.log('Getting New Refresh Token'); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
+        // console.log('Getting New Refresh Token'); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
         const refreshResult = await refreshToken();
-        console.log('refresh result', refreshResult); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
+        // console.log('refresh result', refreshResult); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
 
         if (refreshResult && refreshResult.accessToken && refreshResult.refreshToken) {
           // Retry the initial query.
-          console.log('Running API again'); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
+          // console.log('Running API again'); // TODO: REMOVE THIS TOAST IF THIS SOLUTION WORKS
           result = await staggeredBaseQuery(args, api, extraOptions);
         } else {
           throw new Error('Refresh Token Error');

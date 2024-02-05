@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. The format 
 
 See bottom of document for convention.
 
-## 1.0.3 - 2024-02-01
+## 1.0.3 - 2024-02-05
 
 ### Added
 
@@ -12,10 +12,13 @@ See bottom of document for convention.
 - Invalid Environment Vars component to show if the env is not right (christiaan@octoco.ltd)
 - Make some env vars to be exactly certain values (christiaan@octoco.ltd)
 - Added custom logger MVP (christiaan@octoco.ltd, daniel@octoco.ltd)
+- Add place to set models and types (christiaan@octoco.ltd)
 
 ### Changed
 
 - Moved all providers to an AppProvider to allow for easier management (christiaan@octoco.ltd)
+- Updated and checked node version 20.11.0 (christiaan@octoco.ltd)
+- Removed Pokemon API and add more relevant mock API (christiaan@octoco.ltd)
 
 ### Deprecated
 
@@ -23,7 +26,7 @@ See bottom of document for convention.
 
 ### Removed
 
-- N/A
+- Commented Dashboard component from home page as it is still WIP
 
 ### Fixed
 
