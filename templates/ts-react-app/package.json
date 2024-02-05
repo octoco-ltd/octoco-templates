@@ -2,6 +2,9 @@
   "name": "ts-react-app",
   "version": "1.0.3",
   "title": "ReactTS",
+  "engines": {
+    "node": ">=20.11.0"
+  },
   "description": "A template ReactJS app using Typescript",
   "author": {
     "name": "Octoco PTY (LTD)",
