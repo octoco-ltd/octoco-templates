@@ -4,6 +4,7 @@ import { env } from 'src/env';
 import { createReduxEnhancer } from '@sentry/react';
 import { baseApi } from 'src/services/restApi/queries/baseApi.service';
 import { themeSlice } from 'src/features/appTheme';
+import { rtkQueryMiddleware } from './middleware';
 
 const sentryReduxEnhancer = createReduxEnhancer({
   //TODO: CHECK IF THERE IS INFO WE DON'T WANT TO SEND TO SENTRY
@@ -63,8 +64,12 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(
       baseApi.middleware,
+      rtkQueryMiddleware
     ),
-  enhancers: [sentryReduxEnhancer],
+  enhancers: (getDefaultEnhancers) =>
+    getDefaultEnhancers().concat(
+      sentryReduxEnhancer
+    ),
 });
 
 export default store;

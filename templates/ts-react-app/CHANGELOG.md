@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file. The format 
 
 See bottom of document for convention.
 
+## 1.0.3 - 2024-02-05
+
+### Added
+
+- Improved CASL RBAC control over app (christiaan@octoco.ltd)
+- Invalid Environment Vars component to show if the env is not right (christiaan@octoco.ltd)
+- Make some env vars to be exactly certain values (christiaan@octoco.ltd)
+- Added custom logger MVP (christiaan@octoco.ltd, daniel@octoco.ltd)
+- Add place to set models and types (christiaan@octoco.ltd)
+
+### Changed
+
+- Moved all providers to an AppProvider to allow for easier management (christiaan@octoco.ltd)
+- Updated and checked node version 20.11.0 (christiaan@octoco.ltd)
+- Removed Pokemon API and add more relevant mock API (christiaan@octoco.ltd)
+- Upgraded all packages to latest and do relevant fixes (christiaan@octoco.ltd)
+
+### Deprecated
+
+- N/A
+
+### Removed
+
+- Commented Dashboard component from home page as it is still WIP
+
+### Fixed
+
+- Minor text fixes (christiaan@octoco.ltd)
+- Sidebar Typography Text not adapting to light and dark mode (christiaan@octoco.ltd)
+
 ## 1.0.2 - 2023-10-05
 
 ### Added
@@ -75,7 +105,7 @@ See bottom of document for convention.
 ### Fixed
 
 - N/A
-  
+
 # Changelog Convention
 
 Unreleased changes are omitted for this repo
@@ -104,4 +134,3 @@ Unreleased changes are omitted for this repo
 
 - Bug fix 1: Describe a bug that has been fixed.
 - Bug fix 2: Another bug fix.
-

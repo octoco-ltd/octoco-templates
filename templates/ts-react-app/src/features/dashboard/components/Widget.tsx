@@ -1,6 +1,5 @@
 import { Box, Paper } from '@mui/material';
 import { ReactNode } from 'react';
-import { IDashboardComponent } from '../models/dashboardTypes';
 
 interface Props {
   id: string

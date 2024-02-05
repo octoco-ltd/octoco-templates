@@ -1,27 +1,22 @@
+import 'nprogress/nprogress.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store/store';
-import { Provider } from 'react-redux';
-import { HelmetProvider } from 'react-helmet-async';
-import { SidebarProvider } from './context/SidebarContext';
-import { BrowserRouter } from 'react-router-dom';
-import 'nprogress/nprogress.css';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
+        {/* These providers are not added to the AppProvider because their context is needed within it */}
         <Provider store={store}>
-            <HelmetProvider>
-                <SidebarProvider>
-                    <BrowserRouter>
-                        <App/>
-                    </BrowserRouter>
-                </SidebarProvider>
-            </HelmetProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
         </Provider>
     </React.StrictMode>
 );
