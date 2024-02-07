@@ -14,6 +14,14 @@ const pages = {
         name: 'home',
         path: '/home'
     },
+    user: {
+        root: 'user', 
+        posts: {
+            name: 'posts',
+            path: '/user/:userId/posts'
+        },
+        
+    },
     status: {
         root: 'status',
         unverified: {
