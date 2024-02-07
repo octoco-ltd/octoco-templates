@@ -1,5 +1,6 @@
 import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Table from 'src/components/Table/Table';
 import useRememberTable from 'src/hooks/useRememberTable';
 import { useGetAllUsersQuery } from 'src/services/restApi/queries/users.service';
@@ -9,6 +10,8 @@ export default function ListUsers() {
   const [rows, setRows] = useState<GridRowsProp>([]);
   const { data, isError, isLoading, refetch, isFetching, isSuccess } =
     useGetAllUsersQuery();
+
+  const navigate = useNavigate();
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', flex: 1 },
@@ -24,6 +27,9 @@ export default function ListUsers() {
       );
     }
   }, [data]);
+  const handleRowClick = (row: any) => {
+    navigate(`/user/${row.id}/posts`);
+  };
 
   return (
     <Table
@@ -37,6 +43,7 @@ export default function ListUsers() {
       setPaginationModel={setPaginationModel}
       totalRows={data?.length ?? 0}
       error={isError}
+      onRowClick={handleRowClick}
     />
   );
 }

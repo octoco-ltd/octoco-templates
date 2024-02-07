@@ -1,12 +1,12 @@
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridPaginationModel, GridRowsProp } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridPaginationModel, GridRowsProp, DataGridProps } from '@mui/x-data-grid';
 import { TableToolbar } from './components/TableToolbar';
 import { FC, ReactElement, useState } from 'react';
 import { ErrorTwoTone } from '@mui/icons-material';
 import { Stack } from '@mui/material';
 import { error } from 'console';
 
-interface TableProps {
+interface TableProps extends DataGridProps{
     rows: GridRowsProp,
     columns: GridColDef[],
     pageSizeOptions: number[],
@@ -32,6 +32,7 @@ export function Table({
     totalRows,
     onRowClick,
     error,
+    ...rest
 }: TableProps) {
 
     return (
@@ -59,6 +60,8 @@ export function Table({
             disableRowSelectionOnClick
             loading={loading || isFetching}
             rowCount={totalRows}
+            onRowClick={onRowClick}
+            {...rest}
         />
     );
 }

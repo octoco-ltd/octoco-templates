@@ -26,6 +26,11 @@ const postsApi = baseApi.injectEndpoints({
       query: () => ENDPOINT.POSTS,
       providesTags: [TAG.POSTS],
     }),
+    // ############################## GET POSTS BY USER ID ###################################
+    getAllPostsByUser: builder.query<PostSchemaVM[], string>({
+      query: (userId) => `${ENDPOINT.POSTS}?userId=${userId}`,
+      providesTags: (result, error, arg) => [{ type: TAG.POSTS, id: arg }],
+    }),
     // ############################## GET POST BY ID ###################################
     getPostById: builder.query<PostSchemaVM, string>({
       query: (postId) => ({
@@ -52,16 +57,27 @@ const postsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => [{ type: TAG.POSTS, id: arg.id }, TAG.POSTS],
     }),
+    // ############################## DELETE POST BY ID ###################################
+    deletePostById: builder.mutation<any, string>({
+      query: (postId) => ({
+        url: `${ENDPOINT.POSTS}/${postId}/`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: TAG.POSTS, id: arg }],
+    }),
   }),
 })
 
 export const {
   useGetAllPostsQuery,
   useLazyGetAllPostsQuery,
+  useGetAllPostsByUserQuery,
+  useLazyGetAllPostsByUserQuery,
   useGetPostByIdQuery,
   useLazyGetPostByIdQuery,
   usePutPostByIdMutation,
   usePatchPostByIdMutation,
   useGetAllPostsPaginatedQuery,
   useLazyGetAllPostsPaginatedQuery,
+  useDeletePostByIdMutation
 } = postsApi;

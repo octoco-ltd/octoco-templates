@@ -18,6 +18,7 @@ const Loader = (Component: FC) => (props: any) =>
 const Home = Loader(lazy(() => import('src/pages/Home/Home')));
 const Register = Loader(lazy(() => import('src/pages/Register/Register')));
 const Login = Loader(lazy(() => import('src/pages/Login/Login')));
+const User = Loader(lazy(() => import('src/pages/User/User')));
 
 // Status
 const Status404 = Loader(lazy(() => import('src/pages/Fallbacks/Status/Status404/Status404')));
@@ -142,8 +143,23 @@ const routes: RouteObject[] = [
                 element: <Home />,
             },
             //#endregion Home
+            //#region User
+            {
+                path: pages.user.root,
+                children: [
+                    {
+                        path: '',
+                        element: <Navigate to="404" replace />,
+                    },
+                    {
+                        path: pages.user.posts.path,
+                        element: <User />,
+                    },
+                ],
+            },
+            //#endregion User
         ],
-    },
+    }
 ];
 
 export default routes;
