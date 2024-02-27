@@ -1,9 +1,7 @@
-import { Box, Button, Card, Container, Divider, Typography } from '@mui/material';
-import { Helmet } from 'react-helmet-async';
+import { Box, Container, Divider, Typography } from '@mui/material';
 import Logo from 'src/components/LogoSign';
 
 import { styled } from '@mui/material/styles';
-import useSetContinue from 'src/hooks/useSetContinue';
 
 const MainContent = styled(Box)(
     () => `
@@ -17,46 +15,39 @@ const MainContent = styled(Box)(
 `,
 );
 
-function StatusFailure() {
-    const { handleRedirect, mode } = useSetContinue()
+interface Props {
+    message?: (string | undefined)[]
+}
+
+function InvalidEnv({ message }: Props) {
 
     return (
         <>
-            <Helmet>
-                <title>Status - Failure</title>
-            </Helmet>
             <MainContent>
                 <Container maxWidth='md'>
-                    <Logo />
                     <Box textAlign='center'>
                         <Container maxWidth='sm'>
                             <Typography variant='h2' sx={{ mt: 4, mb: 2 }}>
-                                Oops, something went wrong!
+                                Invalid Environment Variables
                             </Typography>
+                            <Divider sx={{ my: 4 }} />
                             <Typography
-                                variant='h4'
+                                variant='body1'
                                 color='text.secondary'
                                 fontWeight='normal'
                                 sx={{ mb: 4 }}
                             >
-                                Unfortunately, there was a problem with your{' '}
-                                {mode ? mode : 'transaction'}.
+                                {message}
                             </Typography>
+                            <Divider sx={{ my: 4 }} />
                         </Container>
                         <img alt='failure' height={250} src='/static/images/status/fail.svg' />
                     </Box>
-                    <Container maxWidth='sm'>
-                        <Card sx={{ textAlign: 'center', mt: 3, p: 4 }}>
-                            <Button onClick={handleRedirect} variant='outlined'>
-                                Continue
-                            </Button>
-                        </Card>
-                    </Container>
-                    <Divider sx={{ my: 4 }} />
+
                 </Container>
             </MainContent>
         </>
     );
 }
 
-export default StatusFailure;
+export default InvalidEnv;

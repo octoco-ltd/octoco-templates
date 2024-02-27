@@ -17,12 +17,13 @@ import UserInfo from 'src/components/UserInfo/UserInfo';
 import { SidebarContext } from 'src/context/SidebarContext';
 import { useAuth } from 'src/features/authentication';
 import pages from '../../../../router/routes';
+import { AbilityGuard } from 'src/Guards/abilityGuard/AbilityGuard';
+import { ABILITY_PAGES, ABILITY_TYPES } from 'src/config/ability';
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `
   .MuiList-root {
     padding: ${theme.spacing(1)};
-
     & > .MuiList-root {
       padding: 0 ${theme.spacing(0)} ${theme.spacing(1)};
     }
@@ -35,6 +36,9 @@ const MenuWrapper = styled(Box)(
       color: ${theme.sidebar.menuItemHeadingColor};
       padding: ${theme.spacing(0, 2.5)};
       line-height: 1.4;
+    }
+    .MuiTypography-root {
+      color: ${theme.sidebar.textColor};
     }
 `,
 );
@@ -197,17 +201,19 @@ function SidebarMenu() {
           </SubMenuWrapper>
           <SubMenuWrapper>
             <List component='div'>
-              <ListItem component='div'>
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to='/home'
-                  startIcon={<HomeOutlined />}
-                >
-                  Home
-                </Button>
-              </ListItem>
+              <AbilityGuard i={ABILITY_TYPES.VISIT} a={ABILITY_PAGES.HOME}>
+                <ListItem component='div'>
+                  <Button
+                    disableRipple
+                    component={RouterLink}
+                    onClick={closeSidebar}
+                    to='/home'
+                    startIcon={<HomeOutlined />}
+                  >
+                    Home
+                  </Button>
+                </ListItem>
+              </AbilityGuard>
             </List>
           </SubMenuWrapper>
         </List>
