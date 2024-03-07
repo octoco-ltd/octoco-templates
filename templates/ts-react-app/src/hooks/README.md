@@ -1,1 +1,0 @@
-Hooks used globally across whole app

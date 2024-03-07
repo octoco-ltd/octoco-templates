@@ -54,7 +54,7 @@ export const Login = () => {
                     <div>
                         <TextField
                             required
-                            id='outlined-required'
+                            id='login-email-field'
                             label='Email'
                             disabled={loading}
                             style={globalStyles.textField}
@@ -67,7 +67,7 @@ export const Login = () => {
                     </div>
                     <div>
                         <TextField
-                            id='outlined-password-input'
+                            id='login-password-field'
                             label='Password'
                             type={showPassword ? 'text' : 'password'}
                             disabled={loading}
@@ -104,6 +104,7 @@ export const Login = () => {
                             color='primary'
                             type='submit'
                             startIcon={<LoginTwoTone />}
+                            id='login-button'
                         >
                             Login
                         </LoadingButton>

@@ -1,5 +1,7 @@
 # Models with Zod
 
+> TODO: MOVE MODELS OVER TO ZOD AND NEW STRUCTURE
+
 This folder is designated for storing models, and we'll be utilizing Zod for defining and validating these models.
 
 ## Introduction
@@ -60,5 +62,3 @@ Using Zod in a TypeScript project provides several benefits, primarily related t
 **Great TypeScript Integration**: Zod is designed with TypeScript in mind, and it leverages TypeScript features to provide a seamless experience. This includes proper type inference, generics support, and compatibility with other TypeScript features.
 
 **Active Development and Community Support**: Zod is actively maintained, and it has a growing community of users. This means that you can expect updates, improvements, and ongoing support for any issues you may encounter.
-
-In summary, using Zod in a TypeScript project enhances code quality, reduces the likelihood of bugs related to data inconsistencies, and provides a more robust and maintainable codebase. The combination of type safety, runtime validation, and a developer-friendly syntax makes Zod a valuable tool for managing data schemas in a web development project.

@@ -6,14 +6,6 @@ In our React application, the `services` folder is dedicated to managing API int
 
 The primary purpose of the `services` folder is to centralize and organize the communication with external APIs, such as RESTful APIs or GraphQL endpoints. RTK Query simplifies the process of fetching, caching, and updating data from APIs, and the `services` folder acts as a convenient location for defining and configuring these API services.
 
-## Folder Structure
-
-TODO
-
-## Example Service Module
-
-TODO
-
 ## Customization
 
 Each service module in the services folder can be customized to suit the specific needs of the associated API. You can adjust API endpoints, configurations, or add additional endpoints as required.

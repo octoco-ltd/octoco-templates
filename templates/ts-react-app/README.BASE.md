@@ -1,6 +1,9 @@
-# Octoco Front-End Standard
+# *APP-NAME*
 
-### ReactJS Template with TypeScript
+Give a short description on what this application is about
+
+### Who do I talk to? ###
+* add company email here
 
 ## Get Started
 
@@ -111,25 +114,3 @@ Atomic Design is a methodology that breaks down UI components into five categori
 - Start building custom 'Octoco Components' for reuse across projects e.g. standard file upload component
 - Consider using Material UI as one package for various functions (styling, forms, wizards, validation, notifications, prebuilt components)
 
-TODO / WIP:
-//storybook full implementation
-//Debug mode
-//protected routes
-//index all exports
-//rbac -> CASL = fully document
-//refresh token //get new token //needed?
-//feature flags
-//unverified
-//login
-//register
-//table
-//api service (RTK) REST
-//api service (RTK) GraphQL
-//mobile bottom bar
-//breadcrumbs
-//useConfirmLeave
-//add chromatic docs etc etc
-//app config
-
-// set \"GENERATE_SOURCEMAP=true\" && && yarn run sentry:sourcemaps
-// "sentry:sourcemaps": "sentry-cli sourcemaps inject --org <org> --project <proj> ./build && sentry-cli sourcemaps upload --org <org> --project <proc> ./build",

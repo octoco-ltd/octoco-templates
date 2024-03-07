@@ -41,5 +41,3 @@ In this example, the formatDate utility function takes a Date object and returns
 
 `Tests:` Ensure that utility functions are well-tested as it can be re-used quite a lot
 
----
-Feel free to modify and expand upon this documentation as needed to include specific examples of utility functions or additional guidelines relevant to your project.

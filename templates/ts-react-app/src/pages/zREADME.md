@@ -1,6 +1,6 @@
 # Pages Folder
 
-In our React TypeScript application, the `pages` folder plays a crucial role in structuring our project. This folder contains one file per page, and its primary responsibility is to assemble various feature components along with general UI components, following a combination of Atomic Design principles.
+The `pages` folder plays a crucial role in structuring our project. This folder contains one file per page, and its primary responsibility is to assemble various feature components along with general UI components, following a combination of Atomic Design principles.
 
 ## Customization and Flexibility
 The structure of our pages folder provides flexibility for managing different features and content on each page while keeping the individual page files simple and focused on composition.
@@ -41,6 +41,3 @@ const HomePage: React.FC = () => {
 
 export default HomePage;
 ```
-
----
-Feel free to tailor and expand upon this documentation to include specific examples or additional information relevant to your project.
