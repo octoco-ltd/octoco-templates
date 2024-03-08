@@ -2,16 +2,14 @@ import { CssBaseline } from '@mui/material';
 import * as Sentry from '@sentry/react';
 import { ReactNode } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import defineAbilityFor from 'src/config/ability';
 import { selectTheme, themeNames, ThemeProviderWrapper } from 'src/features/appTheme';
 import { AuthProvider } from 'src/features/authentication';
 import { useAppSelector } from 'src/hooks/hooks';
 import Status500 from 'src/pages/Fallbacks/Status/Status500/Status500';
-import DialogProvider from './dialogContext';
-import { SidebarProvider } from './SidebarContext';
 import { AbilityContext } from './canContext';
-import defineAbilityFor from 'src/config/ability';
+import { SidebarProvider } from './SidebarContext';
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -44,10 +42,8 @@ const AppProviders = ({ children }: AppProvidersProps) => {
             <ThemeProviderWrapper>
               <Sentry.ErrorBoundary fallback={<Status500 resetErrorBoundary={() => window.location.reload()} />}>
                 <CssBaseline />
-                <DialogProvider>
-                  <ToastContainer theme={theme === themeNames.dark ? 'dark' : 'light'} />
-                  {children}
-                </DialogProvider>
+                <ToastContainer theme={theme === themeNames.dark ? 'dark' : 'light'} />
+                {children}
               </Sentry.ErrorBoundary>
             </ThemeProviderWrapper>
           </SidebarProvider>

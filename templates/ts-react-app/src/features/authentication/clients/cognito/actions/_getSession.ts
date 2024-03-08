@@ -3,6 +3,13 @@ import { _getCognitoPool } from './_getCognitoPool'
 import { _getCognitoUser } from './_getCognitoUser'
 import { _getCurrentUser } from './_getCurrentUser'
 
+/**
+ * Retrieves the user session for the given Cognito user.
+ *
+ * @param cognitoUser - The Cognito user object.
+ * @returns A promise that resolves with the user session.
+ * @throws If there is an error retrieving the user session.
+ */
 const asyncGetUserSession = (
     cognitoUser: CognitoUser,
   ) => {

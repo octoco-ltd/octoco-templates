@@ -29,6 +29,11 @@ const SidebarWrapper = styled(Box)(
 `,
 );
 
+/**
+ * Renders the sidebar component.
+ * 
+ * @returns The rendered sidebar component.
+ */
 function Sidebar() {
   const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
   const closeSidebar = () => toggleSidebar();

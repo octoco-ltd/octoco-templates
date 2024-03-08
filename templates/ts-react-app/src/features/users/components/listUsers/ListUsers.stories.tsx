@@ -2,6 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import ListUsers from './ListUsers';
 
+/**
+ * Represents the metadata for the ListUsers component story.
+ * @template T - The type of the ListUsers component.
+ */
 const meta: Meta<typeof ListUsers> = {
   title: 'Features/List Users',
   component: ListUsers,

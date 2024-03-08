@@ -12,9 +12,20 @@ interface IThemeProviderWrapper {
   children: ReactNode;
 }
 
+/**
+ * Wrapper component for the theme provider.
+ *
+ * @param props - The component props.
+ * @returns The rendered component.
+ */
 const ThemeProviderWrapper: React.FC<IThemeProviderWrapper> = (props: any) => {
   const curThemeName = useAppSelector(selectTheme);
 
+  /**
+   * Sets the theme name in local storage.
+   *
+   * @param themeName - The name of the theme.
+   */
   const setThemeName = (themeName: string): void => {
     localStorage.setItem('appTheme', themeName);
   };

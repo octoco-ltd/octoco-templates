@@ -15,12 +15,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from 'src/hooks/hooks';
+import store from 'src/store/store';
 import { IUserSlice } from 'src/store/user/userSlice.contracts';
 import { AuthContextInterface } from '../../context/AuthContextInterface';
 import { persistAuth } from '../../utils/persistAuth';
 import { resetUser } from '../../utils/resetUser';
 import firebaseConfig from './config/firebaseConfig';
-import store from 'src/store/store';
 
 const app = initializeApp(firebaseConfig.config);
 
@@ -45,12 +45,21 @@ interface AuthProviderProps {
   children: React.ReactNode;
 }
 
+/**
+ * Firebase Authentication Provider component.
+ * Provides authentication functionality using Firebase.
+ */
 export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const auth = getAuth(app);
   const [user, loading, error] = useAuthState(auth);
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
+  /**
+   * Logs in a user with email and password.
+   * @param email - The user's email.
+   * @param password - The user's password.
+   */
   const loginWithEmailAndPassword = async (email: string, password: string) => {
     try {
       const firebaseUser = await signInWithEmailAndPassword(auth, email, password);
@@ -67,6 +76,9 @@ export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) 
     }
   };
 
+  /**
+   * Logs in a user with Google.
+   */
   const loginWithGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -76,6 +88,11 @@ export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) 
     }
   };
 
+  /**
+   * Registers a new user with email and password.
+   * @param email - The user's email.
+   * @param password - The user's password.
+   */
   const register = async (email: string, password: string) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -84,6 +101,9 @@ export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) 
     }
   };
 
+  /**
+   * Logs out the current user.
+   */
   const logout = async () => {
     try {
       logoutFirebase()
@@ -92,6 +112,9 @@ export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) 
     }
   };
 
+  /**
+   * Refreshes the Firebase token.
+   */
   const refreshToken = async () => {
     try {
       const res = await refreshFirebaseToken()
@@ -100,6 +123,10 @@ export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) 
     }
   };
 
+  /**
+   * Gets the access token and refresh token of the current user.
+   * @returns An object containing the access token and refresh token.
+   */
   const getTokens = async () => {
     const currentUser = auth.currentUser;
     try {
@@ -113,6 +140,9 @@ export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) 
     }
   };
 
+  /**
+   * Sends a verification email to the current user.
+   */
   const verifyEmail = async () => {
     const currentUser = auth.currentUser;
     if (currentUser) {
@@ -124,6 +154,10 @@ export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) 
     }
   };
 
+  /**
+   * Sends a password reset email to the specified email address.
+   * @param email - The email address to send the password reset email to.
+   */
   const resetPassword = async (email: string) => {
     try {
       await sendPasswordResetEmail(auth, email);
@@ -132,6 +166,10 @@ export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) 
     }
   };
 
+  /**
+   * Handles authentication errors.
+   * @param error - The authentication error.
+   */
   const handleError = (error: AuthError) => {
     toast.error('Error Authenticating...')
     console.log('Authentication Error:', error);

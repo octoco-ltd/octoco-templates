@@ -23,6 +23,10 @@ const OverviewWrapper = styled(Box)(
   `,
 );
 
+/**
+ * Renders the content for the unverified page.
+ * @returns JSX element representing the page content.
+ */
 const PageContent = () => {
   const [displayName, setDisplayName] = useState('');
 

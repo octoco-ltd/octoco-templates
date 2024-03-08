@@ -5,6 +5,12 @@ interface UserAvatarProps {
     user?: any;
 }
 
+/**
+ * Renders a user avatar with an optional verified badge.
+ * @param {UserAvatarProps} props - The component props.
+ * @param {User} props.user - The user object containing the user information.
+ * @returns {JSX.Element} The rendered UserAvatar component.
+ */
 const UserAvatar = ({ user }: UserAvatarProps) => {
 
     return (

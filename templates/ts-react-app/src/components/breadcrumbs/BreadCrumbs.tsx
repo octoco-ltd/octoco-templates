@@ -2,6 +2,11 @@ import { Breadcrumbs as MuiBreadCrumb } from '@mui/material';
 import routes from 'src/router/router';
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 
+/**
+ * Renders a breadcrumb component based on the provided routes.
+ *
+ * @returns The rendered breadcrumb component.
+ */
 function Breadcrumbs() {
     const breadcrumbs = useBreadcrumbs(routes);
 

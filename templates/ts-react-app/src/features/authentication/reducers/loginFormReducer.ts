@@ -28,6 +28,12 @@ interface IAction {
     payload: string;
 }
 
+/**
+ * Reducer function for the login form state.
+ * @param state - The current state of the login form.
+ * @param action - The action object that contains the type and payload.
+ * @returns The new state of the login form.
+ */
 export const loginFormReducer = (state: typeof initialState, action: IAction) => {
     const payload = action.payload;
     let errorObj = { valid: true, error: '' };

@@ -1,16 +1,17 @@
 import { LoginTwoTone, Visibility, VisibilityOff } from '@mui/icons-material';
-import { Box, Button, Card, CardActions, CardContent, Container, IconButton, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
-import React, { useEffect, useReducer, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import store from 'src/store/store';
-import { IUserSlice } from 'src/store/user/userSlice.contracts';
-import { NetworkStatusEnums } from 'src/utils/enums/networkSTatusEnums';
-import globalStyles from '../../../../utils/constants/globalStyles';
-import { actionTypes, initialState, loginFormReducer } from '../../reducers/loginFormReducer';
-import { useAuth } from '../../hooks/useAuth';
 import { LoadingButton } from '@mui/lab';
+import { Box, Card, CardActions, CardContent, Container, IconButton, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
+import React, { useEffect, useReducer, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import globalStyles from '../../../../utils/constants/globalStyles';
+import { useAuth } from '../../hooks/useAuth';
+import { actionTypes, initialState, loginFormReducer } from '../../reducers/loginFormReducer';
 
+/**
+ * Renders a login form component.
+ *
+ * @returns The rendered login form component.
+ */
 export const Login = () => {
     const navigate = useNavigate();
     const [state, dispatch] = useReducer(loginFormReducer, initialState);
