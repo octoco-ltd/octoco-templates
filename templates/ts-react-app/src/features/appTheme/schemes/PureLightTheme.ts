@@ -125,6 +125,10 @@ const colors = {
   },
 };
 
+/**
+ * Defines the PureLightTheme object which represents the theme configuration for a pure light theme.
+ * It includes various color schemes, shadows, alpha values, spacing, breakpoints, and component overrides.
+ */
 export const PureLightTheme = createTheme({
   // direction: i18n.dir(),
   colors: {

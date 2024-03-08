@@ -9,6 +9,10 @@ const CardWrapper = styled(Box)(
           `,
 );
 
+/**
+ * Renders the user information component.
+ * This component displays the user's profile picture, display name, and email.
+ */
 const UserInfo = () => {
     const { loading, user, error } = useAuth()
 

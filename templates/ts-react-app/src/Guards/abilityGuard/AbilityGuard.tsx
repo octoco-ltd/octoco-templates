@@ -25,6 +25,20 @@ interface Props {
  * @param children - The children that is wrapped by the AbilityGuard
  * @returns {Ability} - An instance of the defined abilities for the user.
  */
+/**
+ * AbilityGuard component.
+ * 
+ * This component checks if the user has the required ability and renders the main content if they do.
+ * If the user lacks the required ability, it can render fallback content or nothing based on the provided options.
+ * 
+ * @param i - The ability identifier.
+ * @param a - The ability action.
+ * @param fallback - The custom fallback element to render when the user lacks the required ability (optional).
+ * @param showFallback - Determines whether to show the fallback content when the user lacks the required ability (default: false).
+ * @param children - The main content to render when the user has the required ability.
+ * 
+ * @returns The rendered content based on the user's ability and options.
+ */
 export const AbilityGuard = ({ i, a, fallback, showFallback = false, children }: Props) => {
   // Access the abilities from the context
   const ability = useContext(AbilityContext);

@@ -1,3 +1,6 @@
+/**
+ * Represents the configuration for the application.
+ */
 type IAppConfig = {
     breakMobileView: 'sm' | 'md' | 'lg'
 

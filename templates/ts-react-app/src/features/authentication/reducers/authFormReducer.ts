@@ -34,6 +34,12 @@ interface IAction {
     payload: string;
 }
 
+/**
+ * Reducer function for the authentication form state.
+ * @param state - The current state of the form.
+ * @param action - The action object that contains the type and payload.
+ * @returns The new state of the form after applying the action.
+ */
 export const authFormReducer = (state: typeof initialState, action: IAction) => {
     const payload = action.payload;
     let errorObj = { valid: true, error: '' };

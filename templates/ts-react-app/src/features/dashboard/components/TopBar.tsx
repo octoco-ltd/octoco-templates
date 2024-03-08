@@ -14,6 +14,20 @@ interface Props {
   autoSave?: boolean,
 }
 
+/**
+ * Renders the top bar component.
+ *
+ * @param {Props} props - The component props.
+ * @param {Function} props.onLayoutSave - The function to handle layout save.
+ * @param {Array} props.items - The list of items.
+ * @param {Function} props.onRemoveItem - The function to handle item removal.
+ * @param {Function} props.onAddItem - The function to handle item addition.
+ * @param {Array} props.originalItems - The original list of items.
+ * @param {string} props.heading - The heading text.
+ * @param {boolean} props.canEdit - Indicates if the component is editable.
+ * @param {boolean} props.autoSave - Indicates if the component should auto-save.
+ * @returns {JSX.Element} The rendered top bar component.
+ */
 export default function TopBar({
   onLayoutSave,
   items,

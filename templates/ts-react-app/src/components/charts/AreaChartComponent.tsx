@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Area, AreaChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 const data = [
     { name: 'Jan', uv: 400, pv: 2400, amt: 2400 },
@@ -9,6 +9,10 @@ const data = [
     { name: 'May', uv: 189, pv: 4800, amt: 2181 },
 ];
 
+/**
+ * Renders an area chart component.
+ * @component
+ */
 const AreaChartComponent: React.FC = () => {
     return (
         <ResponsiveContainer width="100%" height='100%'>

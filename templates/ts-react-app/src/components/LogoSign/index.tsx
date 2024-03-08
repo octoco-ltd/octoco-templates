@@ -6,6 +6,12 @@ interface ILogoInterface {
   width?: number | string;
 }
 
+/**
+ * Renders the logo component.
+ *
+ * @param {ILogoInterface} props - The props for the logo component.
+ * @returns {JSX.Element} The rendered logo component.
+ */
 function Logo(props: ILogoInterface) {
   const { height = 'auto', width = 'auto' } = props;
   const theme = useTheme();

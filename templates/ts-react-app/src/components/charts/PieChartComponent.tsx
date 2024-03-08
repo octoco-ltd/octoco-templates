@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChart, Pie, Tooltip, Legend, Cell, ResponsiveContainer } from 'recharts';
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
 const data = [
     { name: 'Jan', value: 400 },
@@ -11,6 +11,10 @@ const data = [
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#ffbb28'];
 
+/**
+ * Renders a pie chart component.
+ * @component
+ */
 const PieChartComponent: React.FC = () => {
     return (
         <ResponsiveContainer width="100%" height='100%'>

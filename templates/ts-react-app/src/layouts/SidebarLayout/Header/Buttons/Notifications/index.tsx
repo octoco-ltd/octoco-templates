@@ -36,6 +36,9 @@ const NotificationsBadge = styled(Badge)(
 `,
 );
 
+/**
+ * Renders the header notifications component.
+ */
 function HeaderNotifications() {
   const ref = useRef<any>(null);
   const [isOpen, setOpen] = useState<boolean>(false);

@@ -1,6 +1,9 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import UserAvatar from './UserAvatar';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 
+/**
+ * Story configuration for the UserAvatar component.
+ */
 export default {
     title: 'Avatar/UserAvatar',
     component: UserAvatar,

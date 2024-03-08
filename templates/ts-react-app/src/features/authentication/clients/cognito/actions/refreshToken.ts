@@ -19,6 +19,11 @@ const asyncRefreshUser = (
     });
 };
 
+/**
+ * Refreshes the access token for the user.
+ * @returns An object containing the refreshed refresh token and access token.
+ * @throws Error if there is an error getting the token.
+ */
 export default async function refreshAccessToken() {
     try {
         const cognitoUser = _getCognitoUser(store.getState().user.user.email)

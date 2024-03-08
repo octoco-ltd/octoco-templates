@@ -161,6 +161,11 @@ const SubMenuWrapper = styled(Box)(
 `,
 );
 
+/**
+ * Renders the sidebar menu component.
+ *
+ * @returns The JSX element representing the sidebar menu.
+ */
 function SidebarMenu() {
   const { closeSidebar } = useContext(SidebarContext);
 

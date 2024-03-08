@@ -11,6 +11,14 @@ const meta: Meta<typeof Table> = {
 export default meta;
 type Story = StoryObj<typeof Table>;
 
+/**
+ * Primary story for the Table component.
+ *
+ * @remarks
+ * This story represents the primary usage of the Table component.
+ *
+ * @public
+ */
 export const Primary: Story = {
     args: {
       rows: rows,

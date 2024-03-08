@@ -2,6 +2,9 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import ThemeSwitch from './ThemeSwitch';
 
+/**
+ * Story configuration for the ThemeSwitch component.
+ */
 export default {
   title: 'Components/Theme Switch',
   component: ThemeSwitch,

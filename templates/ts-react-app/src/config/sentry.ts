@@ -12,22 +12,38 @@ import { env } from 'src/env';
 /**
  * Sentry configuration object for error tracking and monitoring.
  */
+/**
+ * Configuration object for Sentry error tracking and monitoring.
+ */
 export const sentryConfig = {
+    /**
+     * The Data Source Name (DSN) for Sentry.
+     */
     dsn: env.REACT_APP_SENTRY_DSN,
 
-    // Redux state context depth for normalization
+    /**
+     * The depth of Redux state context for normalization.
+     */
     normalizeDepth: 5, 
 
-    // Integrations to enhance error tracking and monitoring
+    /**
+     * Integrations to enhance error tracking and monitoring.
+     */
     integrations: [
-        // Enable browser tracing for distributed tracing
+        /**
+         * Enable browser tracing for distributed tracing.
+         */
         new Sentry.BrowserTracing({
-            // URLs for which distributed tracing should be enabled
+            /**
+             * URLs for which distributed tracing should be enabled.
+             */
             tracePropagationTargets: [
                 'localhost',
                 env.REACT_APP_APP_BASE_URL,
             ],
-            // React Router v6 routing instrumentation
+            /**
+             * React Router v6 routing instrumentation.
+             */
             routingInstrumentation: Sentry.reactRouterV6Instrumentation(
                 React.useEffect,
                 useLocation,
@@ -36,19 +52,34 @@ export const sentryConfig = {
                 matchRoutes,
             ),
         }),
-        // Replay integration for error replay
+        /**
+         * Replay integration for error replay.
+         */
         new Sentry.Replay(),
     ],
 
-    // Environment label for your application
+    /**
+     * The environment label for your application.
+     */
     environment: env.REACT_APP_DEPLOYMENT_ENV,
 
-    // Performance Monitoring
-    tracesSampleRate: env.REACT_APP_DEPLOYMENT_ENV === 'production' ? 0.5 : 1.0, // Capture % of the transactions
+    /**
+     * The sample rate for capturing transactions in performance monitoring.
+     * In production, only capture 50% of the transactions.
+     */
+    tracesSampleRate: env.REACT_APP_DEPLOYMENT_ENV === 'production' ? 0.5 : 1.0,
 
-    // Session Replay
-    replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
-    replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
+    /**
+     * The sample rate for replaying sessions.
+     * Set to 10% in development and lower rate in production.
+     */
+    replaysSessionSampleRate: 0.1,
+
+    /**
+     * The sample rate for replaying sessions where errors occur.
+     * Set to 100% if not already sampling the entire session.
+     */
+    replaysOnErrorSampleRate: 1.0,
 };
 
 

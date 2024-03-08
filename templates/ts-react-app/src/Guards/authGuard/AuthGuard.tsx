@@ -7,6 +7,12 @@ import { persistAuth } from 'src/features/authentication/utils/persistAuth';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { IUserSlice } from 'src/store/user/userSlice.contracts';
 
+/**
+ * A guard component that handles authentication and authorization logic.
+ * 
+ * @param children - The child elements to render if the user is authenticated and authorized.
+ * @returns The child elements if the user is authenticated and authorized, otherwise it redirects to the appropriate page.
+ */
 export default function AuthGuard({ children }: { children: JSX.Element }) {
     try {
         const userSlice: IUserSlice = useAppSelector((state) => state.user);

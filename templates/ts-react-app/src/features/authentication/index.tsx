@@ -18,7 +18,7 @@ import {
     logoutFirebase as logout
 } from './clients/firebase/FirebaseAuthProvider'
 
-//Cognito
+//Cognito uncomment when cognito is implemented
 // import {
 //     CognitoAuthProvider as AuthProvider,
 //     CognitoAuthContext as AuthContext,
@@ -27,4 +27,55 @@ import {
 // } from './clients/cognito/CognitoAuthProvider'
 
 
-export { Login, Register, AuthProvider, AuthContext, useAuth, persistAuth, refreshToken, logout }
+/**
+ * @module authentication
+ * This module exports the following components and functions related to authentication:
+ */
+
+/**
+ * The Login component.
+ * Renders the login form.
+ */
+export { Login };
+
+/**
+ * The Register component.
+ * Renders the registration form.
+ */
+export { Register };
+
+/**
+ * The AuthProvider component.
+ * Provides authentication context to its children.
+ */
+export { AuthProvider };
+
+/**
+ * The AuthContext object.
+ * Contains the authentication state and methods.
+ */
+export { AuthContext };
+
+/**
+ * The useAuth hook.
+ * A custom hook that provides access to the authentication context.
+ */
+export { useAuth };
+
+/**
+ * The persistAuth function.
+ * Persists the authentication state to local storage.
+ */
+export { persistAuth };
+
+/**
+ * The refreshToken function.
+ * Refreshes the authentication token.
+ */
+export { refreshToken };
+
+/**
+ * The logout function.
+ * Logs the user out and clears the authentication state.
+ */
+export { logout };

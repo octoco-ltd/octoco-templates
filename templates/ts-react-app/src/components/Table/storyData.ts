@@ -1,19 +1,34 @@
 import { GridColDef, GridValueGetterParams, GridRowsProp } from '@mui/x-data-grid';
 
+/**
+ * Represents the columns configuration for the table.
+ */
 export const columns: GridColDef[] = [
+    /**
+     * Represents the ID column.
+     */
     { field: 'id', headerName: 'ID', width: 90 },
+    /**
+     * Represents the First Name column.
+     */
     {
         field: 'firstName',
         headerName: 'First name',
         width: 150,
         editable: true,
     },
+    /**
+     * Represents the Last Name column.
+     */
     {
         field: 'lastName',
         headerName: 'Last name',
         width: 150,
         editable: true,
     },
+    /**
+     * Represents the Age column.
+     */
     {
         field: 'age',
         headerName: 'Age',
@@ -21,6 +36,10 @@ export const columns: GridColDef[] = [
         width: 110,
         editable: true,
     },
+    /**
+     * Represents the Full Name column.
+     * This column has a value getter and is not sortable.
+     */
     {
         field: 'fullName',
         headerName: 'Full name',

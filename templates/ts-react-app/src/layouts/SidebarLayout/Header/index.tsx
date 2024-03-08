@@ -35,6 +35,10 @@ const HeaderWrapper = styled(Box)(
 `,
 );
 
+/**
+ * Renders the header component for the sidebar layout.
+ * @returns The JSX element representing the header.
+ */
 function Header() {
   const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
   const theme = useTheme();
