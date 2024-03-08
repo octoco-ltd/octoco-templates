@@ -3,6 +3,10 @@ import React from 'react';
 import { useAppZStore } from 'src/store/zStore';
 
 // Drawer component
+/**
+ * BaseDrawer component represents a drawer that can be opened and closed.
+ * It renders the drawer content and handles the state of the drawer.
+ */
 export const BaseDrawer: React.FC = () => {
   const isDrawerOpen = useAppZStore((state) => state.isDrawerOpen);
   const closeDrawer = useAppZStore((state) => state.closeDrawer)

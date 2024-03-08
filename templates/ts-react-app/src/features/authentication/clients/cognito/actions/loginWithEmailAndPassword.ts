@@ -1,4 +1,3 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import { _getCognitoUser } from './_getCognitoUser';
 
@@ -14,6 +13,14 @@ const asyncAuthenticateUser = (
     });
 }
 
+/**
+ * Logs in a user with the provided email and password using Cognito authentication.
+ * 
+ * @param email - The user's email address.
+ * @param password - The user's password.
+ * @returns An object containing the user information, authentication status, access token, refresh token, and error (if any).
+ * @throws An error if there is an issue with the login process.
+ */
 export const loginWithEmailAndPasswordCognito = async (email: string, password: string) => {
     try {
         const authenticationData = {

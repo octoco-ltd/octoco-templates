@@ -19,6 +19,9 @@ const CompanySchema = z.object({
     bs: z.string(),
 });
 
+/**
+ * Represents the schema for a user.
+ */
 const UserSchema = z.object({
     id: z.number(),
     name: z.string(),

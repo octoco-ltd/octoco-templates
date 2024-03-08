@@ -1,1 +1,1 @@
-Hooks used globally across whole app
+Hooks used globally across whole app should be placed here. Hooks are reusable logic that can be shared between components. They are a way to extract stateful logic from a component so it can be tested independently and reused. Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class. 

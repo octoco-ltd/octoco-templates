@@ -6,6 +6,14 @@ interface Props {
   message?: string;
 }
 
+/**
+ * A component that displays a loading spinner and a message while content is being loaded.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.message - The message to be displayed.
+ * @returns {JSX.Element} The rendered SuspenseLoader component.
+ */
 function SuspenseLoader({ message }: Props) {
   useEffect(() => {
     NProgress.start();

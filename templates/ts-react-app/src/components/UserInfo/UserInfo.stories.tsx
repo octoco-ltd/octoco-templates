@@ -1,6 +1,13 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import UserInfo from './UserInfo';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 
+/**
+ * Story configuration for the UserInfo component.
+ *
+ * @title Cards/UserInfo
+ * @component UserInfo
+ * @argTypes {} // TODO: Add description for argTypes
+ */
 export default {
     title: 'Cards/UserInfo',
     component: UserInfo,

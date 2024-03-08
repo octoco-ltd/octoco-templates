@@ -1,5 +1,8 @@
 import { env } from 'src/env';
 
+/**
+ * Firebase configuration object.
+ */
 const firebaseConfig: Record<string, any> = {
     config: {
         apiKey: env.REACT_APP_FIREBASE_API_KEY,

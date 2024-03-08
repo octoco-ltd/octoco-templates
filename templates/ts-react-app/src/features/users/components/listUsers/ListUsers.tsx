@@ -4,6 +4,11 @@ import Table from 'src/components/Table/Table';
 import useRememberTable from 'src/hooks/useRememberTable';
 import { useGetAllUsersQuery } from 'src/services/restApi/queries/users.service';
 
+/**
+ * Renders a list of users in a table format.
+ * 
+ * @returns The ListUsers component.
+ */
 export default function ListUsers() {
   const { paginationModel, setPaginationModel } = useRememberTable();
   const [rows, setRows] = useState<GridRowsProp>([]);

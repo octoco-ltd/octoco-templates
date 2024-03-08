@@ -6,6 +6,10 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useAppSelector, useAppDispatch } from 'src/hooks/hooks';
 
+/**
+ * Renders a theme switch button that toggles between light and dark mode.
+ * @returns The rendered theme switch button.
+ */
 const ThemeSwitch = () => {
   const theme = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();

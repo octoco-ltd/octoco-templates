@@ -2,6 +2,15 @@ import { Add, Edit } from '@mui/icons-material';
 import { IconButton, Popover, FormControl, FormLabel, FormGroup, FormControlLabel, Checkbox, Box } from '@mui/material';
 import React from 'react';
 
+/**
+ * Renders a component for adding a list of items.
+ *
+ * @param items - The currently selected items.
+ * @param onRemoveItem - The callback function to remove an item from the list.
+ * @param onAddItem - The callback function to add an item to the list.
+ * @param originalItems - The original list of items to choose from.
+ * @returns The JSX element representing the AddList component.
+ */
 export default function AddList({
   items,
   onRemoveItem,

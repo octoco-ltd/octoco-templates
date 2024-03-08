@@ -1,12 +1,16 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Box, Button, Card, CardActions, CardContent, Container, IconButton, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
 import { useReducer, useState } from 'react';
-import store from 'src/store/store';
 import globalStyles from '../../../../utils/constants/globalStyles';
 // import { useAuth } from '../../context/AuthContextInterface';
-import { actionTypes, authFormReducer, initialState } from '../../reducers/authFormReducer';
 import { useAuth } from '../../hooks/useAuth';
+import { actionTypes, authFormReducer, initialState } from '../../reducers/authFormReducer';
 
+/**
+ * Register component for user registration.
+ * 
+ * @returns JSX.Element
+ */
 export const Register = () => {
     const [loading, setLoading] = useState(false);
     const [state, dispatch] = useReducer(authFormReducer, initialState);

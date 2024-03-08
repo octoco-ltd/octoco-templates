@@ -1,10 +1,19 @@
 import CopyText from '../CopyText'
 
+/**
+ * Test suite for the CopyText component.
+ */
 describe('<CopyText />', () => {
+  /**
+   * Test case to check if the component renders successfully.
+   */
   it('renders', () => {
     cy.mount(<CopyText>Text</CopyText>)
   })
 
+  /**
+   * Test case to check if the relevant child is rendered.
+   */
   it('Renders the relevant child', () => {
     cy.mount(<CopyText>Text</CopyText>)
     cy.contains('Text')
@@ -28,4 +37,3 @@ describe('<CopyText />', () => {
   //   expect(clipboardData).toBe('Test Text');
   // });
 })
-

@@ -11,6 +11,13 @@ interface Props {
   isFetching: boolean;
 }
 
+/**
+ * Renders the toolbar for the table component.
+ * 
+ * @param refetch - A function to trigger data refetch.
+ * @param isFetching - A boolean indicating whether data is currently being fetched.
+ * @returns The JSX element representing the table toolbar.
+ */
 export function TableToolbar({ refetch, isFetching }: Props) {
   return (
     <GridToolbarContainer sx={{ justifyContent: 'left' }}>

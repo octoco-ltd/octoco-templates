@@ -11,6 +11,10 @@ interface SidebarLayoutProps {
   children?: ReactNode;
 }
 
+/**
+ * SidebarLayout component is a layout component that displays a sidebar, header, breadcrumbs, and content.
+ * It takes no props.
+ */
 const SidebarLayout: FC<SidebarLayoutProps> = () => {
   const theme = useTheme();
 

@@ -9,6 +9,15 @@ interface ScrollbarProps {
   children?: ReactNode;
 }
 
+/**
+ * Scrollbar component.
+ *
+ * @component
+ * @param {ScrollbarProps} props - The props for the Scrollbar component.
+ * @param {string} props.className - The class name for the Scrollbar component.
+ * @param {ReactNode} props.children - The children elements for the Scrollbar component.
+ * @returns {JSX.Element} The rendered Scrollbar component.
+ */
 const Scrollbar: FC<ScrollbarProps> = ({ className, children, ...rest }) => {
   const theme = useTheme();
 

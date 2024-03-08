@@ -127,6 +127,10 @@ const colors = {
   },
 };
 
+/**
+ * Defines the NebulaFighterTheme object, which is a custom theme for a React app.
+ * The theme includes various color schemes, shadows, spacing, breakpoints, and component overrides.
+ */
 export const NebulaFighterTheme = createTheme({
   // direction: i18n.dir(),
   colors: {
