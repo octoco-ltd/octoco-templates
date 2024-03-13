@@ -1,12 +1,16 @@
 import { Suspense, lazy, FC } from 'react';
 import { Navigate } from 'react-router-dom';
 import { RouteObject } from 'react-router';
-import SidebarLayout from 'src/layouts/SidebarLayout';
+// import SidebarLayout from 'src/layouts/SidebarLayout';
+
 import BaseLayout from 'src/layouts/BaseLayout';
 import SuspenseLoader from 'src/components/SuspenseLoader';
 import pages from './routes';
 import AuthGuard from 'src/Guards/authGuard/AuthGuard';
 import Unverified from 'src/pages/Fallbacks/Status/Unverified/Unverified';
+import { AppBar } from '@mui/material';
+import AppBarLayout from 'src/layouts/AppBarLayout';
+import SidebarLayout from 'src/layouts/SidebarLayout';
 const Loader = (Component: FC) => (props: any) =>
 (
     <Suspense fallback={<SuspenseLoader />}>
@@ -126,7 +130,8 @@ const routes: RouteObject[] = [
              * AuthGuard checks that the user is logged in before granting access to its children pages
              */
             <AuthGuard>
-                <SidebarLayout />
+                {/* <SidebarLayout /> */}
+                <AppBarLayout />
             </AuthGuard>
         ),
         children: [

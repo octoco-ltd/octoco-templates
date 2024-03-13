@@ -40,8 +40,8 @@ const AppProviders = ({ children }: AppProvidersProps) => {
     <AbilityContext.Provider value={ability}>
       <AuthProvider>
         <HelmetProvider>
-          <SidebarProvider>
-            <ThemeProviderWrapper>
+          <ThemeProviderWrapper>
+            <SidebarProvider>
               <Sentry.ErrorBoundary fallback={<Status500 resetErrorBoundary={() => window.location.reload()} />}>
                 <CssBaseline />
                 <DialogProvider>
@@ -49,8 +49,8 @@ const AppProviders = ({ children }: AppProvidersProps) => {
                   {children}
                 </DialogProvider>
               </Sentry.ErrorBoundary>
-            </ThemeProviderWrapper>
-          </SidebarProvider>
+            </SidebarProvider>
+          </ThemeProviderWrapper>
         </HelmetProvider>
       </AuthProvider>
     </AbilityContext.Provider>
