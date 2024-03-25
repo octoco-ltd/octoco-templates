@@ -1,5 +1,5 @@
 import React from 'react';
-import { StateCreator } from 'zustand';
+import { create } from 'zustand';
 
 // Define the state for the Dialog
 export interface DialogState {
@@ -17,10 +17,34 @@ interface DialogOptions {
 }
 
 // Create a store for managing the dialog state
-export const createDialogSlice: StateCreator<DialogState> = (set) => ({
+/**
+ * Represents the state and actions for managing a dialog.
+ */
+export const useDialogStore = create<DialogState>((set) => ({
+  /**
+   * Indicates whether the dialog is currently open or not.
+   */
   isDialogOpen: false,
+
+  /**
+   * The content of the dialog.
+   */
   dialogContent: null,
-  openDialog: (options: DialogOptions) => set({ isDialogOpen: true, ...options }),
-  closeDialog: () => set({ isDialogOpen: false }),
+
+  /**
+   * Indicates whether the dialog requires user interaction or not.
+   */
   requiredInteraction: false,
-});
+
+  /**
+   * Opens the dialog with the specified options.
+   * @param options - The options for the dialog.
+   */
+  openDialog: (options: DialogOptions) => set({ isDialogOpen: true, ...options }),
+
+  /**
+   * Closes the dialog.
+   */
+  closeDialog: () => set({ isDialogOpen: false }),
+}));
+

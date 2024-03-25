@@ -1,14 +1,14 @@
 import Drawer from '@mui/material/Drawer';
 import React from 'react';
-import { useAppZStore } from 'src/store/zStore';
+import { useDrawerStore } from 'src/store/drawer/drawerSlice';
 
 // Drawer component
 export const BaseDrawer: React.FC = () => {
-  const isDrawerOpen = useAppZStore((state) => state.isDrawerOpen);
-  const closeDrawer = useAppZStore((state) => state.closeDrawer)
-  const drawerDirection = useAppZStore((state) => state.drawerDirection)
-  const drawerContent = useAppZStore((state) => state.drawerContent)
-  const drawerWidth = useAppZStore((state) => state.drawerWidth)
+  const isDrawerOpen = useDrawerStore((state) => state.isDrawerOpen);
+  const closeDrawer = useDrawerStore((state) => state.closeDrawer)
+  const drawerDirection = useDrawerStore((state) => state.drawerDirection)
+  const drawerContent = useDrawerStore((state) => state.drawerContent)
+  const drawerWidth = useDrawerStore((state) => state.drawerWidth)
 
   return (
     <Drawer
@@ -21,7 +21,6 @@ export const BaseDrawer: React.FC = () => {
       PaperProps={{
         sx: { width: `${drawerWidth}vw` },
       }}
-
     >
       {drawerContent}
     </Drawer>

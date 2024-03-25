@@ -3,30 +3,28 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SuspenseLoader from 'src/components/SuspenseLoader';
 import { useAuth } from 'src/features/authentication';
-import { persistAuth } from 'src/features/authentication/utils/persistAuth';
-import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
-import { IUserSlice } from 'src/store/user/userSlice.contracts';
+import { UserAuthState, useUserAuthStore } from 'src/store/userAuth/userAuthStore';
 
 export default function AuthGuard({ children }: { children: JSX.Element }) {
     try {
-        const userSlice: IUserSlice = useAppSelector((state) => state.user);
+        const userSlice: UserAuthState = useUserAuthStore((state) => state.user);
+        const setUserState = useUserAuthStore((state) => state.setUserState);
         const location = useLocation();
         const { loading, error, user, emailVerified, isAuthenticated, getTokens } = useAuth()
         const navigate = useNavigate()
-        const dispatch = useAppDispatch()
 
         useEffect(() => {
             const prep = async () => {
                 try {
-                    const tokens = await getTokens()
-                    const userSlice: IUserSlice = {
+                    const tokens = await getTokens();
+                    const userSlice: UserAuthState = {
                         user: user,
-                        status: 'authenticated',
+                        userStatus: 'authenticated',
                         accessToken: tokens?.accessToken ?? null,
                         refreshToken: tokens?.refreshToken ?? null,
                         error: null,
-                    }
-                    dispatch(persistAuth({ userAuth: userSlice }))
+                    };
+                    setUserState(userSlice);
                 } catch (error) {
                     console.log(error)
                     toast.error(
@@ -71,7 +69,6 @@ export default function AuthGuard({ children }: { children: JSX.Element }) {
         //Route to page if anything failed here
         return (<Navigate to='/status/500' replace />);
     }
-
 
     return children;
 };

@@ -7,13 +7,14 @@
  */
 
 import {
-  fetchBaseQuery, retry, BaseQueryFn, FetchArgs,
+  BaseQueryFn, FetchArgs,
   FetchBaseQueryError,
+  fetchBaseQuery, retry,
 } from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
 import { toast } from 'react-toastify';
 import { logout, refreshToken } from 'src/features/authentication';
-import { RootState } from 'src/store/store';
+import { useUserAuthStore } from 'src/store/userAuth/userAuthStore';
 
 /**
  * A mutex for ensuring only one token refresh operation occurs at a time.
@@ -25,7 +26,7 @@ const mutex = new Mutex();
  */
 const baseQuery = fetchBaseQuery({
   prepareHeaders: (headers, { getState }: any) => {
-    const token: string | null = (getState() as RootState).user.accessToken;
+    const token: string | null = useUserAuthStore.getState().accessToken;
     if (token) {
       headers.set('authorization', `Bearer ${token}`);
     }

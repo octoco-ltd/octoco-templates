@@ -4,12 +4,12 @@ import { ReactNode } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { ToastContainer } from 'react-toastify';
 import defineAbilityFor from 'src/config/ability';
-import { selectTheme, themeNames, ThemeProviderWrapper } from 'src/features/appTheme';
+import { ThemeProviderWrapper } from 'src/features/appTheme';
 import { AuthProvider } from 'src/features/authentication';
-import { useAppSelector } from 'src/hooks/hooks';
 import Status500 from 'src/pages/Fallbacks/Status/Status500/Status500';
-import { AbilityContext } from './canContext';
+import { themeNames, useThemeStore } from 'src/store/theme/themeStore';
 import { SidebarProvider } from './SidebarContext';
+import { AbilityContext } from './canContext';
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -25,7 +25,7 @@ interface AppProvidersProps {
  * @return {JSX.Element} The wrapped child components with required providers and error boundaries.
  */
 const AppProviders = ({ children }: AppProvidersProps) => {
-  const theme = useAppSelector(selectTheme);
+  const theme = useThemeStore((state) => state.theme);
 
   /**
   * The Role should be defined here based on the user logged in
