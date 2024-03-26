@@ -7,7 +7,6 @@ import { Register } from './components/register'
 
 //Utils
 import { useAuth } from './hooks/useAuth'
-import { persistAuth } from './utils/persistAuth'
 
 //Providers 
 //Firebase
@@ -27,4 +26,4 @@ import {
 // } from './clients/cognito/CognitoAuthProvider'
 
 
-export { Login, Register, AuthProvider, AuthContext, useAuth, persistAuth, refreshToken, logout }
+export { Login, Register, AuthProvider, AuthContext, useAuth, refreshToken, logout }

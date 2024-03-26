@@ -12,15 +12,10 @@ import {
 } from 'firebase/auth';
 import React, { createContext } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAppDispatch } from 'src/hooks/hooks';
-import { IUserSlice } from 'src/store/user/userSlice.contracts';
+import { UserAuthState, useUserAuthStore } from 'src/store/userAuth/userAuthStore';
 import { AuthContextInterface } from '../../context/AuthContextInterface';
-import { persistAuth } from '../../utils/persistAuth';
-import { resetUser } from '../../utils/resetUser';
 import firebaseConfig from './config/firebaseConfig';
-import store from 'src/store/store';
 
 const app = initializeApp(firebaseConfig.config);
 
@@ -48,20 +43,19 @@ interface AuthProviderProps {
 export const FirebaseAuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const auth = getAuth(app);
   const [user, loading, error] = useAuthState(auth);
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
+  const setUserState = useUserAuthStore((state) => state.setUserState);
 
   const loginWithEmailAndPassword = async (email: string, password: string) => {
     try {
       const firebaseUser = await signInWithEmailAndPassword(auth, email, password);
-      const user: IUserSlice = {
+      const user: UserAuthState = {
         user: firebaseUser,
-        status: 'authenticated',
+        userStatus: 'authenticated',
         accessToken: await firebaseUser.user.getIdToken(),
         refreshToken: firebaseUser.user.refreshToken,
         error: null,
       };
-      dispatch(persistAuth({ userAuth: user }))
+      setUserState(user);
     } catch (error: any) {
       handleError(error);
     }
@@ -189,6 +183,9 @@ export const refreshFirebaseToken = async () => {
 export const logoutFirebase = async () => {
   const auth = getAuth()
   await signOut(auth);
-  store.dispatch(resetUser())
+  const userAuthStore = useUserAuthStore.getState();
+  if (userAuthStore && userAuthStore.resetUserState) {
+    userAuthStore.resetUserState();
+  }
   window.location.href = '/auth/login'
 }

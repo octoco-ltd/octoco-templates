@@ -1,14 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAppDispatch } from 'src/hooks/hooks';
 import { AuthContextInterface } from '../../context/AuthContextInterface';
-import { resetUser } from '../../utils/resetUser';
+import { useUserAuthStore } from 'src/store/userAuth/userAuthStore';
 import { _getCognitoPool } from './actions/_getCognitoPool';
 import { _getCurrentUser } from './actions/_getCurrentUser';
 import { _getCognitoUserSession } from './actions/_getSession';
 import { loginWithEmailAndPasswordCognito } from './actions/loginWithEmailAndPassword';
-import store from 'src/store/store';
 import refreshAccessToken from './actions/refreshToken';
 
 export const CognitoAuthContext = createContext<AuthContextInterface>({
@@ -151,7 +148,7 @@ export const logoutCognito = async () => {
   const currentUser = _getCurrentUser()
   if (currentUser) {
     await currentUser.signOut();
-    store.dispatch(resetUser())
+    useUserAuthStore.getState().resetUserState();
   }
   window.location.href = '/auth/login'
 }

@@ -76,6 +76,7 @@ Atomic Design is a methodology that breaks down UI components into five categori
 
 - [React](https://reactjs.org/) for the framework
 - [Redux](https://redux.js.org/) for state management
+- [zustand](https://zustand-demo.pmnd.rs/) for state management
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) as a API service and caching
 - [Formik](https://formik.org/) for form management
 - [React Hook Form](https://react-hook-form.com/) for form state management

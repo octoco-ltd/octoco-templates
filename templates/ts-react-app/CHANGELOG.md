@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file. The format 
 
 See bottom of document for convention.
 
+## 1.0.4 - 2024-03-26
+
+### Added
+
+- Zustand added (christiaan@octoco.ltd)
+- Zustand stores added for theme, user, drawers, dialogs (christiaan@octoco.ltd)
+
+### Changed
+
+- Move redux slices to zustand stores (christiaan@octoco.ltd)
+- Update theme provider because of MUI styles deprecation (christiaan@octoco.ltd)
+
+### Removed
+
+- Remove user redux slice (christiaan@octoco.ltd)
+- Removed unneeded redux thunks because of zustand addition (christiaan@octoco.ltd)
+
+### Fixed
+
+- MUI Styles deprecated (christiaan@octoco.ltd)
+- Minor fixes (christiaan@octoco.ltd)
+
 ## 1.0.3 - 2024-02-05
 
 ### Added

@@ -1,9 +1,7 @@
 import { configureStore, combineReducers, AnyAction, ThunkAction, Action } from '@reduxjs/toolkit';
-import userSlice from './user/userSlice';
 import { env } from 'src/env';
 import { createReduxEnhancer } from '@sentry/react';
 import { baseApi } from 'src/services/restApi/queries/baseApi.service';
-import { themeSlice } from 'src/features/appTheme';
 import { rtkQueryMiddleware } from './middleware';
 
 const sentryReduxEnhancer = createReduxEnhancer({
@@ -45,16 +43,10 @@ const sentryReduxEnhancer = createReduxEnhancer({
 });
 
 const combinedReducer = combineReducers({
-  theme: themeSlice,
-  user: userSlice,
   [baseApi.reducerPath]: baseApi.reducer,
 });
 
 const rootReducer = (state: any, action: AnyAction) => {
-  if (action.type === 'user/resetUser') {
-    // Reset the Redux store
-    state = undefined;
-  }
   return combinedReducer(state, action);
 };
 

@@ -1,17 +1,15 @@
 
-import { selectTheme, toggleTheme } from '../../store/theme/themeSlice';
-import { Button, Tooltip } from '@mui/material';
-import { themeNames } from '../../store/theme/themeSlice.contracts';
-import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { useAppSelector, useAppDispatch } from 'src/hooks/hooks';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { Button, Tooltip } from '@mui/material';
+import { themeNames, useThemeStore } from 'src/store/theme/themeStore';
 
 const ThemeSwitch = () => {
-  const theme = useAppSelector(selectTheme);
-  const dispatch = useAppDispatch();
+  const toggleTheme = useThemeStore((state) => state.toggleTheme);
+  const theme = useThemeStore((state) => state.theme);
 
   return (
-    <Button onClick={() => dispatch(toggleTheme({}))}>
+    <Button onClick={() => toggleTheme()}>
       <Tooltip arrow title={theme === themeNames.dark ? 'Light Mode' : 'Dark Mode'}>
         {theme === themeNames.dark ? <LightModeIcon /> : <DarkModeIcon />}
       </Tooltip>

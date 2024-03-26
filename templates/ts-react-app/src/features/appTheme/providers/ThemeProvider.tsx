@@ -1,10 +1,7 @@
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import React, { ReactNode, useEffect } from 'react';
-import { ThemeProvider } from '@mui/material';
+import { useThemeStore } from 'src/store/theme/themeStore';
 import { themeCreator } from '../base';
-import { StylesProvider } from '@mui/styles';
-import { useAppSelector } from 'src/hooks/hooks';
-import { selectTheme } from '../store/theme/themeSlice';
-// import { selectTheme } from 'src/store/theme/themeSlice';
 
 export const ThemeContext = React.createContext((themeName: string): void => { });
 
@@ -13,22 +10,23 @@ interface IThemeProviderWrapper {
 }
 
 const ThemeProviderWrapper: React.FC<IThemeProviderWrapper> = (props: any) => {
-  const curThemeName = useAppSelector(selectTheme);
+  const theme = useThemeStore((state) => state.theme);
+  const setTheme = useThemeStore((state) => state.setTheme);
 
   const setThemeName = (themeName: string): void => {
-    localStorage.setItem('appTheme', themeName);
+    setTheme(themeName)
   };
 
   useEffect(() => {
-    setThemeName(curThemeName);
-  }, [curThemeName]);
+    setThemeName(theme);
+  }, [theme]);
 
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       <ThemeContext.Provider value={setThemeName}>
-        <ThemeProvider theme={themeCreator(curThemeName)}>{props.children}</ThemeProvider>
+        <ThemeProvider theme={themeCreator(theme)}>{props.children}</ThemeProvider>
       </ThemeContext.Provider>
-    </StylesProvider>
+    </StyledEngineProvider>
   );
 };
 
