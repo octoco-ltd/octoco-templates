@@ -1,14 +1,11 @@
-import StatusMaintenance from '../Maintenance'
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter } from 'react-router-dom';
+import StatusMaintenance from '../Maintenance';
 
 describe('<StatusMaintenance />', () => {
   it('renders', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <StatusMaintenance />
-        </BrowserRouter>
+        <StatusMaintenance />
       </HelmetProvider>
     )
   })
@@ -16,9 +13,7 @@ describe('<StatusMaintenance />', () => {
   it('Shows the relevant elements', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <StatusMaintenance />
-        </BrowserRouter>
+        <StatusMaintenance />
       </HelmetProvider>
     )
     cy.contains('The site is currently down for maintenance')

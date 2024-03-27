@@ -1,14 +1,11 @@
-import Status500 from '../Status500'
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter } from 'react-router-dom';
+import Status500 from '../Status500';
 
 describe('<Status500 />', () => {
   it('renders', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <Status500 />
-        </BrowserRouter>
+        <Status500 />
       </HelmetProvider>
     )
   })
@@ -16,9 +13,7 @@ describe('<Status500 />', () => {
   it('Shows the relevant elements', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <Status500 />
-        </BrowserRouter>
+        <Status500 />
       </HelmetProvider>
     )
     cy.contains('There was an error, please try again later')

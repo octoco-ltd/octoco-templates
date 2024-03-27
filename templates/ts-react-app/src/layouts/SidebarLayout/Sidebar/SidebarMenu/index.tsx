@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 
 import {
+  AccessAlarm,
   Cancel,
   Check,
   EngineeringOutlined, Error, ErrorOutline,
@@ -211,6 +212,23 @@ function SidebarMenu() {
                     startIcon={<HomeOutlined />}
                   >
                     Home
+                  </Button>
+                </ListItem>
+              </AbilityGuard>
+            </List>
+          </SubMenuWrapper>
+          <SubMenuWrapper>
+            <List component='div'>
+              <AbilityGuard i={ABILITY_TYPES.VISIT} a={ABILITY_PAGES.HOME}>
+                <ListItem component='div'>
+                  <Button
+                    disableRipple
+                    component={RouterLink}
+                    onClick={closeSidebar}
+                    to='/page1'
+                    startIcon={<AccessAlarm />}
+                  >
+                    Page 1
                   </Button>
                 </ListItem>
               </AbilityGuard>

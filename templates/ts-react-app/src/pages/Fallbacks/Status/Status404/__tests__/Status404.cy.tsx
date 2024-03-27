@@ -6,9 +6,7 @@ describe('<Status404 />', () => {
   it('renders', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <Status404 />
-        </BrowserRouter>
+        <Status404 />
       </HelmetProvider>
     )
   })
@@ -16,9 +14,7 @@ describe('<Status404 />', () => {
   it('Shows the relevant elements', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <Status404 />
-        </BrowserRouter>
+        <Status404 />
       </HelmetProvider>
     )
     cy.contains('The page you were looking for doesn\'t exist.')

@@ -1,15 +1,11 @@
-import React from 'react'
-import StatusCancel from '../Cancel'
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter } from 'react-router-dom';
+import StatusCancel from '../Cancel';
 
 describe('<StatusSuccess />', () => {
   it('renders', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <StatusCancel />
-        </BrowserRouter>
+        <StatusCancel />
       </HelmetProvider>
     )
   })
@@ -17,9 +13,7 @@ describe('<StatusSuccess />', () => {
   it('Shows the relevant elements', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <StatusCancel />
-        </BrowserRouter>
+        <StatusCancel />
       </HelmetProvider>
     )
     cy.contains('Continue')

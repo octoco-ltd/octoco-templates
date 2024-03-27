@@ -4,7 +4,6 @@ import { AbilityGuard } from 'src/Guards/abilityGuard/AbilityGuard';
 import { ABILITY_PAGES, ABILITY_TYPES } from 'src/config/ability';
 import ListUsers from 'src/features/users/components/listUsers/ListUsers';
 import { HomeWrapper } from './Home.styles';
-import MobileWrapper from 'src/components/componentWrappers/MobileWrapper';
 
 const HomePage = () => {
 

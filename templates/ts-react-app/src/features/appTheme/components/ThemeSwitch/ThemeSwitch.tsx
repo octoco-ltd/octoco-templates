@@ -11,7 +11,7 @@ const ThemeSwitch = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <Button onClick={() => dispatch(toggleTheme({}))}>
+    <Button onClick={() => dispatch(toggleTheme({}))} id='theme-switch-icon'>
       <Tooltip arrow title={theme === themeNames.dark ? 'Light Mode' : 'Dark Mode'}>
         {theme === themeNames.dark ? <LightModeIcon /> : <DarkModeIcon />}
       </Tooltip>

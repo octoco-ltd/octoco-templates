@@ -1,16 +1,14 @@
-import { Suspense, lazy, FC } from 'react';
-import { Navigate } from 'react-router-dom';
+import { FC, Suspense, lazy } from 'react';
 import { RouteObject } from 'react-router';
+import { Navigate } from 'react-router-dom';
+import AuthGuard from 'src/Guards/authGuard/AuthGuard';
+import SuspenseLoader from 'src/components/SuspenseLoader';
+import AppBarLayout from 'src/layouts/AppBarLayout';
+import BaseLayout from 'src/layouts/BaseLayout';
+import Unverified from 'src/pages/Fallbacks/Status/Unverified/Unverified';
+import pages from './routes';
 // import SidebarLayout from 'src/layouts/SidebarLayout';
 
-import BaseLayout from 'src/layouts/BaseLayout';
-import SuspenseLoader from 'src/components/SuspenseLoader';
-import pages from './routes';
-import AuthGuard from 'src/Guards/authGuard/AuthGuard';
-import Unverified from 'src/pages/Fallbacks/Status/Unverified/Unverified';
-import { AppBar } from '@mui/material';
-import AppBarLayout from 'src/layouts/AppBarLayout';
-import SidebarLayout from 'src/layouts/SidebarLayout';
 const Loader = (Component: FC) => (props: any) =>
 (
     <Suspense fallback={<SuspenseLoader />}>
@@ -147,6 +145,12 @@ const routes: RouteObject[] = [
                 element: <Home />,
             },
             //#endregion Home
+            //#region page1
+            {
+                path: pages.page1.name,
+                element: <StatusComingSoon />,
+            },
+            //#endregion page1
         ],
     },
 ];

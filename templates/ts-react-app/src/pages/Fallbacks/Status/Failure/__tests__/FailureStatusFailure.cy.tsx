@@ -6,9 +6,7 @@ describe('<StatusFailure />', () => {
   it('renders', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <StatusFailure />
-        </BrowserRouter>
+        <StatusFailure />
       </HelmetProvider>
     )
   })
@@ -16,9 +14,7 @@ describe('<StatusFailure />', () => {
   it('Shows the relevant elements', () => {
     cy.mount(
       <HelmetProvider>
-        <BrowserRouter >
-          <StatusFailure />
-        </BrowserRouter>
+        <StatusFailure />
       </HelmetProvider>
     )
     cy.contains('Continue')

@@ -27,6 +27,7 @@ import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import FindInPageTwoToneIcon from '@mui/icons-material/FindInPageTwoTone';
 
 import ChevronRightTwoToneIcon from '@mui/icons-material/ChevronRightTwoTone';
+import HiddenWrapper from 'src/components/componentWrappers/HiddenWrapper';
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & { children: ReactElement<any, any> },
@@ -142,7 +143,7 @@ function HeaderSearch() {
             <Divider sx={{ my: 1 }} />
             <List disablePadding>
               <ListItem button>
-                <Hidden smDown>
+                <HiddenWrapper desktopOnly>
                   <ListItemAvatar>
                     <Avatar
                       sx={{
@@ -152,7 +153,7 @@ function HeaderSearch() {
                       <FindInPageTwoToneIcon />
                     </Avatar>
                   </ListItemAvatar>
-                </Hidden>
+                </HiddenWrapper>
                 <Box flex='1'>
                   <Box display='flex' justifyContent='space-between'>
                     <Link href='#' underline='hover' sx={{ fontWeight: 'bold' }} variant='body2'>
@@ -174,7 +175,7 @@ function HeaderSearch() {
               </ListItem>
               <Divider sx={{ my: 1 }} component='li' />
               <ListItem button>
-                <Hidden smDown>
+                <HiddenWrapper desktopOnly>
                   <ListItemAvatar>
                     <Avatar
                       sx={{
@@ -184,7 +185,7 @@ function HeaderSearch() {
                       <FindInPageTwoToneIcon />
                     </Avatar>
                   </ListItemAvatar>
-                </Hidden>
+                </HiddenWrapper>
                 <Box flex='1'>
                   <Box display='flex' justifyContent='space-between'>
                     <Link href='#' underline='hover' sx={{ fontWeight: 'bold' }} variant='body2'>
@@ -205,7 +206,7 @@ function HeaderSearch() {
               </ListItem>
               <Divider sx={{ my: 1 }} component='li' />
               <ListItem button>
-                <Hidden smDown>
+                <HiddenWrapper desktopOnly>
                   <ListItemAvatar>
                     <Avatar
                       sx={{
@@ -215,7 +216,7 @@ function HeaderSearch() {
                       <FindInPageTwoToneIcon />
                     </Avatar>
                   </ListItemAvatar>
-                </Hidden>
+                </HiddenWrapper>
                 <Box flex='1'>
                   <Box display='flex' justifyContent='space-between'>
                     <Link href='#' underline='hover' sx={{ fontWeight: 'bold' }} variant='body2'>
