@@ -21,9 +21,49 @@ import { persistAuth } from '../../utils/persistAuth';
 import { resetUser } from '../../utils/resetUser';
 import firebaseConfig from './config/firebaseConfig';
 import store from 'src/store/store';
+import { fetchAndActivate, getRemoteConfig, getValue, Value } from 'firebase/remote-config';
+import remoteConfigDefaults from './remoteConfigDefaults/remote_config_defaults.json';
+import { env } from 'src/env';
 
 const app = initializeApp(firebaseConfig.config);
 
+// #region Firebase Remote Config
+const remoteConfig = getRemoteConfig(app);
+
+remoteConfig.defaultConfig = remoteConfigDefaults;
+
+remoteConfig.settings.minimumFetchIntervalMillis = parseInt(
+  env.REACT_APP_FIREBASE_REMOTE_CONFIG_FETCH_INTERVAL
+);
+
+/**
+ * Fetches and activates the remote configuration.
+ *
+ * @remarks
+ * This function should be called in the App.tsx file to fetch and activate the remote configuration.
+ */
+export const fetchAndActivateConfig = async () => {
+  try {
+    await fetchAndActivate(remoteConfig);
+  } catch (error) {
+    toast.error('Error fetching remote config');
+  }
+};
+
+/**
+ * Retrieves the configuration value for the specified feature flag key.
+ * This function is used in the FeatureFlagGuard component.
+ *
+ * @param key - The key of the feature flag.
+ * @returns The value of the feature flag.
+ */
+export const getConfigValue = (key: FlagKeys): Value => {
+  return getValue(remoteConfig, key);
+};
+
+export type FlagKeys = keyof typeof remoteConfigDefaults;
+
+// #region Firebase Auth
 export const FirebaseAuthContext = createContext<AuthContextInterface>({
   user: null,
   loading: false,
