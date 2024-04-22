@@ -27,7 +27,7 @@ import { env } from 'src/env';
 
 const app = initializeApp(firebaseConfig.config);
 
-// # Remote Config
+// #region Firebase Remote Config
 const remoteConfig = getRemoteConfig(app);
 
 remoteConfig.defaultConfig = remoteConfigDefaults;
@@ -63,6 +63,7 @@ export const getConfigValue = (key: FlagKeys): Value => {
 
 export type FlagKeys = keyof typeof remoteConfigDefaults;
 
+// #region Firebase Auth
 export const FirebaseAuthContext = createContext<AuthContextInterface>({
   user: null,
   loading: false,
