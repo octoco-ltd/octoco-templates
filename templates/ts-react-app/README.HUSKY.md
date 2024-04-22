@@ -146,6 +146,10 @@ To get started, follow these steps:
 
 Now, whenever you commit changes to your repository, Husky will automatically run lint-staged, which in turn will run Prettier on the staged files and also check of any eslint errors or warnings. This ensures that your code is formatted consistently and without errors and warnings before it is committed.
 
+## Prettier Format on Save
+
+To enable Prettier to format your code whenever you save a file, you can install the Prettier extension in your code editor (VS Code). And then turn on the `Format On Save` option in your editor settings Also make sure prettier is configured as the `Default Formatter`. This will automatically format your code whenever you save a file.
+
 ## Testing
 To easily test the pre-commit linting and formatting, you can run the following command in your terminal when you have staged changes in your repository just before commiting them:
     
