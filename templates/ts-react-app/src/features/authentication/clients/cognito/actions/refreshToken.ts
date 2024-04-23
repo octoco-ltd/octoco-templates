@@ -2,7 +2,7 @@ import {
     CognitoRefreshToken,
     CognitoUser
 } from 'amazon-cognito-identity-js';
-import store from 'src/store/store';
+import { useUserAuthStore } from 'src/store/userAuth/userAuthStore';
 import { _getCognitoUser } from './_getCognitoUser';
 
 const asyncRefreshUser = (
@@ -21,9 +21,9 @@ const asyncRefreshUser = (
 
 export default async function refreshAccessToken() {
     try {
-        const cognitoUser = _getCognitoUser(store.getState().user.user.email)
+        const cognitoUser = _getCognitoUser(useUserAuthStore.getState().user ?? '')
         const newRefreshToken = new CognitoRefreshToken({
-            RefreshToken: store.getState().user.refreshToken ?? '',
+            RefreshToken: useUserAuthStore.getState().refreshToken ?? '',
         });
         const refreshedSession: any = await asyncRefreshUser(
             cognitoUser,

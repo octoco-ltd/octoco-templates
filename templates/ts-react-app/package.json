@@ -1,6 +1,6 @@
 {
   "name": "ts-react-app",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "title": "ReactTS",
   "engines": {
     "node": ">=20.11.0"
@@ -21,7 +21,6 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/lab": "^5.0.0-alpha.103",
     "@mui/material": "^5.10.9",
-    "@mui/styles": "^5.10.9",
     "@mui/x-data-grid": "^6.5.0",
     "@reduxjs/toolkit": "^2.1.0",
     "@sentry/cli": "^2.20.3",
@@ -55,7 +54,8 @@
     "typescript": "^5.3.3",
     "use-react-router-breadcrumbs": "^4.0.1",
     "web-vitals": "^3.5.2",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

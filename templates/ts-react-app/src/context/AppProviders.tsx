@@ -2,16 +2,14 @@ import { CssBaseline } from '@mui/material';
 import * as Sentry from '@sentry/react';
 import { ReactNode } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { selectTheme, themeNames, ThemeProviderWrapper } from 'src/features/appTheme';
+import defineAbilityFor from 'src/config/ability';
+import { ThemeProviderWrapper } from 'src/features/appTheme';
 import { AuthProvider } from 'src/features/authentication';
-import { useAppSelector } from 'src/hooks/hooks';
 import Status500 from 'src/pages/Fallbacks/Status/Status500/Status500';
-import DialogProvider from './dialogContext';
+import { themeNames, useThemeStore } from 'src/store/theme/themeStore';
 import { SidebarProvider } from './SidebarContext';
 import { AbilityContext } from './canContext';
-import defineAbilityFor from 'src/config/ability';
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -27,7 +25,7 @@ interface AppProvidersProps {
  * @return {JSX.Element} The wrapped child components with required providers and error boundaries.
  */
 const AppProviders = ({ children }: AppProvidersProps) => {
-  const theme = useAppSelector(selectTheme);
+  const theme = useThemeStore((state) => state.theme);
 
   /**
   * The Role should be defined here based on the user logged in
@@ -44,10 +42,8 @@ const AppProviders = ({ children }: AppProvidersProps) => {
             <ThemeProviderWrapper>
               <Sentry.ErrorBoundary fallback={<Status500 resetErrorBoundary={() => window.location.reload()} />}>
                 <CssBaseline />
-                <DialogProvider>
-                  <ToastContainer theme={theme === themeNames.dark ? 'dark' : 'light'} />
-                  {children}
-                </DialogProvider>
+                <ToastContainer theme={theme === themeNames.dark ? 'dark' : 'light'} />
+                {children}
               </Sentry.ErrorBoundary>
             </ThemeProviderWrapper>
           </SidebarProvider>
