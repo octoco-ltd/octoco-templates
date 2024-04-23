@@ -98,7 +98,7 @@
     "build-storybook": "storybook build -s public",
     "lint": "eslint --fix . --ext .ts,.tsx",
     "cypress:open": "cypress open",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky"
   },
   "lint-staged": {
