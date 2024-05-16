@@ -2,9 +2,7 @@ import PWABadge from './PWABadge.tsx'
 import './App.css'
 import { AppBar, Box, Card, CardContent, Container, Grid, IconButton, Toolbar, Typography } from '@mui/material'
 import {
-  PhotoCameraRounded,
   MicExternalOnRounded,
-  LocationOnRounded,
   AddToHomeScreenRounded,
   MyLocationRounded
 } from '@mui/icons-material'
