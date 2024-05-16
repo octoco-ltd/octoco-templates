@@ -50,11 +50,30 @@ i  Writing project information to .firebaserc...
 
 Deployed at https://react-pwa-template.web.app/
 
-* Add MUI en maak Grid met cards op
 * Sit dan offline mode ding in
 * Navigate to coordinates
 * Sit take photo in en Dixie DB en wys hoe dit gestoor word in dixieDB
 * Sit audio recording in en wys hoe dit in dixieDB gestoor word
+
+## Addition of MUI
+```
+yarn add @mui/material @emotion/react @emotion/styled
+```
+Added google fonts to index.html with :
+
+```
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+/>
+```
+
+Added MUI icons with :
+```
+yarn add @mui/icons-material
+```
 
 # React + TypeScript + Vite
 

@@ -1,37 +1,83 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import appLogo from '/favicon.svg'
 import PWABadge from './PWABadge.tsx'
 import './App.css'
+import { AppBar, Box, Card, CardContent, Container, Grid, IconButton, Toolbar, Typography } from '@mui/material'
+import {
+  PhotoCameraRounded,
+  MicExternalOnRounded,
+  LocationOnRounded,
+  AddToHomeScreenRounded,
+  MyLocationRounded
+} from '@mui/icons-material'
+import { Offline, Online } from 'react-detect-offline';
+import NavigateToLocation from './Components/NavigateToLocation.tsx';
+import TakePhoto from './Components/TakePhoto.tsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={appLogo} className="logo" alt="ts-react-app-pwa logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>ts-react-app-pwa 2</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <AppBar position="fixed">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
+            ts-react-app-pwa
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Toolbar /> {/* This is added to push the content below the fixed AppBar */}
+      <Online>
+        <Box sx={{ width: '100%', textAlign: 'center', bgcolor: 'success.main', color: 'white', py: 1 }}>
+          App is currently online
+        </Box>
+      </Online>
+      <Offline>
+        <Box sx={{ width: '100%', textAlign: 'center', bgcolor: 'error.main', color: 'white', py: 1 }}>
+          App is currently offline
+        </Box>
+      </Offline>
+      <Container>
+        <Grid container spacing={2} justifyContent="center" mt={2}>
+          <Grid item xs={12} sm={6} md={4}>
+            <TakePhoto />
+          </Grid>
+          <Grid item xs={6} sm={6} md={4}>
+            <Card>
+              <CardContent>
+                <IconButton color="inherit" aria-label="record audio">
+                  <MicExternalOnRounded fontSize="large" />
+                </IconButton>
+                <Typography variant="body1">Record Audio</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={6} sm={6} md={4}>
+            <NavigateToLocation />
+          </Grid>
+          <Grid item xs={6} sm={6} md={4}>
+            <Card>
+              <CardContent>
+                <IconButton color="inherit" aria-label="install to home screen">
+                  <AddToHomeScreenRounded fontSize="large" />
+                </IconButton>
+                <Typography variant="body1">Install to Home Screen</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={6} sm={6} md={4}>
+            <Card>
+              <CardContent>
+                <IconButton color="inherit" aria-label="get current location">
+                  <MyLocationRounded fontSize="large" />
+                </IconButton>
+                <Typography variant="body1">Get Current Location</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
       <PWABadge />
     </>
-  )
+  );
 }
 
 export default App
