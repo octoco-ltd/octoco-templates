@@ -9,7 +9,6 @@ interface DixieDbPhoto {
     blobUrl: string;
 }
 
-
 function TakePhoto() {
     const [photoTaken, setPhotoTaken] = useState<DixieDbPhoto | null>(null);
     const photoTakenInputRef = useRef<HTMLInputElement | null>(null);
