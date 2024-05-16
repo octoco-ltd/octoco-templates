@@ -9,6 +9,7 @@ import {
 import { Offline, Online } from 'react-detect-offline';
 import NavigateToLocation from './Components/NavigateToLocation.tsx';
 import TakePhoto from './Components/TakePhoto.tsx';
+import ReloadAppManually from './Components/ReloadAppManually.tsx';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -39,14 +40,7 @@ function App() {
             <TakePhoto />
           </Grid>
           <Grid item xs={6} sm={6} md={4}>
-            <Card>
-              <CardContent>
-                <IconButton color="inherit" aria-label="record audio">
-                  <MicExternalOnRounded fontSize="large" />
-                </IconButton>
-                <Typography variant="body1">Record Audio</Typography>
-              </CardContent>
-            </Card>
+            <ReloadAppManually />
           </Grid>
           <Grid item xs={6} sm={6} md={4}>
             <NavigateToLocation />
@@ -68,6 +62,16 @@ function App() {
                   <MyLocationRounded fontSize="large" />
                 </IconButton>
                 <Typography variant="body1">Get Current Location</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={6} sm={6} md={4}>
+            <Card>
+              <CardContent>
+                <IconButton color="inherit" aria-label="record audio">
+                  <MicExternalOnRounded fontSize="large" />
+                </IconButton>
+                <Typography variant="body1">Record Audio</Typography>
               </CardContent>
             </Card>
           </Grid>
