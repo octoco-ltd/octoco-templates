@@ -26,6 +26,7 @@ export const addTodo = onRequest(async (request, response) => {
         const docRef = await db.collection('todos').add(newTodo);
         response.status(201).send({ id: docRef.id, ...newTodo });
     } catch (error) {
+        console.log(`error!!, ${error}`);
         response.status(500).send(error);
     }
 });

@@ -33,8 +33,10 @@ const Todos: React.FC = () => {
             <button
                 onClick={() =>
                     mutation.mutate({
-                        id: Date.now(),
-                        title: 'New Todo',
+                        title: 'New Todo 2',
+                        photoURL : 'photoUrl',
+                        version: '1',
+                        date: new Date()
                     })
                 }
             >
