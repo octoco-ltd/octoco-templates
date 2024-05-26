@@ -1,107 +1,81 @@
-# Introduction
+# Turborepo starter
 
+This is an official starter Turborepo.
 
-# Original project set up
-yarn create @vite-pwa/pwa
-cd ts-react-app-pwa
-yarn
-yarn add sharp --ignore-engines
-yarn generate-pwa-icons
-yarn dev
+## Using this example
 
-## Original hosting set up
-firebase init --account emile@octoco.ltd
+Run the following command:
 
-```
-Which Firebase features do you want to set up for this directory? Press Space to select features, then Enter to confirm your choices. Hosting: Configure files for Firebase Hosting and (optionally)
- set up GitHub Action deploys
-
-=== Account Setup
-
-+  Using account: emile@octoco.ltd
-
-=== Project Setup
-
-First, let's associate this project directory with a Firebase project.
-You can create multiple project aliases by running firebase use --add,
-but for now we'll just set up a default project.
-
-? Please select an option: Use an existing project
-? Select a default Firebase project for this directory: react-pwa-template (react-pwa-template)
-i  Using project react-pwa-template (react-pwa-template)
-
-=== Hosting Setup
-
-Your public directory is the folder (relative to your project directory) that
-will contain Hosting assets to be uploaded with firebase deploy. If you
-have a build process for your assets, use your build's output directory.
-
-? What do you want to use as your public directory? dist
-? Configure as a single-page app (rewrite all urls to /index.html)? Yes
-? Set up automatic builds and deploys with GitHub? No
-? File dist/index.html already exists. Overwrite? No
-i  Skipping write of dist/index.html
-
-i  Writing configuration info to firebase.json...
-i  Writing project information to .firebaserc...
-
-+  Firebase initialization complete!
+```sh
+npx create-turbo@latest
 ```
 
-Deployed at https://react-pwa-template.web.app/
+## What's inside?
 
-* Sit dan offline mode ding in
-* Navigate to coordinates
-* Sit take photo in en Dixie DB en wys hoe dit gestoor word in dixieDB
-* Sit audio recording in en wys hoe dit in dixieDB gestoor word
+This Turborepo includes the following packages/apps:
 
-## Addition of MUI
+### Apps and Packages
+
+- `docs`: a [Next.js](https://nextjs.org/) app
+- `web`: another [Next.js](https://nextjs.org/) app
+- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+
+### Utilities
+
+This Turborepo has some additional tools already setup for you:
+
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
+
+### Build
+
+To build all apps and packages, run the following command:
+
 ```
-yarn add @mui/material @emotion/react @emotion/styled
-```
-Added google fonts to index.html with :
-
-```
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-/>
-```
-
-Added MUI icons with :
-```
-yarn add @mui/icons-material
-```
-
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+cd my-turborepo
+pnpm build
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Develop
+
+To develop all apps and packages, run the following command:
+
+```
+cd my-turborepo
+pnpm dev
+```
+
+### Remote Caching
+
+Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+
+By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+
+```
+cd my-turborepo
+npx turbo login
+```
+
+This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+
+Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+
+```
+npx turbo link
+```
+
+## Useful Links
+
+Learn more about the power of Turborepo:
+
+- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
+- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
+- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
+- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
+- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
+- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)

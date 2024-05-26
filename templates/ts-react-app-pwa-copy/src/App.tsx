@@ -10,6 +10,7 @@ import { Offline, Online } from 'react-detect-offline';
 import NavigateToLocation from './Components/NavigateToLocation.tsx';
 import TakePhoto from './Components/TakePhoto.tsx';
 import ReloadAppManually from './Components/ReloadAppManually.tsx';
+import Todos from './Components/Todos.tsx';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -72,6 +73,13 @@ function App() {
                   <MicExternalOnRounded fontSize="large" />
                 </IconButton>
                 <Typography variant="body1">Record Audio</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={6} sm={6} md={4}>
+            <Card>
+              <CardContent>
+                <Todos />
               </CardContent>
             </Card>
           </Grid>
